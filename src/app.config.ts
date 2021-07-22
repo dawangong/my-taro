@@ -1,6 +1,8 @@
+// index => login => register
 export default {
   pages: [
-    'pages/index/index'
+    'pages/index/index',
+    'pages/login/login'
   ],
   window: {
     backgroundTextStyle: 'light',
