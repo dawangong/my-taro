@@ -2,7 +2,7 @@ import './login.scss'
 
 import React, { useEffect, useContext, useState } from 'react'
 import { View } from '@tarojs/components'
-import {
+import Taro, {
   useReady,
   useDidShow,
   useDidHide,
@@ -49,7 +49,7 @@ const Login: React.FC<Props> = (props: Props) => {
       <View className='page-login-content'>
         <AtTabs current={current} tabList={tabList} onClick={(value) => setCurrent(value)}>
           <AtTabsPane current={current} index={0} >
-            <AtForm className='page-login__login-form' onSubmit={() => {}}>
+            <AtForm className='page-login__login-form'>
               <AtInput
                 name='mobile'
                 title='手机号码'
@@ -68,11 +68,13 @@ const Login: React.FC<Props> = (props: Props) => {
                 value={password}
                 onChange={value => setPassword(value)}
               />
-              <AtButton type='primary' circle formType='submit' className='page-login__btn--login'>登陆</AtButton>
+              <AtButton type='primary' circle className='page-login__btn--login' onClick={() => Taro.navigateTo({
+        url: '/pages/center/center'
+      })}>登陆</AtButton>
             </AtForm>
           </AtTabsPane>
           <AtTabsPane current={current} index={1}>
-           <AtForm className='page-login__login-form' onSubmit={() => {}}>
+           <AtForm className='page-login__login-form'>
              <AtInput
                 name='id'
                 title='代理ID'
@@ -126,7 +128,7 @@ const Login: React.FC<Props> = (props: Props) => {
                 value={shopAddress}
                 onChange={value => setShopAddress(value)}
               />
-              <AtButton type='primary' circle formType='submit' className='page-login__btn--login'>注册</AtButton>
+              <AtButton type='primary' circle className='page-login__btn--login'>注册</AtButton>
             </AtForm>
           </AtTabsPane>
         </AtTabs>

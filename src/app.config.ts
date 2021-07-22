@@ -1,8 +1,9 @@
-// index => login => register
+// login/register => center
 export default {
   pages: [
+    'pages/login/login',
     'pages/center/center',
-    'pages/login/login'
+    'pages/profile/profile'
   ],
   window: {
     backgroundTextStyle: 'light',
