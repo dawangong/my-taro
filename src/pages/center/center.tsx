@@ -1,4 +1,4 @@
-import './index.scss'
+import './center.scss'
 
 import React, { useEffect, useContext } from 'react'
 import { View, Button, Text } from '@tarojs/components'
@@ -14,7 +14,7 @@ import counterStore from '../../store/counter'
 
 interface Props {}
 
-const Index: React.FC<Props> = (props: Props) => {
+const Center: React.FC<Props> = (props: Props) => {
 
   const {counter, increment, decrement, incrementAsync } = useContext(counterStore);
 
@@ -33,7 +33,7 @@ const Index: React.FC<Props> = (props: Props) => {
   usePullDownRefresh(() => {})
 
   return (
-    <View className='page-index'>
+    <View className='page-center'>
       <Button onClick={increment}>+</Button>
       <Button onClick={decrement}>-</Button>
       <Button onClick={incrementAsync}>Add Async</Button>
@@ -42,4 +42,4 @@ const Index: React.FC<Props> = (props: Props) => {
   )
 };
 
-export default observer(Index)
+export default observer(Center)

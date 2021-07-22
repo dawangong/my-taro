@@ -1,7 +1,7 @@
 // index => login => register
 export default {
   pages: [
-    'pages/index/index',
+    'pages/center/center',
     'pages/login/login'
   ],
   window: {
