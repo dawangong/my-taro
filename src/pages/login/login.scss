@@ -1,0 +1,24 @@
+.page-login {
+  background-color: #78a4fa;
+  height: 100vh;
+  overflow: hidden;
+
+  .page-login-content {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 40px;
+    padding-bottom: 50px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 4px 4px 10px;
+  }
+
+  .page-login__login-form {
+    padding-top: 20px;
+  }
+  
+  .page-login__btn--login {
+    margin-top: 40px;
+  }
+}
