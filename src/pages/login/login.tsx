@@ -18,8 +18,15 @@ interface Props {}
 const Login: React.FC<Props> = (props: Props) => {
 
   const [current, setCurrent] = useState(0)
-  const [phone, setPhone] = useState('')
+  const [mobile, setMobile] = useState('')
   const [password, setPassword] = useState('')
+ 
+  const [id, setId] = useState('')
+  const [slogan, setSlogan] = useState('')
+  const [shopName, setShopName] = useState('')
+  const [shopMobile, setShopMobile] = useState('')
+  const [shopPassword, setShopPassword] = useState('')
+  const [shopAddress, setShopAddress] = useState('')
   const tabList = [{ title: '登陆' }, { title: '注册' }]
   const {} = useContext(loginStore);
 
@@ -44,20 +51,20 @@ const Login: React.FC<Props> = (props: Props) => {
           <AtTabsPane current={current} index={0} >
             <AtForm className='page-login__login-form' onSubmit={() => {}}>
               <AtInput
-                name='phone'
+                name='mobile'
                 title='手机号码'
                 type='phone'
                 required
-                placeholder='请输入手机号码'
-                value={phone}
-                onChange={value => setPhone(value)}
+                placeholder='请填写手机号码'
+                value={mobile}
+                onChange={value => setMobile(value)}
               />
               <AtInput
                 name='password'
                 title='密码'
                 type='password'
                 required
-                placeholder='请输入密码'
+                placeholder='请填写密码'
                 value={password}
                 onChange={value => setPassword(value)}
               />
@@ -65,7 +72,62 @@ const Login: React.FC<Props> = (props: Props) => {
             </AtForm>
           </AtTabsPane>
           <AtTabsPane current={current} index={1}>
-            <View style='padding: 100px 50px;background-color: #FAFBFC;text-align: center;'>标签页二的内容</View>
+           <AtForm className='page-login__login-form' onSubmit={() => {}}>
+             <AtInput
+                name='id'
+                title='代理ID'
+                placeholder='代理ID'
+                type='text'
+                value={id}
+                onChange={value => setId(value)}
+              />
+              <AtInput
+                name='slogan'
+                title='宣传语'
+                placeholder='宣传语'
+                type='text'
+                value={slogan}
+                onChange={value => setSlogan(value)}
+              />
+              
+              <AtInput
+                name='name'
+                title='商户名称'
+                type='text'
+                required
+                placeholder='请填写商户名称'
+                value={shopName}
+                onChange={value => setShopName(value)}
+              />
+              <AtInput
+                name='mobile'
+                title='手机号码'
+                type='phone'
+                required
+                placeholder='请填写手机号码'
+                value={shopMobile}
+                onChange={value => setShopMobile(value)}
+              />
+              <AtInput
+                name='password'
+                title='密码'
+                type='password'
+                required
+                placeholder='请填写密码'
+                value={shopPassword}
+                onChange={value => setShopPassword(value)}
+              />
+              <AtInput
+                name='name'
+                title='商户地址'
+                type='text'
+                required
+                placeholder='请填写商户地址'
+                value={shopAddress}
+                onChange={value => setShopAddress(value)}
+              />
+              <AtButton type='primary' circle formType='submit' className='page-login__btn--login'>注册</AtButton>
+            </AtForm>
           </AtTabsPane>
         </AtTabs>
       </View>
