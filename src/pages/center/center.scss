@@ -10,6 +10,7 @@
     position: relative;
     padding: 20px;
     background-color: white;
+    padding-bottom: 30px;
   }
 
   .page-center__info-avatar {
@@ -42,7 +43,7 @@
 
   .page-center__service-item {
     width: 48%;
-    height: 150px;
+    height: 160px;
     border-radius: 10px;
   }
 
@@ -65,5 +66,19 @@
     margin-left: 20px;
     color: white;
     display: inline-block;
+  }
+
+  .at-grid__flex {
+    height: 156px;
+  }
+
+  .content-inner__img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .at-avatar {
+    width: 90px;
+    height: 90px;
   }
 }

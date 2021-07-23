@@ -47,24 +47,27 @@ const Login: React.FC<Props> = (props: Props) => {
   return (
     <View className='page-login'>
       <View className='page-login-content'>
+        <View className='page-login-wel'>Welcome</View>
         <AtTabs current={current} tabList={tabList} onClick={(value) => setCurrent(value)}>
           <AtTabsPane current={current} index={0} >
             <AtInput
-                  name='mobile'
-                  title='手机号码'
-                  type='phone'
-                  required
-                  placeholder='请填写手机号码'
-                  value={mobile}
-                  onChange={value => setMobile(value)}
+              name='mobile'
+              title='手机号码'
+              type='phone'
+              required
+              // placeholder='请填写手机号码'
+              value={mobile}
+              border={false}
+              onChange={value => setMobile(value)}
             />
             <AtInput
               name='password'
               title='密码'
               type='password'
               required
-              placeholder='请填写密码'
+              // placeholder='请填写密码'
               value={password}
+              border={false}
               onChange={value => setPassword(value)}
             />
             <AtButton type='primary' circle className='page-login__btn--login' onClick={() => Taro.navigateTo({
@@ -76,17 +79,19 @@ const Login: React.FC<Props> = (props: Props) => {
             <AtInput
                 name='id'
                 title='代理ID'
-                placeholder='代理ID'
+                // placeholder='代理ID'
                 type='text'
                 value={id}
+                border={false}
                 onChange={value => setId(value)}
             />
             <AtInput
               name='slogan'
               title='宣传语'
-              placeholder='宣传语'
+              // placeholder='宣传语'
               type='text'
               value={slogan}
+              border={false}
               onChange={value => setSlogan(value)}
             />
             
@@ -95,8 +100,9 @@ const Login: React.FC<Props> = (props: Props) => {
               title='商户名称'
               type='text'
               required
-              placeholder='请填写商户名称'
+              // placeholder='请填写商户名称'
               value={businessName}
+              border={false}
               onChange={value => setBusinessName(value)}
             />
             <AtInput
@@ -104,8 +110,9 @@ const Login: React.FC<Props> = (props: Props) => {
               title='手机号码'
               type='phone'
               required
-              placeholder='请填写手机号码'
+              // placeholder='请填写手机号码'
               value={businessMobile}
+              border={false}
               onChange={value => setBusinessMobile(value)}
             />
             <AtInput
@@ -113,8 +120,9 @@ const Login: React.FC<Props> = (props: Props) => {
               title='密码'
               type='password'
               required
-              placeholder='请填写密码'
+              // placeholder='请填写密码'
               value={businessPassword}
+              border={false}
               onChange={value => setBusinessPassword(value)}
             />
             <AtInput
@@ -122,8 +130,9 @@ const Login: React.FC<Props> = (props: Props) => {
               title='商户地址'
               type='text'
               required
-              placeholder='请填写商户地址'
+              // placeholder='请填写商户地址'
               value={businessAddress}
+              border={false}
               onChange={value => setBusinessAddress(value)}
             />
             <AtButton type='primary' circle className='page-login__btn--login'>注册</AtButton>

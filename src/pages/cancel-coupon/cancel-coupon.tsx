@@ -43,6 +43,7 @@ const CancelCoupon: React.FC<Props> = (props: Props) => {
             required
             placeholder='请填写优惠券核销码'
             value={coupon_no}
+            border={false}
             onChange={value => setCoupon_no(value)}
           />
       </View>

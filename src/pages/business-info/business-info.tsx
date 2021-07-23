@@ -45,6 +45,7 @@ const BusinessInfo: React.FC<Props> = (props: Props) => {
           required
           placeholder='请填写地址'
           value={address}
+          border={false}
           onChange={value => setAddress(value)}
         />
         <AtInput
@@ -54,6 +55,7 @@ const BusinessInfo: React.FC<Props> = (props: Props) => {
           required
           placeholder='请填写宣传语'
           value={slogan}
+          border={false}
           onChange={value => setSlogan(value)}
         />
       </View>
