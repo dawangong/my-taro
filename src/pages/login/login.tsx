@@ -102,7 +102,7 @@ const Login: React.FC<Props> = (props: Props) => {
                 onChange={value => setShopName(value)}
               />
               <AtInput
-                name='mobile'
+                name='shopMobile'
                 title='手机号码'
                 type='phone'
                 required
@@ -111,7 +111,7 @@ const Login: React.FC<Props> = (props: Props) => {
                 onChange={value => setShopMobile(value)}
               />
               <AtInput
-                name='password'
+                name='shopPassword'
                 title='密码'
                 type='password'
                 required
@@ -120,7 +120,7 @@ const Login: React.FC<Props> = (props: Props) => {
                 onChange={value => setShopPassword(value)}
               />
               <AtInput
-                name='name'
+                name='shopAddress'
                 title='商户地址'
                 type='text'
                 required
