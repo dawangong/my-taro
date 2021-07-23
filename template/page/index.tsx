@@ -1,7 +1,6 @@
 import './index.scss'
 
-import React, { useEffect, useContext } from 'react'
-import { View, Button, Text } from '@tarojs/components'
+import React, { useEffect, useState, useContext } from 'react'
 import {
   useReady,
   useDidShow,
@@ -9,14 +8,15 @@ import {
   usePullDownRefresh
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
-import counterStore from '../../store/counter'
+import { View, Text } from '@tarojs/components'
+import { AtInput, AtButton } from 'taro-ui'
+// import counterStore from '../../store/counter'
+
 
 
 interface Props {}
 
 const Index: React.FC<Props> = (props: Props) => {
-
-  const {counter, increment, decrement, incrementAsync } = useContext(counterStore);
 
   useEffect(() => {})
 
@@ -34,10 +34,7 @@ const Index: React.FC<Props> = (props: Props) => {
 
   return (
     <View className='page-index'>
-      <Button onClick={increment}>+</Button>
-      <Button onClick={decrement}>-</Button>
-      <Button onClick={incrementAsync}>Add Async</Button>
-      <Text>{counter}</Text>
+      content
     </View>
   )
 };

@@ -1,7 +1,6 @@
 import './login.scss'
 
 import React, { useEffect, useContext, useState } from 'react'
-import { View } from '@tarojs/components'
 import Taro, {
   useReady,
   useDidShow,
@@ -9,8 +8,9 @@ import Taro, {
   usePullDownRefresh
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
-import loginStore from '../../store/login'
+import { View } from '@tarojs/components'
 import { AtTabs, AtTabsPane, AtInput, AtButton } from 'taro-ui'
+import loginStore from '../../store/login'
 
 
 interface Props {}

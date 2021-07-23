@@ -5,6 +5,7 @@ export default {
     'pages/center/center',
     'pages/profile/profile',
     'pages/business-info/business-info',
+    'pages/cancel-coupon/cancel-coupon',
   ],
   window: {
     backgroundTextStyle: 'light',

@@ -1,7 +1,6 @@
 import './business-info.scss'
 
 import React, { useEffect, useContext, useState } from 'react'
-import { View } from '@tarojs/components'
 import {
   useReady,
   useDidShow,
@@ -9,8 +8,9 @@ import {
   usePullDownRefresh
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
-import counterStore from '../../store/counter'
+import { View } from '@tarojs/components'
 import { AtInput, AtButton } from 'taro-ui'
+import counterStore from '../../store/counter'
 
 
 interface Props {}

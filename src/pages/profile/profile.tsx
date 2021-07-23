@@ -1,7 +1,6 @@
 import './profile.scss'
 
 import React, { useEffect, useContext } from 'react'
-import { View } from '@tarojs/components'
 import Taro, {
   useReady,
   useDidShow,
@@ -9,15 +8,14 @@ import Taro, {
   usePullDownRefresh
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
-import counterStore from '../../store/counter'
+import { View } from '@tarojs/components'
 import { AtList, AtListItem } from 'taro-ui'
+// import counterStore from '../../store/counter'
 
 
 interface Props {}
 
 const Profile: React.FC<Props> = (props: Props) => {
-
-  // const {counter, increment, decrement, incrementAsync } = useContext(counterStore);
 
   useEffect(() => {})
 
