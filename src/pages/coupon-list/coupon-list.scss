@@ -9,8 +9,8 @@
   .card{
     display: flex;
     align-items: center;
-    background: #ffc82c;
-    border-radius: 8px;
+    background: $yellow;
+    border-radius: 10px;
     margin-top: 30px;
     -webkit-mask-image: radial-gradient(circle at 210px 10px, transparent 10px, red 10.5px), linear-gradient(transparent 25%, red 0, red 75%, transparent 0);
     -webkit-mask-size: 100%, 5px 10px;

@@ -2,5 +2,90 @@
 
 .page-coupon-detail {
   height: 100vh;
-  background-color: $background;
+  background-color: $yellow;
+  overflow: hidden;
+
+  .card {
+    width: 80%;
+    border-radius: 10px;
+    margin: 30px auto;
+    background-color: white;
+    padding: 40px;
+    margin-top: 60px;
+    -webkit-mask-image: radial-gradient(circle at 10px 244px, transparent 10px, red 10.5px), linear-gradient(90deg, transparent 25%, red 0, red 75%, transparent 0);
+    -webkit-mask-size: 100%, 12px 5px;
+    -webkit-mask-repeat: repeat, repeat-x;
+    -webkit-mask-position: -10px, 50% 244px;
+    -webkit-mask-composite: source-out;
+    mask-composite: subtract;
+  }
+
+  .info {
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 60px;
+
+    View {
+      margin-bottom: 15px;
+
+      &:last-child {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .money {
+    font-size: 50px;
+    color: $yellow;
+  }
+
+  .filed {
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+  .title {
+    width: 200px;
+  }
+
+  .grey {
+    color: #cccccc;
+  }
+
+  .page-coupon-detail__handle {
+    display: flex;
+    margin-top: 40px;
+  }
+
+  .page-coupon-detail__btn {
+    width: 45%;
+
+    &:first-child {
+      border-color: $yellow;
+      background-color: white;
+      color: $yellow;
+    }
+
+    &:last-child {
+      background-color: $yellow;
+      color: white;
+      border: 0;
+    }
+  }
+
+  .regular {
+    width: 80%;
+    margin: 20px auto;
+    color: white;
+    font-size: 24px;
+
+    View {
+      margin-bottom: 10px;
+
+      &:first-child {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+    }
+  }
 }
