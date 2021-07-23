@@ -35,7 +35,7 @@ const CouponList: React.FC<Props> = (props: Props) => {
   return (
     <View className='page-coupon-list'>
       <ScrollView
-        className='scrollview'
+        className='scroll-view'
         scrollY
         scrollWithAnimation
         scrollTop={0}
@@ -60,6 +60,9 @@ const CouponList: React.FC<Props> = (props: Props) => {
           </View>)
         }
       </ScrollView>
+      <View className="add-area">
+         <AtButton type='primary' className='page-coupon-list__btn'>新增优惠券</AtButton>
+      </View>
     </View>
   )
 };
