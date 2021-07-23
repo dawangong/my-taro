@@ -1,0 +1,48 @@
+@import "../../styles/constant.scss";
+
+.page-coupon-list {
+  height: 100vh;
+  background-color: $background;
+  padding: 0 30px;
+  box-sizing: border-box;
+
+  .card{
+    display: flex;
+    align-items: center;
+    background: #ffc82c;
+    border-radius: 8px;
+    margin-top: 30px;
+    -webkit-mask-image: radial-gradient(circle at 210px 10px, transparent 10px, red 10.5px), linear-gradient(transparent 25%, red 0, red 75%, transparent 0);
+    -webkit-mask-size: 100%, 5px 10px;
+    -webkit-mask-repeat: repeat, repeat-y;
+    -webkit-mask-position: 0 -10px, 210px;
+    -webkit-mask-composite: source-out;
+    mask-composite: subtract;
+  }
+  .card-left{
+    width: 30%;
+    text-align: center;
+    font-size: 30px;
+    color: white;
+  }
+  .card-right{
+    padding: 25px 22px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    background-color: white;
+  }
+  .card-info{
+    margin: 0;
+    font-size: 24px;
+    line-height: 50px;
+    color: rgba(33, 32, 44, 0.9);
+  }
+  .card-time{
+    font-size: 20px;
+    line-height: 50px;
+    font-weight: normal;
+    margin-top: 4px;
+    color: #cccccc;
+  }
+}

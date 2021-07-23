@@ -6,6 +6,8 @@ export default {
     'pages/profile/profile',
     'pages/business-info/business-info',
     'pages/cancel-coupon/cancel-coupon',
+    'pages/coupon-list/coupon-list',
+    'pages/coupon-detail/coupon-detail',
   ],
   window: {
     backgroundTextStyle: 'light',

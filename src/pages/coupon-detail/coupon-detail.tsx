@@ -1,4 +1,4 @@
-import './index.scss'
+import './coupon-detail.scss'
 
 import React, { useEffect, useState, useContext } from 'react'
 import Taro, {
@@ -16,7 +16,7 @@ import { AtInput, AtButton } from 'taro-ui'
 
 interface Props {}
 
-const Index: React.FC<Props> = (props: Props) => {
+const CouponDetail: React.FC<Props> = (props: Props) => {
 
   useEffect(() => {})
 
@@ -33,10 +33,10 @@ const Index: React.FC<Props> = (props: Props) => {
   usePullDownRefresh(() => {})
 
   return (
-    <View className='page-index'>
+    <View className='page-coupon-detail'>
       content
     </View>
   )
 };
 
-export default observer(Index)
+export default observer(CouponDetail)
