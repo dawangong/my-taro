@@ -9,7 +9,7 @@ import {
   usePullDownRefresh
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
-import counterStore from '../../src/store/counter'
+import counterStore from '../../store/counter'
 
 
 interface Props {}

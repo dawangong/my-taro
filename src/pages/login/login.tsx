@@ -10,7 +10,7 @@ import Taro, {
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
 import loginStore from '../../store/login'
-import { AtTabs, AtTabsPane, AtInput, AtForm, AtButton } from 'taro-ui'
+import { AtTabs, AtTabsPane, AtInput, AtButton } from 'taro-ui'
 
 
 interface Props {}
@@ -23,10 +23,10 @@ const Login: React.FC<Props> = (props: Props) => {
  
   const [id, setId] = useState('')
   const [slogan, setSlogan] = useState('')
-  const [shopName, setShopName] = useState('')
-  const [shopMobile, setShopMobile] = useState('')
-  const [shopPassword, setShopPassword] = useState('')
-  const [shopAddress, setShopAddress] = useState('')
+  const [businessName, setBusinessName] = useState('')
+  const [businessMobile, setBusinessMobile] = useState('')
+  const [businessPassword, setBusinessPassword] = useState('')
+  const [businessAddress, setBusinessAddress] = useState('')
   const tabList = [{ title: '登陆' }, { title: '注册' }]
   const {} = useContext(loginStore);
 
@@ -49,87 +49,84 @@ const Login: React.FC<Props> = (props: Props) => {
       <View className='page-login-content'>
         <AtTabs current={current} tabList={tabList} onClick={(value) => setCurrent(value)}>
           <AtTabsPane current={current} index={0} >
-            <AtForm className='page-login__login-form'>
-              <AtInput
-                name='mobile'
-                title='手机号码'
-                type='phone'
-                required
-                placeholder='请填写手机号码'
-                value={mobile}
-                onChange={value => setMobile(value)}
-              />
-              <AtInput
-                name='password'
-                title='密码'
-                type='password'
-                required
-                placeholder='请填写密码'
-                value={password}
-                onChange={value => setPassword(value)}
-              />
-              <AtButton type='primary' circle className='page-login__btn--login' onClick={() => Taro.navigateTo({
-        url: '/pages/center/center'
-      })}>登陆</AtButton>
-            </AtForm>
+            <AtInput
+                  name='mobile'
+                  title='手机号码'
+                  type='phone'
+                  required
+                  placeholder='请填写手机号码'
+                  value={mobile}
+                  onChange={value => setMobile(value)}
+            />
+            <AtInput
+              name='password'
+              title='密码'
+              type='password'
+              required
+              placeholder='请填写密码'
+              value={password}
+              onChange={value => setPassword(value)}
+            />
+            <AtButton type='primary' circle className='page-login__btn--login' onClick={() => Taro.navigateTo({
+              url: '/pages/center/center'
+            })}>登陆
+            </AtButton>
           </AtTabsPane>
           <AtTabsPane current={current} index={1}>
-           <AtForm className='page-login__login-form'>
-             <AtInput
+            <AtInput
                 name='id'
                 title='代理ID'
                 placeholder='代理ID'
                 type='text'
                 value={id}
                 onChange={value => setId(value)}
-              />
-              <AtInput
-                name='slogan'
-                title='宣传语'
-                placeholder='宣传语'
-                type='text'
-                value={slogan}
-                onChange={value => setSlogan(value)}
-              />
-              
-              <AtInput
-                name='name'
-                title='商户名称'
-                type='text'
-                required
-                placeholder='请填写商户名称'
-                value={shopName}
-                onChange={value => setShopName(value)}
-              />
-              <AtInput
-                name='shopMobile'
-                title='手机号码'
-                type='phone'
-                required
-                placeholder='请填写手机号码'
-                value={shopMobile}
-                onChange={value => setShopMobile(value)}
-              />
-              <AtInput
-                name='shopPassword'
-                title='密码'
-                type='password'
-                required
-                placeholder='请填写密码'
-                value={shopPassword}
-                onChange={value => setShopPassword(value)}
-              />
-              <AtInput
-                name='shopAddress'
-                title='商户地址'
-                type='text'
-                required
-                placeholder='请填写商户地址'
-                value={shopAddress}
-                onChange={value => setShopAddress(value)}
-              />
-              <AtButton type='primary' circle className='page-login__btn--login'>注册</AtButton>
-            </AtForm>
+            />
+            <AtInput
+              name='slogan'
+              title='宣传语'
+              placeholder='宣传语'
+              type='text'
+              value={slogan}
+              onChange={value => setSlogan(value)}
+            />
+            
+            <AtInput
+              name='name'
+              title='商户名称'
+              type='text'
+              required
+              placeholder='请填写商户名称'
+              value={businessName}
+              onChange={value => setBusinessName(value)}
+            />
+            <AtInput
+              name='businessMobile'
+              title='手机号码'
+              type='phone'
+              required
+              placeholder='请填写手机号码'
+              value={businessMobile}
+              onChange={value => setBusinessMobile(value)}
+            />
+            <AtInput
+              name='businessPassword'
+              title='密码'
+              type='password'
+              required
+              placeholder='请填写密码'
+              value={businessPassword}
+              onChange={value => setBusinessPassword(value)}
+            />
+            <AtInput
+              name='businessAddress'
+              title='商户地址'
+              type='text'
+              required
+              placeholder='请填写商户地址'
+              value={businessAddress}
+              onChange={value => setBusinessAddress(value)}
+            />
+            <AtButton type='primary' circle className='page-login__btn--login'>注册</AtButton>
           </AtTabsPane>
         </AtTabs>
       </View>

@@ -1,7 +1,7 @@
 import './center.scss'
 
 import React, { useEffect, useContext } from 'react'
-import { View, Button, Text } from '@tarojs/components'
+import { View, Text } from '@tarojs/components'
 import Taro, {
   useReady,
   useDidShow,
@@ -16,8 +16,6 @@ import { AtDivider, AtAvatar, AtIcon, AtGrid } from 'taro-ui'
 interface Props {}
 
 const Center: React.FC<Props> = (props: Props) => {
-
-  const {counter, increment, decrement, incrementAsync } = useContext(counterStore);
 
   useEffect(() => {})
 

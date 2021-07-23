@@ -1,5 +1,7 @@
+@import "../../styles/constant.scss";
+
 .page-login {
-  background-color: #78a4fa;
+  background-color: $main;
   height: 100vh;
   overflow: hidden;
 
@@ -13,12 +15,12 @@
     border-radius: 20px;
     box-shadow: 4px 4px 10px;
   }
-
-  .page-login__login-form {
-    padding-top: 20px;
-  }
   
   .page-login__btn--login {
     margin-top: 40px;
+  }
+
+  .at-tabs-pane {
+    padding-top: 1px;
   }
 }
