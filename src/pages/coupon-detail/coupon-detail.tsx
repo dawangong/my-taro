@@ -68,7 +68,9 @@ const CouponDetail: React.FC<Props> = (props: Props) => {
 
         <View className='page-coupon-detail__handle'>
           <AtButton type='primary' className='page-coupon-detail__btn'>删除</AtButton>
-          <AtButton type='primary' className='page-coupon-detail__btn'>修改</AtButton>
+          <AtButton type='primary' className='page-coupon-detail__btn' onClick={() => Taro.navigateTo({
+            url: '/pages/coupon-edit/coupon-edit'
+          })}>修改</AtButton>
         </View>
       </View>
 

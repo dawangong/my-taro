@@ -59,7 +59,7 @@ const BusinessInfo: React.FC<Props> = (props: Props) => {
           onChange={value => setSlogan(value)}
         />
       </View>
-      <AtButton type='primary' className='page-business-info__btn'>保存</AtButton>
+      <AtButton type='primary' className='page-business-info__btn' onClick={() => Taro.navigateBack()}>保存</AtButton>
     </View>
   )
 };
