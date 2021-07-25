@@ -46,12 +46,15 @@ const CouponList: React.FC<Props> = (props: Props) => {
       >
         {
           [0,1,2,3].map(() => 
-          <View className="card" onClick={() => Taro.navigateTo({
+          <View className={`card ${true && 'gift'}`} onClick={() => Taro.navigateTo({
             url: '/pages/coupon-detail/coupon-detail'
           })}>
-            <View className="card-left">
+            {/* <View className="card-left">
               <View>350元</View>
-              <View>满4元可用</View>
+              <View>满4可用</View>
+            </View> */}
+            <View className="card-left">
+              礼品券
             </View>
             <View className="card-right">
                 <Text className="card-info">满30元送350书券</Text>
@@ -61,7 +64,9 @@ const CouponList: React.FC<Props> = (props: Props) => {
         }
       </ScrollView>
       <View className="add-area">
-         <AtButton type='primary' className='page-coupon-list__btn'>新增优惠券</AtButton>
+         <AtButton type='primary' className='page-coupon-list__btn' onClick={() => Taro.navigateTo({
+            url: '/pages/coupon-edit/coupon-edit'
+          })}>新增优惠券</AtButton>
       </View>
     </View>
   )

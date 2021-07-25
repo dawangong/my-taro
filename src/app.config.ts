@@ -8,6 +8,7 @@ export default {
     'pages/cancel-coupon/cancel-coupon',
     'pages/coupon-list/coupon-list',
     'pages/coupon-detail/coupon-detail',
+    'pages/coupon-edit/coupon-edit',
   ],
   window: {
     backgroundTextStyle: 'light',
