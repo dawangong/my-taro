@@ -68,6 +68,9 @@ const Center: React.FC<Props> = (props: Props) => {
       <View className='page-center__service'>
         <View className='page-center__service__title'>常用服务</View>
         <View className='page-center__service-content'>
+        <View className='page-center__service-item page-center__service-item--split'>
+            <Text className='page-center__service__desc'>智能裂变</Text>
+          </View>
           <View className='page-center__service-item page-center__service-item--active'>
             <Text className='page-center__service__desc'>营销活动</Text>
           </View>

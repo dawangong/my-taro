@@ -39,12 +39,14 @@
     display: flex;
     padding: 0 20px;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   .page-center__service-item {
     width: 48%;
     height: 160px;
     border-radius: 10px;
+    margin-bottom: 20px;
   }
 
   .page-center__service__title {
@@ -52,12 +54,16 @@
     margin-bottom: 20px;
   }
 
+  .page-center__service-item--split {
+    background-color: $blue-s;
+  }
+
   .page-center__service-item--active {
-    background-color: #ffc82c;
+    background-color: $yellow;
   }
 
   .page-center__service-item--video {
-    background-color: #13ce66;
+    background-color: $green;
   }
 
   .page-center__service__desc {

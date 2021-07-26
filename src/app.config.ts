@@ -9,6 +9,13 @@ export default {
     'pages/coupon-list/coupon-list',
     'pages/coupon-detail/coupon-detail',
     'pages/coupon-edit/coupon-edit',
+    'pages/split-list/split-list',
+    'pages/split-edit/split-edit',
+    'pages/split-detail/split-detail',
+    'pages/activity-list/activity-list',
+    'pages/activity-edit/activity-edit',
+    'pages/video-list/video-list',
+    'pages/video-edit/video-edit',
   ],
   window: {
     backgroundTextStyle: 'light',
