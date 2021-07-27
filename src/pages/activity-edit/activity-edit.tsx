@@ -18,19 +18,12 @@ interface Props {}
 
 const ActivityEdit: React.FC<Props> = (props: Props) => {
 
-  const { prize, clear } = useContext(ActivityEditStore);
+  const { prizes, prizeItem, update, clear, finalUpdate, remove } = useContext(ActivityEditStore);
 
   const [isOpened, setIsOpened] = useState(false);
 
-  const prizeItem = {
-    title: "",
-    num: "",
-    percentage: "",
-    // coupon_id: "",
-    // activity_sort: 0,
-  }
   const [activity, setActivity] = useState({
-    name: '',
+    title: '',
     type: 1,
     start_time: '2021.06.01',
     end_time: '2021.09.01',
@@ -71,9 +64,9 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
             type='text'
             required
             placeholder='请填写活动名称'
-            value={activity.name}
+            value={activity.title}
             border={false}
-            onChange={value => setActivity({ ...activity ,name: value })}
+            onChange={value => setActivity({ ...activity ,title: value })}
           />
           <View className='type'>
             <Picker mode='selector' range={obj.selector} onChange={e => setObj({
@@ -101,13 +94,11 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
         >
           <View className='setting-content' onClick={e => e.stopPropagation()}>
             {
-              console.log(activity, 1)
-            }
-            {
-              activity.prizes.map((item: any) => <View>
+              activity.prizes.map((item: any) => <View className="activity-prize">
                 {
                   `${item.title}|${item.num}|${item.percentage}%`
                 }
+                <AtIcon value='subtract-circle' size='20' color='red' onClick={() => remove(item.coupon_id)} ></AtIcon>
               </View>)
             }
           </View>
@@ -134,7 +125,7 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
       >
         <AtModalHeader>设置奖品</AtModalHeader>
         <AtModalContent>
-          <AtInput
+          {/* <AtInput
             name='title'
             title='名称'
             type='text'
@@ -142,12 +133,12 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
             value={prizeItem.title}
             border={false}
             onChange={() => {}}
-          />
+          /> */}
           <View className="price-item" onClick={() => Taro.navigateTo({
               url: '/pages/coupon-list-select/coupon-list-select'
             })}>
             <Label>奖品</Label>
-            <Text>{prize.title}</Text>
+            <Text>{prizeItem.title}</Text>
             <AtIcon value='chevron-right' size='30' color='#ccc' ></AtIcon>
           </View>
           <AtInput
@@ -157,7 +148,7 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
             required
             value={prizeItem.num}
             border={false}
-            onChange={() => {}}
+            onChange={value => update({ ...prizeItem ,num: value })}
           />
           <AtInput
             name='percentage'
@@ -166,7 +157,7 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
             required
             value={prizeItem.percentage}
             border={false}
-            onChange={() => {}}
+            onChange={value => update({ ...prizeItem ,percentage: value })}
           >
             %
           </AtInput>
@@ -177,10 +168,8 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
         <AtModalAction> 
           <Button onClick={() => setIsOpened(false)}>取消</Button>
           <Button onClick={() => {
-            const {prizes } = activity;
-            const newP = prizes.push({...prizeItem, ...prize});
-            console.log({...prizeItem, ...prize}, newP, "1");
-            setActivity({...activity, prizes: newP});
+            finalUpdate(prizeItem);
+            setActivity({...activity, prizes});
             setIsOpened(false);
             }}>确定</Button>
         </AtModalAction>

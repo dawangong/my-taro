@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-27 14:15:22
- * @LastEditTime: 2021-07-27 14:54:36
+ * @LastEditTime: 2021-07-27 16:43:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/coupon-list-select/coupon-list-select.tsx
@@ -26,7 +26,7 @@ interface Props {}
 
 const CouponList: React.FC<Props> = (props: Props) => {
 
-  const { update } = useContext(ActivityEditStore);
+  const { prizeItem, update } = useContext(ActivityEditStore);
 
   useEffect(() => {})
 
@@ -66,7 +66,7 @@ const CouponList: React.FC<Props> = (props: Props) => {
             title: "优惠券3",
           }].map(item => 
           <View className={`card ${true && 'gift'}`} onClick={() => {
-            update(item);
+            update({...prizeItem, ...item});
             Taro.navigateBack();
           }}>
             {/* <View className="card-left">
