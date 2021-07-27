@@ -1,8 +1,8 @@
-// login/register => center
+// center => login/register
 export default {
   pages: [
-    'pages/login/login',
     'pages/center/center',
+    'pages/login/login',
     'pages/profile/profile',
     'pages/business-info/business-info',
     'pages/cancel-coupon/cancel-coupon',

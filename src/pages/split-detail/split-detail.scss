@@ -27,5 +27,8 @@
 
   .page-coupon-edit__btn {
     width: 93%;
+    &:not(:last-child) {
+      margin-bottom: 30px;
+    }
   }
 }

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:05:54
- * @LastEditTime: 2021-07-27 17:35:14
+ * @LastEditTime: 2021-07-27 18:19:00
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/split-detail/split-detail.tsx
@@ -49,6 +49,9 @@ const SplitDetail: React.FC<Props> = (props: Props) => {
           title='基本信息'
         >
         </AtCard>
+        <AtButton type='primary' className='page-coupon-edit__btn' onClick={() => Taro.navigateTo({
+              url: '/pages/split-edit/split-edit'
+            })}>编辑</AtButton>
         <AtCard
           className='page-coupon-edit__card'
           title='扫码详情'

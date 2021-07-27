@@ -70,7 +70,7 @@ const Login: React.FC<Props> = (props: Props) => {
               border={false}
               onChange={value => setPassword(value)}
             />
-            <AtButton type='primary' circle className='page-login__btn--login' onClick={() => Taro.navigateTo({
+            <AtButton type='primary' circle className='page-login__btn--login' onClick={() => Taro.redirectTo({
               url: '/pages/center/center'
             })}>登陆
             </AtButton>
@@ -135,7 +135,9 @@ const Login: React.FC<Props> = (props: Props) => {
               border={false}
               onChange={value => setBusinessAddress(value)}
             />
-            <AtButton type='primary' circle className='page-login__btn--login'>注册</AtButton>
+            <AtButton type='primary' circle className='page-login__btn--login' onClick={() => Taro.redirectTo({
+              url: '/pages/center/center'
+            })}>注册</AtButton>
           </AtTabsPane>
         </AtTabs>
       </View>
