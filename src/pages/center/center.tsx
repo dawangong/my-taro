@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-07-21 18:48:23
+ * @LastEditTime: 2021-07-27 10:51:24
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /my-taro/src/pages/center/center.tsx
+ */
 import './center.scss'
 
 import React, { useEffect, useContext } from 'react'
@@ -68,13 +76,19 @@ const Center: React.FC<Props> = (props: Props) => {
       <View className='page-center__service'>
         <View className='page-center__service__title'>常用服务</View>
         <View className='page-center__service-content'>
-        <View className='page-center__service-item page-center__service-item--split'>
+        <View className='page-center__service-item page-center__service-item--split' onClick={() => Taro.navigateTo({
+              url: '/pages/split-list/split-list'
+            })}>
             <Text className='page-center__service__desc'>智能裂变</Text>
           </View>
-          <View className='page-center__service-item page-center__service-item--active'>
+          <View className='page-center__service-item page-center__service-item--active' onClick={() => Taro.navigateTo({
+              url: '/pages/activity-list/activity-list'
+            })}>
             <Text className='page-center__service__desc'>营销活动</Text>
           </View>
-          <View className='page-center__service-item page-center__service-item--video'>
+          <View className='page-center__service-item page-center__service-item--video' onClick={() => Taro.navigateTo({
+              url: '/pages/video-list/video-list'
+            })}>
             <Text className='page-center__service__desc'>视频素材</Text>
           </View>
         </View>

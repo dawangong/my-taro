@@ -4,4 +4,62 @@
   height: 100vh;
   background-color: $background;
   overflow: hidden;
+  box-sizing: border-box;
+  padding-bottom: 150px;
+
+  .scroll-view {
+    padding: 0 30px;
+    box-sizing: border-box;
+  }
+
+  .add-area {
+    width: 100%;
+    height: 150px;
+    background-color: white;
+    overflow: hidden;
+  }
+
+  .page-activity-list__btn {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 30px;
+  }
+
+  .activity-card {
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 30px;
+  }
+  
+  .activity-card-header {
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid $border;
+  }
+
+  .activity-card-icon {
+    background-color: $yellow;
+    color: white;
+    font-size: 24px;
+    margin-right: 10px;
+    padding: 0 3px;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+
+  .activity-card-content {
+    font-size: 26px;
+  }
+
+  .activity-card-field {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    
+    View:first-child {
+      color: $field;
+    }
+  }
 }
