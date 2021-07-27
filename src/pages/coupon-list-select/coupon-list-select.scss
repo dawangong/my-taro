@@ -1,0 +1,69 @@
+@import "../../styles/constant.scss";
+
+.page-coupon-list {
+  height: 100vh;
+  background-color: $background;
+  box-sizing: border-box;
+
+  .scroll-view {
+    padding: 0 30px;
+  }
+
+  .card{
+    max-width: 690px;
+    display: flex;
+    align-items: center;
+    background: $yellow;
+    border-radius: 10px;
+    margin-top: 30px;
+    -webkit-mask-image: radial-gradient(circle at 210px 10px, transparent 10px, red 10.5px), linear-gradient(transparent 25%, red 0, red 75%, transparent 0);
+    -webkit-mask-size: 100%, 5px 10px;
+    -webkit-mask-repeat: repeat, repeat-y;
+    -webkit-mask-position: 0 -10px, 210px;
+    -webkit-mask-composite: source-out;
+    mask-composite: subtract;
+  }
+  .card-left{
+    width: 213px;
+    text-align: center;
+    font-size: 30px;
+    color: white;
+  }
+  .card-right{
+    padding: 25px 22px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    background-color: white;
+  }
+  .card-info{
+    margin: 0;
+    font-size: 24px;
+    line-height: 50px;
+    color: rgba(33, 32, 44, 0.9);
+  }
+  .card-time{
+    font-size: 20px;
+    line-height: 50px;
+    font-weight: normal;
+    margin-top: 4px;
+    color: $grey;
+  }
+
+  .add-area {
+    width: 100%;
+    height: 150px;
+    background-color: white;
+    overflow: hidden;
+  }
+
+  .page-coupon-list__btn {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 30px;
+  }
+  
+  .gift {
+    background: $red;
+  }
+}

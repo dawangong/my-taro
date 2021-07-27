@@ -16,6 +16,7 @@ export default {
     'pages/activity-edit/activity-edit',
     'pages/video-list/video-list',
     'pages/video-edit/video-edit',
+    'pages/coupon-list-select/coupon-list-select',
   ],
   window: {
     backgroundTextStyle: 'light',

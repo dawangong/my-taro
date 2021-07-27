@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:06:10
- * @LastEditTime: 2021-07-27 11:22:49
+ * @LastEditTime: 2021-07-27 13:22:53
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/activity-list/activity-list.tsx
@@ -17,7 +17,7 @@ import Taro, {
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
 import { View, Text, ScrollView } from '@tarojs/components'
-import { AtInput, AtButton, AtCard } from 'taro-ui'
+import { AtInput, AtButton, AtCard, AtIcon } from 'taro-ui'
 // import counterStore from '../../store/counter'
 
 
@@ -32,7 +32,9 @@ const ActivityList: React.FC<Props> = (props: Props) => {
   useReady(() => {})
 
   // 对应 onShow
-  useDidShow(() => {})
+  useDidShow(() => {
+   
+  })
 
   // 对应 onHide
   useDidHide(() => {})
@@ -63,6 +65,16 @@ const ActivityList: React.FC<Props> = (props: Props) => {
               <View className="activity-card-header">
                 <View className="activity-card-icon">大转盘</View>
                 <View>名字</View>
+                <View className="activity-card-del" onClick={(e: any) => {
+                  e.stopPropagation();
+                  Taro.showToast({
+                    title: '成功',
+                    icon: 'success',
+                    duration: 2000
+                  })
+                }}>
+                  <AtIcon value='trash' size='22' color="#ccc" ></AtIcon>
+                </View>
               </View>
               <View className="activity-card-content">
                 <View className="activity-card-field">

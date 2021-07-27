@@ -37,6 +37,12 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid $border;
+    position: relative;
+  }
+
+  .activity-card-del {
+    position: absolute;
+    right: 0px;
   }
 
   .activity-card-icon {

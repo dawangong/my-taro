@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-21 18:48:23
- * @LastEditTime: 2021-07-27 10:51:24
+ * @LastEditTime: 2021-07-27 13:09:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/center/center.tsx
@@ -46,7 +46,7 @@ const Center: React.FC<Props> = (props: Props) => {
       })}>
         <AtAvatar className='page-center__info-avatar' circle image='http://storage.360buyimg.com/mtd/home/32443566_635798770100444_2113947400891531264_n1533825816008.jpg'></AtAvatar>
         <Text>测试商户</Text>
-        <AtIcon value='chevron-right' size='30' color='#c7c7c7' ></AtIcon>
+        <AtIcon value='chevron-right' size='30' color='#ccc' ></AtIcon>
       </View>
       <AtDivider height="1" lineColor="#f5f5f5" />
       <View className='page-center__base'>
