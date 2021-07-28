@@ -21,14 +21,14 @@ const Login: React.FC<Props> = (props: Props) => {
   const [mobile, setMobile] = useState('')
   const [password, setPassword] = useState('')
  
-  const [id, setId] = useState('')
-  const [slogan, setSlogan] = useState('')
+  const [pid, setPid] = useState('')
+  // const [slogan, setSlogan] = useState('')
   const [businessName, setBusinessName] = useState('')
   const [businessMobile, setBusinessMobile] = useState('')
   const [businessPassword, setBusinessPassword] = useState('')
   const [businessAddress, setBusinessAddress] = useState('')
   const tabList = [{ title: '登陆' }, { title: '注册' }]
-  const {} = useContext(loginStore);
+  const { register, login } = useContext(loginStore);
 
   useEffect(() => {})
 
@@ -70,22 +70,26 @@ const Login: React.FC<Props> = (props: Props) => {
               border={false}
               onChange={value => setPassword(value)}
             />
-            <AtButton type='primary' circle className='page-login__btn--login' onClick={() => Taro.redirectTo({
-              url: '/pages/center/center'
-            })}>登陆
+            <AtButton type='primary' circle className='page-login__btn--login' onClick={() => {
+              login({
+                mobile,
+                password,
+                required: ['mobile', 'password']
+              })
+            }}>登陆
             </AtButton>
           </AtTabsPane>
           <AtTabsPane current={current} index={1}>
             <AtInput
-                name='id'
+                name='pid'
                 title='代理ID'
                 // placeholder='代理ID'
                 type='text'
-                value={id}
+                value={pid}
                 border={false}
-                onChange={value => setId(value)}
+                onChange={value => setPid(value)}
             />
-            <AtInput
+            {/* <AtInput
               name='slogan'
               title='宣传语'
               // placeholder='宣传语'
@@ -93,7 +97,7 @@ const Login: React.FC<Props> = (props: Props) => {
               value={slogan}
               border={false}
               onChange={value => setSlogan(value)}
-            />
+            /> */}
             
             <AtInput
               name='name'
@@ -135,9 +139,14 @@ const Login: React.FC<Props> = (props: Props) => {
               border={false}
               onChange={value => setBusinessAddress(value)}
             />
-            <AtButton type='primary' circle className='page-login__btn--login' onClick={() => Taro.redirectTo({
-              url: '/pages/center/center'
-            })}>注册</AtButton>
+            <AtButton type='primary' circle className='page-login__btn--login' onClick={() => register({
+                pid,
+                name: businessName,
+                mobile: businessMobile,
+                password: businessPassword,
+                address: businessAddress,
+                required: ['name', 'mobile', 'password', 'address']
+              })}>注册</AtButton>
           </AtTabsPane>
         </AtTabs>
       </View>

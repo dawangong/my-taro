@@ -1,32 +1,73 @@
+/*
+ * @Author: your name
+ * @Date: 2021-01-28 14:32:52
+ * @LastEditTime: 2021-07-28 17:34:43
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /my-taro/src/services/index.ts
+ */
 import Taro from '@tarojs/taro'
 import { HTTP_STATUS } from './http-status'
 import { base } from './config'
 import { logError } from '../utils/log'
-
-const token = ''
+import _ from 'underscore'
 
 const http = {
-  baseOptions(params, method = 'GET') {
-    let { url, data } = params
-    // let token = getApp().globalData.token
-    // if (!token) login()
-    console.log('params', params)
-    let contentType = 'application/x-www-form-urlencoded'
-    contentType = params.contentType || contentType
-    const option = {
+  defaultContentType: 'application/json',
+  check() {
+    const token = '';
+    // if (!token)
+    // Taro.redirectTo({
+    //   url: '/pages/login/login'
+    // })
+    return token;
+  },
+  interceptor(data) {
+    const required = data.required || [];
+    delete data.required;
+
+    if(required.some(key => _.isEmpty(data[key]))) {
+      Taro.showToast({
+        icon: 'none',
+        title: '必填项未填写完整',
+        duration: 2000
+      })
+      return false;
+    } else {
+      return true;
+    }
+  },
+  clear(data) {
+    for(const key in data) {
+      if(data.hasOwnProperty(key)) {
+        if(_.isEmpty(data[key])) {
+          delete data[key];
+        }
+      }
+    }
+  },
+  baseOptions({ params, method }) {
+    const { url, data, contentType } = params;
+
+    //TODO: token check
+    const token = this.check();
+    if(!this.interceptor(data)) return false;
+    this.clear(data);
+    
+    const options = {
       isShowLoading: false,
       loadingText: '正在加载',
       url: base + url,
       data: data,
-      method: method,
-      header: { 'content-type': contentType, 'token': token },
+      method,
+      header: { 'content-type': contentType || this.defaultContentType, 'token': token },
       success(res) {
         if (res.statusCode === HTTP_STATUS.NOT_FOUND) {
-          return logError('api', '请求资源不存在')
+          return logError('api', '请求资源不存在', null)
         } else if (res.statusCode === HTTP_STATUS.BAD_GATEWAY) {
-          return logError('api', '服务端出现了问题')
+          return logError('api', '服务端出现了问题', null)
         } else if (res.statusCode === HTTP_STATUS.FORBIDDEN) {
-          return logError('api', '没有权限访问')
+          return logError('api', '没有权限访问', null)
         } else if (res.statusCode === HTTP_STATUS.SUCCESS) {
           return res.data
         }
@@ -35,15 +76,19 @@ const http = {
         logError('api', '请求接口出现问题', e)
       }
     }
-    return Taro.request(option)
+    return Taro.request(options)
   },
-  get(url, data = '') {
-    let option = { url, data }
-    return this.baseOptions(option)
+  get(params) {
+    return this.baseOptions({
+      params,
+      method: 'GET',
+    })
   },
-  post: function (url, data, contentType) {
-    let params = { url, data, contentType }
-    return this.baseOptions(params, 'POST')
+  post(params) {
+    return this.baseOptions({
+      params, 
+      method: 'POST',
+    })
   }
 }
 
