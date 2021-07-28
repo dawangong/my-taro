@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-28 14:32:52
- * @LastEditTime: 2021-07-28 17:34:43
+ * @LastEditTime: 2021-07-28 18:23:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/services/index.ts
@@ -10,16 +10,29 @@ import Taro from '@tarojs/taro'
 import { HTTP_STATUS } from './http-status'
 import { base } from './config'
 import { logError } from '../utils/log'
+import { getCurrentPage } from '../utils/tools'
 import _ from 'underscore'
 
 const http = {
   defaultContentType: 'application/json',
   check() {
-    const token = '';
-    // if (!token)
-    // Taro.redirectTo({
-    //   url: '/pages/login/login'
-    // })
+    const token = Taro.getStorageSync('token');
+    const page = getCurrentPage();
+    if(!token) {
+      if(page !== 'pages/login/login'){
+        Taro.showToast({
+          icon: 'none',
+          title: '请您先登录',
+          duration: 1000
+        });
+        setTimeout(() => {
+          Taro.redirectTo({
+            url: '/pages/login/login'
+          });
+        }, 1000)
+      }
+      return '';
+    }
     return token;
   },
   interceptor(data) {
@@ -30,7 +43,7 @@ const http = {
       Taro.showToast({
         icon: 'none',
         title: '必填项未填写完整',
-        duration: 2000
+        duration: 1000
       })
       return false;
     } else {
@@ -47,10 +60,13 @@ const http = {
     }
   },
   baseOptions({ params, method }) {
+    const page = getCurrentPage();
     const { url, data, contentType } = params;
 
-    //TODO: token check
     const token = this.check();
+    if(!token && page !== 'pages/login/login') {
+      return false;
+    }
     if(!this.interceptor(data)) return false;
     this.clear(data);
     

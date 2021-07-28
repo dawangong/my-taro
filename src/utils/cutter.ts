@@ -108,7 +108,7 @@ export default class Poster {
         Taro.showToast({
           title: '图片已经保存到相册',
           icon: 'none',
-          duration: 1500,
+          duration: 1000,
           mask: false,
         });
       },

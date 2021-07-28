@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-07-22 14:42:40
+ * @LastEditTime: 2021-07-28 18:14:43
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /my-taro/src/pages/profile/profile.tsx
+ */
 import './profile.scss'
 
 import React, { useEffect, useContext } from 'react'
@@ -51,9 +59,12 @@ const Profile: React.FC<Props> = (props: Props) => {
           title='退出登录'
           extraText='更换账号'
           arrow='right'
-          onClick={() => Taro.reLaunch({
-            url: '/pages/login/login'
-          })}
+          onClick={() => {
+            Taro.reLaunch({
+              url: '/pages/login/login'
+            })
+            Taro.removeStorageSync('token');
+          }}
         />
       </AtList>
     </View>

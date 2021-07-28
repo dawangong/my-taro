@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:05:14
- * @LastEditTime: 2021-07-27 17:28:38
+ * @LastEditTime: 2021-07-28 18:15:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/split-list/split-list.tsx
@@ -68,7 +68,7 @@ const SplitList: React.FC<Props> = (props: Props) => {
                   Taro.showToast({
                     title: '成功',
                     icon: 'success',
-                    duration: 2000
+                    duration: 1000
                   })
                 }}>
                   <AtIcon value='trash' size='22' color="#ccc" ></AtIcon>

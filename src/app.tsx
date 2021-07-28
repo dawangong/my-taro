@@ -1,14 +1,12 @@
 import { Component } from 'react'
-import Taro from '@tarojs/taro'
+import http from './services/index';
 
 import './app.scss'
 
 class App extends Component {
 
   onLaunch () {
-    // Taro.redirectTo({
-    //   url: '/pages/login/login'
-    // })
+    http.check();
   }
 
   componentDidMount () {}

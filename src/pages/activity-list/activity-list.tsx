@@ -70,7 +70,7 @@ const ActivityList: React.FC<Props> = (props: Props) => {
                   Taro.showToast({
                     title: '成功',
                     icon: 'success',
-                    duration: 2000
+                    duration: 1000
                   })
                 }}>
                   <AtIcon value='trash' size='22' color="#ccc" ></AtIcon>

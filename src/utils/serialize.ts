@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-01-28 14:32:52
+ * @LastEditTime: 2021-07-28 18:01:33
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /my-taro/src/utils/serialize.ts
+ */
 export const indexOf = (haystack, needle) => {
   for (var i = 0; i < haystack.length; ++i) {
     if (haystack[i] === needle) return i;
@@ -56,11 +64,3 @@ export const serializer = (replacer, cycleReplacer) => {
       : replacer.call(this, key, value);
   };
 }
-
-// try {
-//   throw new Error("Whoops!");
-// } catch (e) {
-//   e.name = {stark:'wang',hehe:{hh:'111'}}
-//   let ee = stringify(e)
-//   console.log(typeof ee)
-// }

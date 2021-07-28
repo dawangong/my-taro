@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-07-28 17:36:26
+ * @LastEditTime: 2021-07-28 17:53:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
@@ -17,7 +17,9 @@ class LoginStore {
   @action.bound
   async register (data) {
     const res = await registerApi(data);
+
     if(res) {
+      Taro.setStorageSync('token', 'myToken');
       Taro.redirectTo({
       url: '/pages/center/center'
       })
