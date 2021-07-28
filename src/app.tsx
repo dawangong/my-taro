@@ -6,9 +6,9 @@ import './app.scss'
 class App extends Component {
 
   onLaunch () {
-    Taro.redirectTo({
-      url: '/pages/login/login'
-    })
+    // Taro.redirectTo({
+    //   url: '/pages/login/login'
+    // })
   }
 
   componentDidMount () {}

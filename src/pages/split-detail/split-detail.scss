@@ -1,9 +1,8 @@
 @import "../../styles/constant.scss";
 
 .page-split-detail {
-  height: 100vh;
+  min-height: 100vh;
   background-color: $background;
-  overflow: hidden;
   position: relative;
   color: $black;
 
@@ -15,10 +14,12 @@
 
   .page-coupon-edit__content {
     position: absolute;
-    width: 99%;
+    width: 100%;
     left: 50%;
-    top: 5%;
+    top: 3%;
     transform: translateX(-50%);
+    padding-bottom: 30px;
+    background-color: $background;
   }
 
   .page-coupon-edit__card:not(:last-child) {
@@ -30,5 +31,9 @@
     &:not(:last-child) {
       margin-bottom: 30px;
     }
+  }
+
+  .at-list__item {
+    padding: 12px;
   }
 }

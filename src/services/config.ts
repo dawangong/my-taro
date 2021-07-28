@@ -1,1 +1,1 @@
-export const base = "https://api.github.com/repos/"
+export const base = 'http://wap.921juan.cn';
