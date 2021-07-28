@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-28 14:32:52
- * @LastEditTime: 2021-07-28 18:23:39
+ * @LastEditTime: 2021-07-28 19:43:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/services/index.ts
@@ -9,7 +9,6 @@
 import Taro from '@tarojs/taro'
 import { HTTP_STATUS } from './http-status'
 import { base } from './config'
-import { logError } from '../utils/log'
 import { getCurrentPage } from '../utils/tools'
 import _ from 'underscore'
 
@@ -78,18 +77,15 @@ const http = {
       method,
       header: { 'content-type': contentType || this.defaultContentType, 'token': token },
       success(res) {
-        if (res.statusCode === HTTP_STATUS.NOT_FOUND) {
-          return logError('api', '请求资源不存在', null)
-        } else if (res.statusCode === HTTP_STATUS.BAD_GATEWAY) {
-          return logError('api', '服务端出现了问题', null)
-        } else if (res.statusCode === HTTP_STATUS.FORBIDDEN) {
-          return logError('api', '没有权限访问', null)
-        } else if (res.statusCode === HTTP_STATUS.SUCCESS) {
-          return res.data
-        }
+        return res.data;
       },
-      error(e) {
-        logError('api', '请求接口出现问题', e)
+      fail(e) {
+        console.error('api错误', e.errMsg);
+        Taro.showToast({
+          icon: 'none',
+          title: e.errMsg,
+          duration: 1000
+        });
       }
     }
     return Taro.request(options)
