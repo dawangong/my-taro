@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-07-29 11:27:34
+ * @LastEditTime: 2021-07-29 13:42:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
@@ -11,7 +11,7 @@ import { createContext } from 'react';
 import { registerApi, loginApi, logoutApi } from '../api/common-api';
 import Taro from '@tarojs/taro'
 
-class LoginStore {
+class CommonStore {
   @observable public mobile: string = '';
 
   @action.bound
@@ -68,4 +68,4 @@ class LoginStore {
   
 }
 
-export default createContext(new LoginStore)
+export default createContext(new CommonStore)

@@ -10,7 +10,7 @@ import Taro, {
 import { observer } from 'mobx-react'
 import { View } from '@tarojs/components'
 import { AtTabs, AtTabsPane, AtInput, AtButton } from 'taro-ui'
-import loginStore from '../../store/login'
+import commonStore from '../../store/common-store'
 
 
 interface Props {}
@@ -28,7 +28,7 @@ const Login: React.FC<Props> = (props: Props) => {
   const [businessPassword, setBusinessPassword] = useState('')
   const [businessAddress, setBusinessAddress] = useState('')
   const tabList = [{ title: '登陆' }, { title: '注册' }]
-  const { register, login } = useContext(loginStore);
+  const { register, login } = useContext(commonStore);
 
   useEffect(() => {})
 

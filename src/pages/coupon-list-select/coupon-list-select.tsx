@@ -18,7 +18,7 @@ import Taro, {
 import { observer } from 'mobx-react'
 import { View, Text, ScrollView } from '@tarojs/components'
 import { AtInput, AtButton } from 'taro-ui'
-import ActivityEditStore from '../../store/activity-edit'
+import ActivityEditStore from '../../store/activity-edit-store'
 
 
 

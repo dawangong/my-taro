@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 14:42:40
- * @LastEditTime: 2021-07-29 11:28:07
+ * @LastEditTime: 2021-07-29 13:42:54
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/profile/profile.tsx
@@ -18,7 +18,7 @@ import Taro, {
 import { observer } from 'mobx-react'
 import { View } from '@tarojs/components'
 import { AtList, AtListItem, AtModal } from 'taro-ui'
-import loginStore from '../../store/login'
+import commonStore from '../../store/common-store'
 
 
 interface Props {}
@@ -26,7 +26,7 @@ interface Props {}
 const Profile: React.FC<Props> = (props: Props) => {
 
   const [isOpened, setIsOpened] = useState(false);
-  const { logout } = useContext(loginStore);
+  const { logout } = useContext(commonStore);
 
   useEffect(() => {})
 
