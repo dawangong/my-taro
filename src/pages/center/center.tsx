@@ -19,13 +19,14 @@ import { observer } from 'mobx-react'
 import { View, Text } from '@tarojs/components'
 import { AtDivider, AtAvatar, AtIcon, AtGrid } from 'taro-ui'
 import commonStore from '../../store/common-store'
+import tools from 'highly-tools';
 
 
 interface Props {}
 
 const Center: React.FC<Props> = (props: Props) => {
 
-  const { setBusinessInfo } = useContext(commonStore);
+  const { businessInfo, setBusinessInfo } = useContext(commonStore);
 
   useEffect(() => {})
 
@@ -49,7 +50,10 @@ const Center: React.FC<Props> = (props: Props) => {
         url: '/pages/profile/profile'
       })}>
         <AtAvatar className='page-center__info-avatar' circle image='http://storage.360buyimg.com/mtd/home/32443566_635798770100444_2113947400891531264_n1533825816008.jpg'></AtAvatar>
-        <Text>测试商户</Text>
+        <View>
+          <View>{businessInfo.name}</View>
+          <View style={{ fontSize: '10px', color: '#9a9a9a' }}>有效期: {businessInfo.end_time && tools.toDate(businessInfo.end_time, 'yyyy.MM.dd hh:mm:ss').nowTime}</View>
+        </View>
         <AtIcon value='chevron-right' size='30' color='#ccc' ></AtIcon>
       </View>
       <AtDivider height="1" lineColor="#f5f5f5" />
