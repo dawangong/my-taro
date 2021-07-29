@@ -16,7 +16,7 @@ import Taro, {
   usePullDownRefresh
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
-import { View } from '@tarojs/components'
+import { View, OpenData } from '@tarojs/components'
 import { AtList, AtListItem, AtModal } from 'taro-ui'
 import commonStore from '../../store/common-store'
 
@@ -57,15 +57,19 @@ const Profile: React.FC<Props> = (props: Props) => {
         content='确认退出当前账号登陆?'
       />
       <AtList>
-        <AtListItem
-          title={businessInfo.name}
-          arrow='right'
-          extraText='编辑'
-          thumb='http://storage.360buyimg.com/mtd/home/32443566_635798770100444_2113947400891531264_n1533825816008.jpg'
-          onClick={() => Taro.navigateTo({
-            url: '/pages/person-info/person-info'
-          })}
-        />
+        <View className='page-profile__line'>
+          <View className='page-center__info-avatar'>
+            <OpenData className='avatar' type='userAvatarUrl'/>
+          </View>
+          <AtListItem
+            title={businessInfo.name}
+            arrow='right'
+            extraText='编辑'
+            onClick={() => Taro.navigateTo({
+              url: '/pages/person-info/person-info'
+            })}
+          />
+        </View>
         <AtListItem
           title='商户信息'
           arrow='right'

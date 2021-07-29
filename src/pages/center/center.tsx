@@ -16,7 +16,7 @@ import Taro, {
   usePullDownRefresh
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
-import { View, Text } from '@tarojs/components'
+import { View, Text, OpenData } from '@tarojs/components'
 import { AtDivider, AtAvatar, AtIcon, AtGrid } from 'taro-ui'
 import commonStore from '../../store/common-store'
 import tools from 'highly-tools';
@@ -49,7 +49,9 @@ const Center: React.FC<Props> = (props: Props) => {
       <View className='page-center__info' onClick={() => Taro.navigateTo({
         url: '/pages/profile/profile'
       })}>
-        <AtAvatar className='page-center__info-avatar' circle image='http://storage.360buyimg.com/mtd/home/32443566_635798770100444_2113947400891531264_n1533825816008.jpg'></AtAvatar>
+        <View className='page-center__info-avatar'>
+          <OpenData className='avatar' type='userAvatarUrl'/>
+        </View>
         <View>
           <View>{businessInfo.name}</View>
           <View style={{ fontSize: '10px', color: '#9a9a9a' }}>有效期: {businessInfo.end_time && tools.toDate(businessInfo.end_time, 'yyyy.MM.dd hh:mm:ss').nowTime}</View>
