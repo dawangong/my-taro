@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-28 14:32:52
- * @LastEditTime: 2021-07-28 19:43:48
+ * @LastEditTime: 2021-07-29 11:40:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/services/index.ts
@@ -60,7 +60,7 @@ const http = {
   },
   baseOptions({ params, method }) {
     const page = getCurrentPage();
-    const { url, data, contentType } = params;
+    const { url, data = '', contentType } = params;
 
     const token = this.check();
     if(!token && page !== 'pages/login/login') {
@@ -75,8 +75,21 @@ const http = {
       url: base + url,
       data: data,
       method,
-      header: { 'content-type': contentType || this.defaultContentType, 'token': token },
+      header: { 'content-type': contentType || this.defaultContentType, 'X-Token': token },
       success(res) {
+        if(res.data.code !== 200) {
+          Taro.showToast({
+            icon: 'none',
+            title: res.data.message,
+            duration: 1000
+          });
+        }
+        if(res.data.code === 5000000) {
+          Taro.removeStorageSync('token');
+          Taro.redirectTo({
+            url: '/pages/login/login'
+          })
+        }
         return res.data;
       },
       fail(e) {

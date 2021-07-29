@@ -1,14 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 14:42:40
- * @LastEditTime: 2021-07-28 18:14:43
+ * @LastEditTime: 2021-07-29 11:28:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/profile/profile.tsx
  */
 import './profile.scss'
 
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import Taro, {
   useReady,
   useDidShow,
@@ -17,13 +17,16 @@ import Taro, {
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
 import { View } from '@tarojs/components'
-import { AtList, AtListItem } from 'taro-ui'
-// import counterStore from '../../store/counter'
+import { AtList, AtListItem, AtModal } from 'taro-ui'
+import loginStore from '../../store/login'
 
 
 interface Props {}
 
 const Profile: React.FC<Props> = (props: Props) => {
+
+  const [isOpened, setIsOpened] = useState(false);
+  const { logout } = useContext(loginStore);
 
   useEffect(() => {})
 
@@ -41,6 +44,18 @@ const Profile: React.FC<Props> = (props: Props) => {
 
   return (
     <View className='page-profile'>
+      <AtModal
+        isOpened={isOpened}
+        cancelText='取消'
+        confirmText='确认'
+        onClose={() => setIsOpened(false)}
+        onCancel={() => setIsOpened(false)}
+        onConfirm={() => {
+          setIsOpened(false);
+          logout();
+        }}
+        content='确认退出当前账号登陆?'
+      />
       <AtList>
         <AtListItem
           title='测试商户'
@@ -59,12 +74,7 @@ const Profile: React.FC<Props> = (props: Props) => {
           title='退出登录'
           extraText='更换账号'
           arrow='right'
-          onClick={() => {
-            Taro.reLaunch({
-              url: '/pages/login/login'
-            })
-            Taro.removeStorageSync('token');
-          }}
+          onClick={() => setIsOpened(true)}
         />
       </AtList>
     </View>

@@ -71,7 +71,7 @@ const VideoEdit: React.FC<Props> = (props: Props) => {
                   name: 'file',
                   header: {
                     "content-type": "multipart/form-data",
-                    token: '',
+                    'X-Token': '',
                   },
                   success (res){
                     const data = res.data

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-21 22:05:50
- * @LastEditTime: 2021-07-28 17:00:55
+ * @LastEditTime: 2021-07-29 11:21:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/api/common-api.ts
@@ -22,7 +22,15 @@ const loginApi = (data) => {
   });
 }
 
+const logoutApi = (data?) => {
+  return http.post({
+    url: '/app/v1/business/merchant/logout',
+    data,
+  });
+}
+
 export {
   registerApi,
   loginApi,
+  logoutApi,
 }
