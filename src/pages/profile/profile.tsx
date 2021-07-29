@@ -26,7 +26,7 @@ interface Props {}
 const Profile: React.FC<Props> = (props: Props) => {
 
   const [isOpened, setIsOpened] = useState(false);
-  const { logout } = useContext(commonStore);
+  const { logout, businessInfo } = useContext(commonStore);
 
   useEffect(() => {})
 
@@ -58,10 +58,13 @@ const Profile: React.FC<Props> = (props: Props) => {
       />
       <AtList>
         <AtListItem
-          title='测试商户'
+          title={businessInfo.name}
           arrow='right'
           extraText='编辑'
           thumb='http://storage.360buyimg.com/mtd/home/32443566_635798770100444_2113947400891531264_n1533825816008.jpg'
+          onClick={() => Taro.navigateTo({
+            url: '/pages/person-info/person-info'
+          })}
         />
         <AtListItem
           title='商户信息'

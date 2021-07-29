@@ -75,8 +75,8 @@ class CommonStore {
   }
 
   @action.bound
-  async setPassword () {
-    const res = await setPasswordApi();
+  async setPassword (data) {
+    const res = await setPasswordApi(data);
 
     if(res && res.data.code === 200) {
       Taro.showToast({

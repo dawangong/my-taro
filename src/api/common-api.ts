@@ -29,7 +29,7 @@ const logoutApi = (data?) => {
   });
 }
 
-const setPasswordApi = (data?) => {
+const setPasswordApi = (data) => {
   return http.post({
     url: '/app/v1/business/merchant/set-pass-word',
     data,

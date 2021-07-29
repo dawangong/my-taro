@@ -1,0 +1,32 @@
+@import "../../styles/constant.scss";
+
+.page-user-info {
+  background-color: $background;
+  height: 100vh;
+  position: relative;
+  
+  .page-business-info__bg {
+    background-color: $blue;
+    width: 100%;
+    height: 20%;
+  }
+
+  .page-business-info__content {
+    width: 85%;
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+  }
+
+  .page-business-info__btn {
+    width: 80%;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

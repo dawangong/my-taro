@@ -5,6 +5,7 @@ export default {
     'pages/login/login',
     'pages/profile/profile',
     'pages/business-info/business-info',
+    'pages/person-info/person-info',
     'pages/cancel-coupon/cancel-coupon',
     'pages/coupon-list/coupon-list',
     'pages/coupon-detail/coupon-detail',
