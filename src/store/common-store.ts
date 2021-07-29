@@ -8,11 +8,11 @@
  */
 import { observable, action } from 'mobx'
 import { createContext } from 'react';
-import { registerApi, loginApi, logoutApi } from '../api/common-api';
+import { registerApi, loginApi, logoutApi, setPasswordApi, getBusinessInfoApi, updateBusinessInfoApi } from '../api/common-api';
 import Taro from '@tarojs/taro'
 
 class CommonStore {
-  @observable public mobile: string = '';
+  @observable public businessInfo: any = {};
 
   @action.bound
   async register (data) {
@@ -32,7 +32,6 @@ class CommonStore {
     const res = await loginApi(data);
     if(res && res.data.code === 200) {
       Taro.setStorageSync('token', res.data.data.token);
-      this.mobile = res.data.data.mobile;
       Taro.showToast({
         icon: 'success',
         title: '登陆成功',
@@ -52,7 +51,7 @@ class CommonStore {
 
     if(res && res.data.code === 200) {
       Taro.removeStorageSync('token');
-      this.mobile = '';
+      this.businessInfo = {};
       Taro.showToast({
         icon: 'success',
         title: '退出登陆成功',
@@ -63,6 +62,41 @@ class CommonStore {
           url: '/pages/login/login'
         })
       }, 1000)
+    }
+  }
+
+  @action.bound
+  async setBusinessInfo () {
+    const res = await getBusinessInfoApi();
+
+    if(res && res.data.code === 200) {
+      this.businessInfo = res.data.data;
+    }
+  }
+
+  @action.bound
+  async setPassword () {
+    const res = await setPasswordApi();
+
+    if(res && res.data.code === 200) {
+      Taro.showToast({
+        icon: 'success',
+        title: '修改成功',
+        duration: 1000
+      });
+    }
+  }
+
+  @action.bound
+  async updateBusinessInfo (data) {
+    const res = await updateBusinessInfoApi(data);
+
+    if(res && res.data.code === 200) {
+      Taro.showToast({
+        icon: 'success',
+        title: '更新成功',
+        duration: 1000
+      });
     }
   }
   

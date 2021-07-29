@@ -18,17 +18,21 @@ import Taro, {
 import { observer } from 'mobx-react'
 import { View, Text } from '@tarojs/components'
 import { AtDivider, AtAvatar, AtIcon, AtGrid } from 'taro-ui'
-import counterStore from '../../store/counter'
+import commonStore from '../../store/common-store'
 
 
 interface Props {}
 
 const Center: React.FC<Props> = (props: Props) => {
 
+  const { setBusinessInfo } = useContext(commonStore);
+
   useEffect(() => {})
 
   // 对应 onReady
-  useReady(() => {})
+  useReady(() => {
+    setBusinessInfo();
+  })
 
   // 对应 onShow
   useDidShow(() => {})

@@ -10,7 +10,6 @@ import {
 import { observer } from 'mobx-react'
 import { View } from '@tarojs/components'
 import { AtInput, AtButton } from 'taro-ui'
-// import counterStore from '../../store/counter'
 
 
 interface Props {}
@@ -59,7 +58,7 @@ const BusinessInfo: React.FC<Props> = (props: Props) => {
           onChange={value => setSlogan(value)}
         /> */}
       </View>
-      <AtButton type='primary' className='page-business-info__btn' onClick={() => Taro.navigateBack()}>保存</AtButton>
+      <AtButton type='primary' className='page-business-info__btn' onClick={() => {}}>更新</AtButton>
     </View>
   )
 };

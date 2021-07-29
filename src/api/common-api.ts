@@ -29,8 +29,32 @@ const logoutApi = (data?) => {
   });
 }
 
+const setPasswordApi = (data?) => {
+  return http.post({
+    url: '/app/v1/business/merchant/set-pass-word',
+    data,
+  });
+}
+
+const getBusinessInfoApi = (data?) => {
+  return http.post({
+    url: '/app/v1/business/merchant/details',
+    data,
+  });
+}
+
+const updateBusinessInfoApi = (data) => {
+  return http.post({
+    url: '/app/v1/business/merchant/save-business',
+    data,
+  });
+}
+
 export {
   registerApi,
   loginApi,
   logoutApi,
+  setPasswordApi,
+  getBusinessInfoApi,
+  updateBusinessInfoApi,
 }
