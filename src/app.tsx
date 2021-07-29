@@ -6,7 +6,7 @@ import './app.scss'
 class App extends Component {
 
   onLaunch () {
-    http.check();
+    // http.check();
   }
 
   componentDidMount () {}
