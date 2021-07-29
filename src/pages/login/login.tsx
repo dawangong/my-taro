@@ -17,6 +17,12 @@ interface Props {}
 
 const Login: React.FC<Props> = (props: Props) => {
 
+  const { register, login } = useContext(commonStore);
+  const tabList = [{ title: '登陆' }, { title: '注册' }]
+
+  const [statusBarHeight, setStatusBarHeight] = useState(0)
+  const [navigationBarHeight, setNavigationBarHeight] = useState(0)
+
   const [current, setCurrent] = useState(0)
   const [mobile, setMobile] = useState('')
   const [password, setPassword] = useState('')
@@ -27,8 +33,7 @@ const Login: React.FC<Props> = (props: Props) => {
   const [businessMobile, setBusinessMobile] = useState('')
   const [businessPassword, setBusinessPassword] = useState('')
   const [businessAddress, setBusinessAddress] = useState('')
-  const tabList = [{ title: '登陆' }, { title: '注册' }]
-  const { register, login } = useContext(commonStore);
+  
 
   useEffect(() => {})
 
@@ -36,7 +41,22 @@ const Login: React.FC<Props> = (props: Props) => {
   useReady(() => {})
 
   // 对应 onShow
-  useDidShow(() => {})
+  useDidShow(() => {
+    const { top, height } = Taro.getMenuButtonBoundingClientRect();
+    const { statusBarHeight, platform } = Taro.getSystemInfoSync();
+    setStatusBarHeight(statusBarHeight);
+    let navigationBarHeight;
+    if (top && top !== 0 && height && height !== 0) {
+      navigationBarHeight = (top - statusBarHeight) * 2 + height - 10;
+    } else {
+      if (platform === 'android') {
+          navigationBarHeight = 48;
+        } else {
+          navigationBarHeight = 40;
+        }
+      }
+    setNavigationBarHeight(navigationBarHeight);
+  })
 
   // 对应 onHide
   useDidHide(() => {})
@@ -46,6 +66,9 @@ const Login: React.FC<Props> = (props: Props) => {
 
   return (
     <View className='page-login'>
+      <View style={{paddingTop: `${navigationBarHeight}px`}}>
+        <View style={{lineHeight: `${statusBarHeight}px`, textIndent: '20px', fontSize: '16px'}}>登陆</View>
+      </View>
       <View className='page-login-content'>
         <View className='page-login-wel'>Welcome</View>
         <AtTabs current={current} tabList={tabList} onClick={(value) => setCurrent(value)}>
