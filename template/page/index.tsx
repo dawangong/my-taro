@@ -10,7 +10,7 @@ import Taro, {
 import { observer } from 'mobx-react'
 import { View, Text } from '@tarojs/components'
 import { AtInput, AtButton } from 'taro-ui'
-// import counterStore from '../../store/counter'
+// import commonStore from '../../store/common-store'
 
 
 

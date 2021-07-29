@@ -10,14 +10,17 @@ import {
 import { observer } from 'mobx-react'
 import { View } from '@tarojs/components'
 import { AtInput, AtButton } from 'taro-ui'
+import commonStore from '../../store/common-store'
 
 
 interface Props {}
 
 const BusinessInfo: React.FC<Props> = (props: Props) => {
 
+  const { businessInfo, updateBusinessInfo, setBusinessInfo } = useContext(commonStore);
+
   // const [slogan, setSlogan] = useState('')
-  const [address, setAddress] = useState('')
+  const [address, setAddress] = useState(businessInfo.address)
 
   useEffect(() => {})
 
@@ -58,7 +61,13 @@ const BusinessInfo: React.FC<Props> = (props: Props) => {
           onChange={value => setSlogan(value)}
         /> */}
       </View>
-      <AtButton type='primary' className='page-business-info__btn' onClick={() => {}}>更新</AtButton>
+      <AtButton type='primary' className='page-business-info__btn' onClick={() => {
+        updateBusinessInfo({
+          address,
+          required: ['address']
+        });
+        setBusinessInfo();
+      }}>更新</AtButton>
     </View>
   )
 };
