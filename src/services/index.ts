@@ -38,7 +38,7 @@ const http = {
     const required = data.required || [];
     delete data.required;
 
-    if(required.some(key => _.isEmpty(data[key]))) {
+    if(required.some(key => typeof data[key] === 'number' ? false : _.isEmpty(data[key]))) {
       Taro.showToast({
         icon: 'none',
         title: '必填项未填写完整',
@@ -52,7 +52,7 @@ const http = {
   clear(data) {
     for(const key in data) {
       if(data.hasOwnProperty(key)) {
-        if(_.isEmpty(data[key])) {
+        if(typeof data[key] === 'number' ? false : _.isEmpty(data[key])) {
           delete data[key];
         }
       }

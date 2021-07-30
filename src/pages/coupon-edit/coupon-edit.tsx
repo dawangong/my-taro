@@ -10,13 +10,15 @@ import Taro, {
 import { observer } from 'mobx-react'
 import { View, Text, Label, Picker } from '@tarojs/components'
 import { AtInput, AtButton, AtCard, AtList, AtListItem } from 'taro-ui'
-// import counterStore from '../../store/counter'
+import couponStore from '../../store/coupon-store'
 
 
 
 interface Props {}
 
 const CouponEdit: React.FC<Props> = (props: Props) => {
+
+  const { addCoupon } = useContext(couponStore); 
 
   const [coupon, setCoupon] = useState({
     name: '',
@@ -25,8 +27,8 @@ const CouponEdit: React.FC<Props> = (props: Props) => {
     coupon_value: '',
     content: '',
     num: '',
-    start_time: '2021.06.01',
-    end_time: '2021.09.01'
+    start_time: '',
+    end_time: ''
   })
 
   const [obj, setObj] = useState({
@@ -149,7 +151,17 @@ const CouponEdit: React.FC<Props> = (props: Props) => {
         >
           这也是内容区 可以随意定义功能
         </AtCard> */}
-        <AtButton type='primary' className='page-coupon-edit__btn' onClick={() => Taro.navigateBack()}>保存</AtButton>
+        <AtButton type='primary' className='page-coupon-edit__btn' onClick={() => addCoupon({
+          name: coupon.name,
+          type: obj.selectorChecked === '满减券' ? 1 : 2,
+          start_time: +new Date(coupon.start_time)/1000,
+          end_time: +new Date(coupon.end_time)/1000,
+          num: coupon.num,
+          coupon_min: coupon.coupon_min,
+          coupon_value: coupon.coupon_value,
+          content: coupon.content,
+          required: obj.selectorChecked === '满减券' ? ['name', 'type', 'start_time', 'end_time', 'num', 'coupon_min', 'coupon_value'] : ['name', 'type', 'start_time', 'end_time', 'num', 'content']
+        })}>保存</AtButton>
       </View>
     </View>
   )
