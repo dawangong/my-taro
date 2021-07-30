@@ -8,11 +8,11 @@
  */
 import { observable, action } from 'mobx'
 import { createContext } from 'react';
-import { addCouponApi } from '../api/coupon-api';
+import { addCouponApi, getCouponListApi } from '../api/coupon-api';
 import Taro from '@tarojs/taro'
 
 class CouponStore {
-  @observable public businessInfo: any = {};
+  @observable public list: any = [];
 
   @action.bound
   async addCoupon (data) {
@@ -27,6 +27,15 @@ class CouponStore {
       setTimeout(() => {
         Taro.navigateBack();
       }, 1000);
+    }
+  }
+
+  @action.bound
+  async getCouponList (data) {
+    const res = await getCouponListApi(data);
+
+    if(res && res.data.code === 200) {
+      this.list = res.data.data.list;
     }
   }
   

@@ -10,7 +10,8 @@ import Taro, {
 import { observer } from 'mobx-react'
 import { View, Text, ScrollView } from '@tarojs/components'
 import { AtInput, AtButton } from 'taro-ui'
-// import counterStore from '../../store/counter'
+import couponStore from '../../store/coupon-store'
+import tools from 'highly-tools';
 
 
 
@@ -18,13 +19,20 @@ interface Props {}
 
 const CouponList: React.FC<Props> = (props: Props) => {
 
+  const { list, getCouponList } = useContext(couponStore); 
+
   useEffect(() => {})
 
   // 对应 onReady
   useReady(() => {})
 
   // 对应 onShow
-  useDidShow(() => {})
+  useDidShow(() => {
+    getCouponList({
+      page: 1,
+      size: 10
+    });
+  })
 
   // 对应 onHide
   useDidHide(() => {})
@@ -45,27 +53,28 @@ const CouponList: React.FC<Props> = (props: Props) => {
         // onScrollToUpper
       >
         {
-          [0,1,2,3].map(() => 
-          <View className={`card ${true && 'gift'}`} onClick={() => Taro.navigateTo({
-            url: '/pages/coupon-detail/coupon-detail'
+          list.map((item: any) => 
+          <View className={`card ${item.type === 2 && 'gift'}`} onClick={() => Taro.navigateTo({
+            url: `/pages/coupon-detail/coupon-detail?coupon=${JSON.stringify(item)}`
           })}>
-            {/* <View className="card-left">
-              <View>350元</View>
-              <View>满4可用</View>
-            </View> */}
-            <View className="card-left">
+            {
+              item.type === 1 ? <View className="card-left">
+              <View>{item.coupon_value}元</View>
+              <View>满{item.coupon_min}可用</View>
+            </View> : <View className="card-left">
               礼品券
             </View>
+            }
             <View className="card-right">
-                <Text className="card-info">满30元送350书券</Text>
-                <Text className="card-time">有效期: 2021.09.01 - 2021.09.30</Text>
+                <Text className="card-info">{item.name}</Text>
+                <Text className="card-time">有效期: {tools.toDate(item.start_time, 'yyyy.MM.dd').nowTime} - {tools.toDate(item.end_time, 'yyyy.MM.dd').nowTime}</Text>
             </View>
           </View>)
         }
       </ScrollView>
       <View className="add-area">
          <AtButton type='primary' className='page-coupon-list__btn' onClick={() => Taro.navigateTo({
-            url: '/pages/coupon-edit/coupon-edit'
+            url: `/pages/coupon-edit/coupon-edit`
           })}>新增优惠券</AtButton>
       </View>
     </View>

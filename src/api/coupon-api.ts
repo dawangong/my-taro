@@ -15,6 +15,14 @@ const addCouponApi = (data) => {
   });
 }
 
+const getCouponListApi = (data) => {
+  return http.post({
+    url: '/app/v1/business/activity/coupon/list',
+    data,
+  });
+}
+
 export {
   addCouponApi,
+  getCouponListApi,
 }
