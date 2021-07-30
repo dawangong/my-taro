@@ -22,7 +22,23 @@ const getCouponListApi = (data) => {
   });
 }
 
+const removeCouponApi = (data) => {
+  return http.post({
+    url: '/app/v1/business/activity/coupon/delete',
+    data,
+  });
+}
+
+const editCouponApi = (data) => {
+  return http.post({
+    url: '/app/v1/business/activity/coupon/save',
+    data,
+  });
+}
+
 export {
   addCouponApi,
   getCouponListApi,
+  removeCouponApi,
+  editCouponApi,
 }

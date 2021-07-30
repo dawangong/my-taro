@@ -12,6 +12,7 @@ import { observer } from 'mobx-react'
 import { View, Text } from '@tarojs/components'
 import { AtInput, AtButton } from 'taro-ui'
 import tools from 'highly-tools';
+import couponStore from '../../store/coupon-store'
 
 
 
@@ -22,6 +23,7 @@ const CouponDetail: React.FC<Props> = (props: Props) => {
   const router = useRouter();
   //@ts-ignore
   const data = JSON.parse(router.params.coupon);
+  const { removeCoupon } = useContext(couponStore); 
 
   useEffect(() => {})
 
@@ -78,9 +80,11 @@ const CouponDetail: React.FC<Props> = (props: Props) => {
         </View>
 
         <View className='page-coupon-detail__handle'>
-          <AtButton type='primary' className='page-coupon-detail__btn'>删除</AtButton>
+          <AtButton type='primary' className='page-coupon-detail__btn' onClick={() => removeCoupon({
+            id: data.id
+          })}>删除</AtButton>
           <AtButton type='primary' className='page-coupon-detail__btn' onClick={() => Taro.navigateTo({
-            url: '/pages/coupon-edit/coupon-edit'
+            url: `/pages/coupon-edit/coupon-edit?coupon=${JSON.stringify(data)}`
           })}>修改</AtButton>
         </View>
       </View>

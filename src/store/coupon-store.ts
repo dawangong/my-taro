@@ -8,7 +8,7 @@
  */
 import { observable, action } from 'mobx'
 import { createContext } from 'react';
-import { addCouponApi, getCouponListApi } from '../api/coupon-api';
+import { addCouponApi, getCouponListApi, editCouponApi, removeCouponApi } from '../api/coupon-api';
 import Taro from '@tarojs/taro'
 
 class CouponStore {
@@ -31,11 +31,43 @@ class CouponStore {
   }
 
   @action.bound
+  async editCoupon (data) {
+    const res = await editCouponApi(data);
+
+    if(res && res.data.code === 200) {
+      Taro.showToast({
+        icon: 'success',
+        title: '编辑成功',
+        duration: 1000
+      });
+      setTimeout(() => {
+        Taro.navigateBack();
+      }, 1000);
+    }
+  }
+
+  @action.bound
   async getCouponList (data) {
     const res = await getCouponListApi(data);
 
     if(res && res.data.code === 200) {
       this.list = res.data.data.list;
+    }
+  }
+
+  @action.bound
+  async removeCoupon (data) {
+    const res = await removeCouponApi(data);
+
+    if(res && res.data.code === 200) {
+      Taro.showToast({
+        icon: 'success',
+        title: '删除成功',
+        duration: 1000
+      });
+      setTimeout(() => {
+        Taro.navigateBack();
+      }, 1000);
     }
   }
   

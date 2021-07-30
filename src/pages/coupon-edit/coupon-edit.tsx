@@ -3,6 +3,7 @@ import './coupon-edit.scss'
 import React, { useEffect, useState, useContext } from 'react'
 import Taro, {
   useReady,
+  useRouter,
   useDidShow,
   useDidHide,
   usePullDownRefresh
@@ -11,6 +12,7 @@ import { observer } from 'mobx-react'
 import { View, Text, Label, Picker } from '@tarojs/components'
 import { AtInput, AtButton, AtCard, AtList, AtListItem } from 'taro-ui'
 import couponStore from '../../store/coupon-store'
+import tools from 'highly-tools';
 
 
 
@@ -18,9 +20,13 @@ interface Props {}
 
 const CouponEdit: React.FC<Props> = (props: Props) => {
 
-  const { addCoupon } = useContext(couponStore); 
+  const { addCoupon, editCoupon } = useContext(couponStore); 
+  const router = useRouter();
+  //@ts-ignore
+  const data = JSON.parse(router.params.coupon);
 
   const [coupon, setCoupon] = useState({
+    id: 0,
     name: '',
     type: 1,
     coupon_min: '',
@@ -39,7 +45,19 @@ const CouponEdit: React.FC<Props> = (props: Props) => {
   useEffect(() => {})
 
   // 对应 onReady
-  useReady(() => {})
+  useReady(() => {
+    data && setCoupon({
+      id: data.id,
+      name: String(data.name),
+      type: data.type,
+      coupon_min: String(data.coupon_min),
+      coupon_value: String(data.coupon_value),
+      content: String(data.content),
+      num: String(data.num),
+      start_time: tools.toDate(data.start_time, 'yyyy.MM.dd').nowTime,
+      end_time: tools.toDate(data.end_time, 'yyyy.MM.dd').nowTime
+    });
+  })
 
   // 对应 onShow
   useDidShow(() => {})
@@ -49,6 +67,19 @@ const CouponEdit: React.FC<Props> = (props: Props) => {
 
   // 对应下拉刷新
   usePullDownRefresh(() => {})
+
+  const getData = () => ({
+    id: data ? data.id : 0,
+    name: coupon.name,
+    type: obj.selectorChecked === '满减券' ? 1 : 2,
+    start_time: +new Date(coupon.start_time)/1000,
+    end_time: +new Date(coupon.end_time)/1000,
+    num: coupon.num,
+    coupon_min: coupon.coupon_min,
+    coupon_value: coupon.coupon_value,
+    content: coupon.content,
+    required: obj.selectorChecked === '满减券' ? ['name', 'type', 'start_time', 'end_time', 'num', 'coupon_min', 'coupon_value'] : ['name', 'type', 'start_time', 'end_time', 'num', 'content']
+  })
 
   return (
     <View className='page-coupon-edit'>
@@ -151,17 +182,7 @@ const CouponEdit: React.FC<Props> = (props: Props) => {
         >
           这也是内容区 可以随意定义功能
         </AtCard> */}
-        <AtButton type='primary' className='page-coupon-edit__btn' onClick={() => addCoupon({
-          name: coupon.name,
-          type: obj.selectorChecked === '满减券' ? 1 : 2,
-          start_time: +new Date(coupon.start_time)/1000,
-          end_time: +new Date(coupon.end_time)/1000,
-          num: coupon.num,
-          coupon_min: coupon.coupon_min,
-          coupon_value: coupon.coupon_value,
-          content: coupon.content,
-          required: obj.selectorChecked === '满减券' ? ['name', 'type', 'start_time', 'end_time', 'num', 'coupon_min', 'coupon_value'] : ['name', 'type', 'start_time', 'end_time', 'num', 'content']
-        })}>保存</AtButton>
+        <AtButton type='primary' className='page-coupon-edit__btn' onClick={() => data ? editCoupon(getData()) : addCoupon(getData())}>保存</AtButton>
       </View>
     </View>
   )
