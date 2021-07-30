@@ -3,6 +3,7 @@ import './coupon-detail.scss'
 import React, { useEffect, useState, useContext } from 'react'
 import Taro, {
   useReady,
+  useRouter,
   useDidShow,
   useDidHide,
   usePullDownRefresh
@@ -10,13 +11,17 @@ import Taro, {
 import { observer } from 'mobx-react'
 import { View, Text } from '@tarojs/components'
 import { AtInput, AtButton } from 'taro-ui'
-// import counterStore from '../../store/counter'
+import tools from 'highly-tools';
 
 
 
 interface Props {}
 
 const CouponDetail: React.FC<Props> = (props: Props) => {
+
+  const router = useRouter();
+  //@ts-ignore
+  const data = JSON.parse(router.params.coupon);
 
   useEffect(() => {})
 
@@ -36,34 +41,40 @@ const CouponDetail: React.FC<Props> = (props: Props) => {
     <View className='page-coupon-detail'>
       <View className="card">
         <View className="info">
-          <View className="money">10.00元</View>
-          <View>满减优惠</View>
-          <View className="grey">满200可用</View>
+          {data.type === 1 ? <View className="money">{data.coupon_value}元</View> : <View></View>}
+          <View>{data.name}</View>
+          {data.type === 1 ? <View className="grey">满{data.coupon_min}可用</View> : <View></View>}
         </View>
 
         <View className="filed">
           <Text className="title grey">优惠券标题:</Text>
-          <Text>满减优惠</Text>
+          <Text>{data.name}</Text>
         </View>
         <View className="filed">
-          <Text className="title grey">剩余数量:</Text>
-          <Text>7</Text>
+          <Text className="title grey">数量:</Text>
+          <Text>{data.num}</Text>
         </View>
-        <View className="filed">
+        {
+          data.type === 2 && <View className="filed">
+          <Text className="title grey">说明:</Text>
+          <Text>{data.content}</Text>
+        </View>
+        }
+        {/* <View className="filed">
           <Text className="title grey">已领数量:</Text>
           <Text>3</Text>
         </View>
         <View className="filed">
           <Text className="title grey">返佣佣金:</Text>
           <Text>0.01</Text>
+        </View> */}
+        <View className="filed">
+          <Text className="title grey">开始时间:</Text>
+          <Text>{tools.toDate(data.start_time, 'yyyy.MM.dd').nowTime}</Text>
         </View>
         <View className="filed">
-          <Text className="title grey">可用时间:</Text>
-          <Text>2021.06.01 00:00</Text>
-        </View>
-        <View className="filed">
-          <Text className="title grey">截止时间:</Text>
-          <Text>2021.09.01 00:00</Text>
+          <Text className="title grey">结束时间:</Text>
+          <Text>{tools.toDate(data.end_time, 'yyyy.MM.dd').nowTime}</Text>
         </View>
 
         <View className='page-coupon-detail__handle'>
