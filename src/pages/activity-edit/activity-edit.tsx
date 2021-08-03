@@ -11,6 +11,7 @@ import { observer } from 'mobx-react'
 import { View, Text, Label, Picker, Button } from '@tarojs/components'
 import { AtInput, AtButton, AtCard, AtList, AtListItem, AtModal, AtModalHeader, AtModalContent, AtModalAction, AtIcon } from 'taro-ui'
 import CouponStore from '../../store/coupon-store'
+import ActivityStore from '../../store/activity-store'
 
 
 
@@ -18,6 +19,7 @@ interface Props {}
 
 const ActivityEdit: React.FC<Props> = (props: Props) => {
 
+  const { addActivity } = useContext(ActivityStore);
   const { prizes, prizeItem, update, clear, finalUpdate, remove } = useContext(CouponStore);
 
   const [isOpened, setIsOpened] = useState(false);
@@ -25,8 +27,8 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
   const [activity, setActivity] = useState({
     title: '',
     type: 1,
-    start_time: '2021.06.01',
-    end_time: '2021.09.01',
+    start_time: '',
+    end_time: '',
     prizes: []
   })
 
@@ -118,7 +120,15 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
             </AtList>
           </Picker>
         </AtCard>
-        <AtButton type='primary' className='page-coupon-edit__btn' onClick={() => Taro.navigateBack()}>保存</AtButton>
+        <AtButton type='primary' className='page-coupon-edit__btn' onClick={() => {
+          console.log(activity, prizes, 1);
+          addActivity({
+            ...activity,
+            start_time: +new Date(activity.start_time)/1000,
+            end_time: +new Date(activity.end_time)/1000,
+            required: ['title', 'type', 'start_time', 'end_time', 'prizes']
+          })
+        }}>保存</AtButton>
       </View>
       <AtModal isOpened={isOpened} 
         onClose={() => setIsOpened(false)} 

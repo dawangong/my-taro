@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:06:10
- * @LastEditTime: 2021-08-03 14:45:23
+ * @LastEditTime: 2021-08-03 15:32:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/activity-list/activity-list.tsx
@@ -19,6 +19,7 @@ import { observer } from 'mobx-react'
 import { View, Text, ScrollView } from '@tarojs/components'
 import { AtInput, AtButton, AtCard, AtIcon } from 'taro-ui'
 import activityStore from '../../store/activity-store'
+import tools from 'highly-tools';
 
 
 
@@ -83,12 +84,12 @@ const ActivityList: React.FC<Props> = (props: Props) => {
               </View>
               <View className="activity-card-content">
                 <View className="activity-card-field">
-                  <View>奖品数量:</View>
+                  <View>奖品数量: </View>
                   <View>111</View>
                 </View>
                 <View className="activity-card-field">
-                  <View>活动时间:</View>
-                  <View>111</View>
+                  <View>活动时间: </View>
+                  <View>{tools.toDate(item.start_time, 'yyyy.MM.dd').nowTime} - {tools.toDate(item.end_time, 'yyyy.MM.dd').nowTime}</View>
                 </View>
               </View>
             </View>)

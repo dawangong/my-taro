@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-28 14:32:52
- * @LastEditTime: 2021-07-29 11:40:41
+ * @LastEditTime: 2021-08-03 15:28:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/services/index.ts
@@ -11,6 +11,7 @@ import { HTTP_STATUS } from './http-status'
 import { base } from './config'
 import { getCurrentPage } from '../utils/tools'
 import _ from 'underscore'
+import { isObservable, toJS } from 'mobx';
 
 const http = {
   defaultContentType: 'application/json',
@@ -38,7 +39,7 @@ const http = {
     const required = data.required || [];
     delete data.required;
 
-    if(required.some(key => typeof data[key] === 'number' ? false : _.isEmpty(data[key]))) {
+    if(required.some(key => typeof data[key] === 'number' ? false : _.isEmpty(isObservable(data[key]) ? toJS(data[key]) : data[key]))) {
       Taro.showToast({
         icon: 'none',
         title: '必填项未填写完整',
@@ -52,7 +53,7 @@ const http = {
   clear(data) {
     for(const key in data) {
       if(data.hasOwnProperty(key)) {
-        if(typeof data[key] === 'number' ? false : _.isEmpty(data[key])) {
+        if(typeof data[key] === 'number' ? false : _.isEmpty(isObservable(data[key]) ? toJS(data[key]) : data[key])) {
           delete data[key];
         }
       }

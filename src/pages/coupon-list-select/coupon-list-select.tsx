@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-27 14:15:22
- * @LastEditTime: 2021-08-03 14:35:44
+ * @LastEditTime: 2021-08-03 15:20:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/coupon-list-select/coupon-list-select.tsx
@@ -19,6 +19,7 @@ import { observer } from 'mobx-react'
 import { View, Text, ScrollView } from '@tarojs/components'
 import { AtInput, AtButton } from 'taro-ui'
 import CouponStore from '../../store/coupon-store'
+import tools from 'highly-tools';
 
 
 
@@ -26,7 +27,7 @@ interface Props {}
 
 const CouponList: React.FC<Props> = (props: Props) => {
 
-  const { prizeItem, update } = useContext(CouponStore);
+  const { prizeItem, update, list, getCouponList } = useContext(CouponStore);
 
   useEffect(() => {})
 
@@ -34,7 +35,12 @@ const CouponList: React.FC<Props> = (props: Props) => {
   useReady(() => {})
 
   // 对应 onShow
-  useDidShow(() => {})
+  useDidShow(() => {
+    getCouponList({
+      page: 1,
+      size: 100
+    });
+  })
 
   // 对应 onHide
   useDidHide(() => {})
@@ -55,30 +61,27 @@ const CouponList: React.FC<Props> = (props: Props) => {
         // onScrollToUpper
       >
         {
-          [{
-            coupon_id: 1,
-            title: "优惠券1",
-          },{
-            coupon_id: 2,
-            title: "优惠券2",
-          },{
-            coupon_id: 3,
-            title: "优惠券3",
-          }].map(item => 
-          <View className={`card ${true && 'gift'}`} onClick={() => {
-            update({...prizeItem, ...item});
+          list.map((item: any, index: number) => 
+          <View className={`card ${item.type === 2 && 'gift'}`} onClick={() => {
+            update({...prizeItem, ...{
+              coupon_id: item.id,
+              title: item.name,
+              num: item.num,
+              activity_sort: index,
+            }});
             Taro.navigateBack();
           }}>
-            {/* <View className="card-left">
-              <View>350元</View>
-              <View>满4可用</View>
-            </View> */}
-            <View className="card-left">
+            {
+              item.type === 1 ? <View className="card-left">
+              <View>{item.coupon_value}元</View>
+              <View>满{item.coupon_min}可用</View>
+            </View> : <View className="card-left">
               礼品券
             </View>
+            }
             <View className="card-right">
-                <Text className="card-info">满30元送350书券</Text>
-                <Text className="card-time">有效期: 2021.09.01 - 2021.09.30</Text>
+                <Text className="card-info">{item.name}</Text>
+                <Text className="card-time">有效期: {tools.toDate(item.start_time, 'yyyy.MM.dd').nowTime} - {tools.toDate(item.end_time, 'yyyy.MM.dd').nowTime}</Text>
             </View>
           </View>)
         }
