@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-27 14:15:22
- * @LastEditTime: 2021-08-03 15:20:41
+ * @LastEditTime: 2021-08-03 18:28:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/coupon-list-select/coupon-list-select.tsx
@@ -19,6 +19,7 @@ import { observer } from 'mobx-react'
 import { View, Text, ScrollView } from '@tarojs/components'
 import { AtInput, AtButton } from 'taro-ui'
 import CouponStore from '../../store/coupon-store'
+import ActivityStore from '../../store/activity-store'
 import tools from 'highly-tools';
 
 
@@ -27,7 +28,8 @@ interface Props {}
 
 const CouponList: React.FC<Props> = (props: Props) => {
 
-  const { prizeItem, update, list, getCouponList } = useContext(CouponStore);
+  const { list, getCouponList } = useContext(CouponStore);
+  const { prizeItem, update } = useContext(ActivityStore);
 
   useEffect(() => {})
 

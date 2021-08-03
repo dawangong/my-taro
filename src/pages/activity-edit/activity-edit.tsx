@@ -11,10 +11,8 @@ import Taro, {
 import { observer } from 'mobx-react'
 import { View, Text, Label, Picker, Button } from '@tarojs/components'
 import { AtInput, AtButton, AtCard, AtList, AtListItem, AtModal, AtModalHeader, AtModalContent, AtModalAction, AtIcon } from 'taro-ui'
-import CouponStore from '../../store/coupon-store'
 import ActivityStore from '../../store/activity-store'
 import tools from 'highly-tools';
-
 
 
 interface Props {}
@@ -24,8 +22,7 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
   const router = useRouter();
   const { id } = router.params;
 
-  const { myActivity, addActivity, getActivity, updateActivity, reset } = useContext(ActivityStore);
-  const { prizes, prizeItem, update, clear, finalUpdate, remove } = useContext(CouponStore);
+  const { myActivity, addActivity, getActivity, updateActivity, reset, prizeItem, update, clear, finalUpdate, remove } = useContext(ActivityStore);
 
   const [isOpened, setIsOpened] = useState(false);
 
@@ -38,6 +35,10 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
 
   useEffect(() => {
     reset();
+    id && getActivity({
+      id,
+      required: ['id']
+    })
   }, [])
 
   useEffect(() => {
@@ -52,12 +53,7 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
   useReady(() => {})
 
   // 对应 onShow
-  useDidShow(() => {
-    id && getActivity({
-      id,
-      required: ['id']
-    })
-  })
+  useDidShow(() => {})
 
   // 对应 onHide
   useDidHide(() => {})
@@ -118,7 +114,7 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
                   remove(item.coupon_id);
                   setActivity({
                     ...myActivity,
-                    prizes,
+                    // prizes,
                     start_time: myActivity.start_time ? tools.toDate(myActivity.start_time, 'yyyy-MM-dd').nowTime : myActivity.start_time,
       end_time: myActivity.end_time ? tools.toDate(myActivity.end_time, 'yyyy-MM-dd').nowTime : myActivity.end_time
                   });
@@ -143,7 +139,6 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
           </Picker>
         </AtCard>
         <AtButton type='primary' className='page-coupon-edit__btn' onClick={() => {
-          console.log(activity, prizes, 1);
           const params = {
             ...activity,
             id,
@@ -203,7 +198,7 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
           <Button onClick={() => setIsOpened(false)}>取消</Button>
           <Button onClick={() => {
             finalUpdate(prizeItem);
-            setActivity({...activity, prizes});
+            setActivity(activity);
             setIsOpened(false);
             }}>确定</Button>
         </AtModalAction>

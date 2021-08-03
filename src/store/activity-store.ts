@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-27 14:19:08
- * @LastEditTime: 2021-08-03 16:36:29
+ * @LastEditTime: 2021-08-03 18:24:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/activity-edit.ts
@@ -15,6 +15,7 @@ import Taro from '@tarojs/taro'
 class ActivityEditStore {
 
   @observable public list: any = [];
+  @observable public prizeItem: any = {};
   @observable public myActivity: any = {
     title: '',
     type: 1,
@@ -100,6 +101,33 @@ class ActivityEditStore {
       start_time: '',
       end_time: '',
       prizes: []
+    };
+  }
+
+  @action.bound
+  update(item) {
+    this.prizeItem = item;
+  }
+
+  @action.bound
+  finalUpdate(item) {
+    this.myActivity.prizes.push(item);
+  }
+
+  @action.bound
+  remove(id) {
+    const index = this.myActivity.prizes.findIndex(item => item.coupon_id === id);
+    this.myActivity.prizes.splice(index, 1);
+  }
+
+  @action.bound
+  clear() {
+    this.prizeItem = {
+      coupon_id: 0,
+      title: '',
+      num: '',
+      percentage: "",
+      activity_sort: 0,
     };
   }
 

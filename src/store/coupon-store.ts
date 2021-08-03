@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-08-03 16:50:16
+ * @LastEditTime: 2021-08-03 18:22:47
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
@@ -13,16 +13,6 @@ import Taro from '@tarojs/taro'
 
 class CouponStore {
   @observable public list: any = [];
-
-  @observable public prizes: any = [];
-
-  @observable public prizeItem: any = {
-    coupon_id: 0,
-    title: '',
-    num: '',
-    percentage: "",
-    activity_sort: 0,
-  };
 
   @action.bound
   async addCoupon (data) {
@@ -83,34 +73,6 @@ class CouponStore {
         Taro.navigateBack();
       }, 1000);
     }
-  }
-
-  @action.bound
-  update(item) {
-    this.prizeItem = item;
-  }
-
-  @action.bound
-  finalUpdate(item) {
-    this.prizes.push(item);
-  }
-
-  @action.bound
-  remove(id) {
-    const index = this.prizes.findIndex(item => item.coupon_id === id);
-    this.prizes.splice(index, 1);
-  }
-
-  @action.bound
-  clear() {
-    this.prizes = [];
-    this.prizeItem = {
-      coupon_id: 0,
-      title: '',
-      num: '',
-      percentage: "",
-      activity_sort: 0,
-    };
   }
   
 }
