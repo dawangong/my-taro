@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:06:10
- * @LastEditTime: 2021-08-03 15:32:24
+ * @LastEditTime: 2021-08-03 16:13:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/activity-list/activity-list.tsx
@@ -27,7 +27,7 @@ interface Props {}
 
 const ActivityList: React.FC<Props> = (props: Props) => {
 
-  const { list, getActivityList } = useContext(activityStore);
+  const { list, getActivityList, removeActivity } = useContext(activityStore);
 
   useEffect(() => {})
 
@@ -73,10 +73,9 @@ const ActivityList: React.FC<Props> = (props: Props) => {
                 <View>{item.title}</View>
                 <View className="activity-card-del" onClick={(e: any) => {
                   e.stopPropagation();
-                  Taro.showToast({
-                    title: '成功',
-                    icon: 'success',
-                    duration: 1000
+                  removeActivity({
+                    id: item.id,
+                    required: ['id']
                   })
                 }}>
                   <AtIcon value='trash' size='22' color="#ccc" ></AtIcon>

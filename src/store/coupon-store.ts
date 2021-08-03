@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-08-03 14:42:40
+ * @LastEditTime: 2021-08-03 16:18:37
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
@@ -103,6 +103,7 @@ class CouponStore {
 
   @action.bound
   clear() {
+    this.prizes = [];
     this.prizeItem = {
       coupon_id: 0,
       title: '',
