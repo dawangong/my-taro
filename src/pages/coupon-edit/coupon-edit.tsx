@@ -54,8 +54,8 @@ const CouponEdit: React.FC<Props> = (props: Props) => {
       coupon_value: String(data.coupon_value),
       content: String(data.content),
       num: String(data.num),
-      start_time: tools.toDate(data.start_time, 'yyyy.MM.dd').nowTime,
-      end_time: tools.toDate(data.end_time, 'yyyy.MM.dd').nowTime
+      start_time: tools.toDate(data.start_time, 'yyyy-MM-dd').nowTime,
+      end_time: tools.toDate(data.end_time, 'yyyy-MM-dd').nowTime
     });
   })
 

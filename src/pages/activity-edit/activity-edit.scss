@@ -96,6 +96,8 @@
   .setting-content {
     background-color:$background;
     border-radius: 10px;
+    max-height: 145px;
+    overflow: scroll;
   }
 
   .at-list__item {

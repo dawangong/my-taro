@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:06:10
- * @LastEditTime: 2021-08-03 16:13:45
+ * @LastEditTime: 2021-08-03 16:42:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/activity-list/activity-list.tsx
@@ -65,7 +65,7 @@ const ActivityList: React.FC<Props> = (props: Props) => {
           <View
             className="activity-card"
             onClick={() => Taro.navigateTo({
-              url: '/pages/activity-edit/activity-edit'
+              url: `/pages/activity-edit/activity-edit?id=${item.id}`
             })}
             >
               <View className="activity-card-header">

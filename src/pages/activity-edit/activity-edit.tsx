@@ -3,6 +3,7 @@ import './activity-edit.scss'
 import React, { useEffect, useState, useContext } from 'react'
 import Taro, {
   useReady,
+  useRouter,
   useDidShow,
   useDidHide,
   usePullDownRefresh
@@ -12,6 +13,7 @@ import { View, Text, Label, Picker, Button } from '@tarojs/components'
 import { AtInput, AtButton, AtCard, AtList, AtListItem, AtModal, AtModalHeader, AtModalContent, AtModalAction, AtIcon } from 'taro-ui'
 import CouponStore from '../../store/coupon-store'
 import ActivityStore from '../../store/activity-store'
+import tools from 'highly-tools';
 
 
 
@@ -19,31 +21,43 @@ interface Props {}
 
 const ActivityEdit: React.FC<Props> = (props: Props) => {
 
-  const { addActivity } = useContext(ActivityStore);
+  const router = useRouter();
+  const { id } = router.params;
+
+  const { myActivity, addActivity, getActivity, updateActivity, reset } = useContext(ActivityStore);
   const { prizes, prizeItem, update, clear, finalUpdate, remove } = useContext(CouponStore);
 
   const [isOpened, setIsOpened] = useState(false);
 
-  const [activity, setActivity] = useState({
-    title: '',
-    type: 1,
-    start_time: '',
-    end_time: '',
-    prizes: []
-  })
+  const [activity, setActivity] = useState(myActivity)
 
   const [obj, setObj] = useState({
     selector: ['大转盘'],
     selectorChecked: '大转盘',
   });
 
-  useEffect(() => {})
+  useEffect(() => {
+    reset();
+  }, [])
+
+  useEffect(() => {
+    setActivity({
+      ...myActivity,
+      start_time: myActivity.start_time ? tools.toDate(myActivity.start_time, 'yyyy-MM-dd').nowTime : myActivity.start_time,
+      end_time: myActivity.end_time ? tools.toDate(myActivity.end_time, 'yyyy-MM-dd').nowTime : myActivity.end_time
+    });
+  }, [myActivity])
 
   // 对应 onReady
   useReady(() => {})
 
   // 对应 onShow
-  useDidShow(() => {})
+  useDidShow(() => {
+    id && getActivity({
+      id,
+      required: ['id']
+    })
+  })
 
   // 对应 onHide
   useDidHide(() => {})
@@ -100,7 +114,15 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
                 {
                   `${item.title}|${item.num}|${item.percentage}%`
                 }
-                <AtIcon value='subtract-circle' size='20' color='red' onClick={() => remove(item.coupon_id)} ></AtIcon>
+                <AtIcon value='subtract-circle' size='20' color='red' onClick={() => {
+                  remove(item.coupon_id);
+                  setActivity({
+                    ...myActivity,
+                    prizes,
+                    start_time: myActivity.start_time ? tools.toDate(myActivity.start_time, 'yyyy-MM-dd').nowTime : myActivity.start_time,
+      end_time: myActivity.end_time ? tools.toDate(myActivity.end_time, 'yyyy-MM-dd').nowTime : myActivity.end_time
+                  });
+                }} ></AtIcon>
               </View>)
             }
           </View>
@@ -122,12 +144,14 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
         </AtCard>
         <AtButton type='primary' className='page-coupon-edit__btn' onClick={() => {
           console.log(activity, prizes, 1);
-          addActivity({
+          const params = {
             ...activity,
+            id,
             start_time: +new Date(activity.start_time)/1000,
             end_time: +new Date(activity.end_time)/1000,
             required: ['title', 'type', 'start_time', 'end_time', 'prizes']
-          })
+          }
+          id ? updateActivity(params) : addActivity(params)
         }}>保存</AtButton>
       </View>
       <AtModal isOpened={isOpened} 

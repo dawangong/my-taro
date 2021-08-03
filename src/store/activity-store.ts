@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-27 14:19:08
- * @LastEditTime: 2021-08-03 16:14:34
+ * @LastEditTime: 2021-08-03 16:36:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/activity-edit.ts
@@ -9,12 +9,19 @@
 
 import { observable, action } from 'mobx'
 import { createContext } from 'react';
-import { activityListApi, addActivityApi, removeActivityApi } from '../api/activity-api'
+import { activityListApi, addActivityApi, removeActivityApi, activityDetailApi, updateActivityApi } from '../api/activity-api'
 import Taro from '@tarojs/taro'
 
 class ActivityEditStore {
 
   @observable public list: any = [];
+  @observable public myActivity: any = {
+    title: '',
+    type: 1,
+    start_time: '',
+    end_time: '',
+    prizes: []
+  }
 
   @action.bound
   async getActivityList (data) {
@@ -58,7 +65,43 @@ class ActivityEditStore {
         });
       }, 1000);
     }
-}
+  }
+
+  @action.bound
+  async getActivity (data) {
+    const res = await activityDetailApi(data);
+
+    if(res && res.data.code === 200) {
+      this.myActivity = res.data.data;
+    }
+  }
+
+  @action.bound
+  async updateActivity (data) {
+    const res = await updateActivityApi(data);
+
+    if(res && res.data.code === 200) {
+      Taro.showToast({
+        icon: 'success',
+        title: '编辑成功',
+        duration: 1000
+      });
+      setTimeout(() => {
+        Taro.navigateBack();
+      }, 1000);
+    }
+  }
+
+  @action.bound
+  reset () {
+    this.myActivity = {
+      title: '',
+      type: 1,
+      start_time: '',
+      end_time: '',
+      prizes: []
+    };
+  }
 
 }
 

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 14:29:00
- * @LastEditTime: 2021-08-03 16:11:26
+ * @LastEditTime: 2021-08-03 16:30:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/api/activity-api.ts
@@ -37,9 +37,16 @@ const removeActivityApi = (data) => {
   });
 }
 
-const editCouponApi = (data) => {
+const activityDetailApi = (data) => {
   return http.post({
-    url: '/app/v1/business/activity/coupon/save',
+    url: '/app/v1/business/activity/activity/details',
+    data,
+  });
+}
+
+const updateActivityApi = (data) => {
+  return http.post({
+    url: '/app/v1/business/activity/activity/edit',
     data,
   });
 }
@@ -48,5 +55,6 @@ export {
   activityListApi,
   addActivityApi,
   removeActivityApi,
-  editCouponApi,
+  activityDetailApi,
+  updateActivityApi,
 }
