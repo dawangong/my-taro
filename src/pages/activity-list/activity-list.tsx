@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:06:10
- * @LastEditTime: 2021-07-27 13:22:53
+ * @LastEditTime: 2021-08-03 14:45:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/activity-list/activity-list.tsx
@@ -18,13 +18,15 @@ import Taro, {
 import { observer } from 'mobx-react'
 import { View, Text, ScrollView } from '@tarojs/components'
 import { AtInput, AtButton, AtCard, AtIcon } from 'taro-ui'
-// import counterStore from '../../store/counter'
+import activityStore from '../../store/activity-store'
 
 
 
 interface Props {}
 
 const ActivityList: React.FC<Props> = (props: Props) => {
+
+  const { list, getActivityList } = useContext(activityStore);
 
   useEffect(() => {})
 
@@ -33,7 +35,10 @@ const ActivityList: React.FC<Props> = (props: Props) => {
 
   // 对应 onShow
   useDidShow(() => {
-   
+    getActivityList({
+      page: 1,
+      size: 100
+    });
   })
 
   // 对应 onHide
@@ -55,7 +60,7 @@ const ActivityList: React.FC<Props> = (props: Props) => {
         // onScrollToUpper
       >
         {
-          [0,1,2,3].map(() => 
+          list.map((item: any) => 
           <View
             className="activity-card"
             onClick={() => Taro.navigateTo({
@@ -64,7 +69,7 @@ const ActivityList: React.FC<Props> = (props: Props) => {
             >
               <View className="activity-card-header">
                 <View className="activity-card-icon">大转盘</View>
-                <View>名字</View>
+                <View>{item.title}</View>
                 <View className="activity-card-del" onClick={(e: any) => {
                   e.stopPropagation();
                   Taro.showToast({

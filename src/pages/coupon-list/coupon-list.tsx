@@ -30,7 +30,7 @@ const CouponList: React.FC<Props> = (props: Props) => {
   useDidShow(() => {
     getCouponList({
       page: 1,
-      size: 10
+      size: 100
     });
   })
 

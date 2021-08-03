@@ -23,7 +23,7 @@ const CouponEdit: React.FC<Props> = (props: Props) => {
   const { addCoupon, editCoupon } = useContext(couponStore); 
   const router = useRouter();
   //@ts-ignore
-  const data = JSON.parse(router.params.coupon);
+  const data = router.params.coupon ? JSON.parse(router.params.coupon) : undefined;
 
   const [coupon, setCoupon] = useState({
     id: 0,

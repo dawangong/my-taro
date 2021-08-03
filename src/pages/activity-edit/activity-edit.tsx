@@ -10,7 +10,7 @@ import Taro, {
 import { observer } from 'mobx-react'
 import { View, Text, Label, Picker, Button } from '@tarojs/components'
 import { AtInput, AtButton, AtCard, AtList, AtListItem, AtModal, AtModalHeader, AtModalContent, AtModalAction, AtIcon } from 'taro-ui'
-import ActivityEditStore from '../../store/activity-edit-store'
+import CouponStore from '../../store/coupon-store'
 
 
 
@@ -18,7 +18,7 @@ interface Props {}
 
 const ActivityEdit: React.FC<Props> = (props: Props) => {
 
-  const { prizes, prizeItem, update, clear, finalUpdate, remove } = useContext(ActivityEditStore);
+  const { prizes, prizeItem, update, clear, finalUpdate, remove } = useContext(CouponStore);
 
   const [isOpened, setIsOpened] = useState(false);
 
