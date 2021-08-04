@@ -67,4 +67,22 @@
       margin-top: 130px;
     }
   }
+
+  .type {
+    .item-extra__info {
+      color: $black
+    }
+  }
+
+  .activity {
+    .at-list__item-extra {
+      left: -320px;
+    }
+  }
+
+  .coupon {
+    .at-list__item-extra {
+      left: -290px;
+    }
+  }
 }

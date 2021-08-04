@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-27 14:15:22
- * @LastEditTime: 2021-08-04 13:40:01
+ * @LastEditTime: 2021-08-04 15:31:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/coupon-list-select/coupon-list-select.tsx
@@ -17,7 +17,7 @@ import Taro, {
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
 import { View, Text, ScrollView } from '@tarojs/components'
-import CouponStore from '../../store/coupon-store'
+import couponStore from '../../store/coupon-store'
 import tools from 'highly-tools';
 
 
@@ -26,7 +26,7 @@ interface Props {}
 
 const CancelRecord: React.FC<Props> = (props: Props) => {
 
-  const { list, getCouponList } = useContext(CouponStore);
+  const { list, getCouponList } = useContext(couponStore);
 
   useEffect(() => {})
 

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-27 14:19:08
- * @LastEditTime: 2021-08-03 18:24:25
+ * @LastEditTime: 2021-08-04 15:32:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/activity-edit.ts
@@ -12,7 +12,7 @@ import { createContext } from 'react';
 import { activityListApi, addActivityApi, removeActivityApi, activityDetailApi, updateActivityApi } from '../api/activity-api'
 import Taro from '@tarojs/taro'
 
-class ActivityEditStore {
+class ActivityStore {
 
   @observable public list: any = [];
   @observable public prizeItem: any = {};
@@ -133,4 +133,4 @@ class ActivityEditStore {
 
 }
 
-export default createContext(new ActivityEditStore)
+export default createContext(new ActivityStore)

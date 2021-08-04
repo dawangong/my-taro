@@ -11,7 +11,7 @@ import Taro, {
 import { observer } from 'mobx-react'
 import { View, Text, Label, Picker, Button } from '@tarojs/components'
 import { AtInput, AtButton, AtCard, AtList, AtListItem, AtModal, AtModalHeader, AtModalContent, AtModalAction, AtIcon } from 'taro-ui'
-import ActivityStore from '../../store/activity-store'
+import activityStore from '../../store/activity-store'
 import tools from 'highly-tools';
 
 
@@ -22,7 +22,7 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
   const router = useRouter();
   const { id } = router.params;
 
-  const { myActivity, addActivity, getActivity, updateActivity, reset, prizeItem, update, clear, finalUpdate, remove } = useContext(ActivityStore);
+  const { myActivity, addActivity, getActivity, updateActivity, reset, prizeItem, update, clear, finalUpdate, remove } = useContext(activityStore);
 
   const [isOpened, setIsOpened] = useState(false);
 

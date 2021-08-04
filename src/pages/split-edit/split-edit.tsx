@@ -8,9 +8,9 @@ import Taro, {
   usePullDownRefresh
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
-import { View, Text } from '@tarojs/components'
-import { AtInput, AtButton, AtCard } from 'taro-ui'
-// import counterStore from '../../store/counter'
+import { View, Text, Picker } from '@tarojs/components'
+import { AtInput, AtButton, AtCard, AtList, AtListItem } from 'taro-ui'
+import splitStore from '../../store/split-store'
 
 
 
@@ -18,9 +18,20 @@ interface Props {}
 
 const SplitEdit: React.FC<Props> = (props: Props) => {
 
+  const { addSplit } = useContext(splitStore);
+
   const [info, setInfo] = useState({
     name: '',
-    address: '',
+    url: '',
+    pic: '',
+    object_id: '',
+    slogan: '',
+    type: 1,
+  });
+
+  const [obj, setObj] = useState({
+    selector: ['活动', '优惠券'],
+    selectorChecked: '活动',
   });
 
   useEffect(() => {})
@@ -44,64 +55,80 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
         <AtCard
           className='page-coupon-edit__card'
           title='裂变信息'
+          note='注: 活动类型点击即可选择'
         >
           <AtInput
             name='name'
-            title='名称'
+            title='标题'
             type='text'
             required
-            placeholder='请填写名称'
+            placeholder='请填写标题'
             value={info.name}
             border={false}
             onChange={value => setInfo({ ...info ,name: value })}
           />
+          <View className={`type ${obj.selectorChecked === '活动' ? 'activity' : 'coupon'}`}>
+            <Picker mode='selector' range={obj.selector} onChange={e => setObj({
+              selector: ['活动', '优惠券'],
+              selectorChecked: obj.selector[e.detail.value],
+            })}>
+                <AtList>
+                  <AtListItem
+                    title='活动类型'
+                    extraText={obj.selectorChecked}
+                  />
+                </AtList>
+              </Picker>
+          </View>
           <AtInput
-            name='address'
-            title='跳转地址'
+            name='url'
+            title='视频url'
             type='text'
             required
-            placeholder='请填写跳转地址'
-            value={info.address}
+            placeholder='请填写视频url'
+            value={info.url}
             border={false}
-            onChange={value => setInfo({ ...info ,address: value })}
+            onChange={value => setInfo({ ...info ,url: value })}
+          />
+          <AtInput
+            name='pic'
+            title='视频截图url'
+            type='text'
+            required
+            placeholder='请填写视频截图url'
+            value={info.pic}
+            border={false}
+            onChange={value => setInfo({ ...info ,pic: value })}
+          />
+          <AtInput
+            name='object_id'
+            title='对象id'
+            type='number'
+            required
+            placeholder='请填写视频截图url'
+            value={info.object_id}
+            border={false}
+            onChange={value => setInfo({ ...info ,object_id: value })}
+          />
+          <AtInput
+            name='slogan'
+            title='宣传语'
+            type='text'
+            required
+            placeholder='请填写视频截图url'
+            value={info.slogan}
+            border={false}
+            onChange={value => setInfo({ ...info ,slogan: value })}
           />
         </AtCard>
-        <AtCard
-          className='page-coupon-edit__card'
-          title='上传视频'
-        >
-          <View className="upload" onClick={() => {
-            Taro.chooseVideo({
-              sourceType: ['album','camera'],
-              camera: 'back',
-              success: function (res) {
-                console.log(res)
-                Taro.uploadFile({
-                  url: 'http://wap.921juan.cn/app/v1/common/upload/video',
-                  filePath: res.tempFilePath,
-                  name: 'file',
-                  header: {
-                    "content-type": "multipart/form-data",
-                    'X-Token': '',
-                  },
-                  success (res){
-                    const data = res.data
-                    //do something
-                  }
-                })
-              }
-            })
-          }}>
-            <View>点击上传视频</View>
-          </View>
-        </AtCard>
-        <AtCard
-          className='page-coupon-edit__card'
-          title='营销活动'
-        >
-        </AtCard>
         
-        <AtButton type='primary' className='page-coupon-edit__btn' onClick={() => Taro.navigateBack()}>保存</AtButton>
+        
+        <AtButton type='primary' className='page-coupon-edit__btn' onClick={() => addSplit({
+          ...info,
+          type: obj.selectorChecked === '活动' ? 1 : 2,
+          object_id: Number(info.object_id),
+          required: ['name', 'url', 'pic', 'object_id', 'slogan', 'type'],
+        })}>保存</AtButton>
       </View>
     </View>
   )
