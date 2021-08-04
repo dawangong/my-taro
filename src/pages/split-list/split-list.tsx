@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:05:14
- * @LastEditTime: 2021-07-28 18:15:17
+ * @LastEditTime: 2021-08-04 16:28:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/split-list/split-list.tsx
@@ -18,7 +18,7 @@ import Taro, {
 import { observer } from 'mobx-react'
 import { View, Text, ScrollView, Image } from '@tarojs/components'
 import { AtInput, AtButton, AtIcon } from 'taro-ui'
-// import counterStore from '../../store/counter'
+import splitStore from '../../store/split-store'
 
 
 
@@ -26,13 +26,20 @@ interface Props {}
 
 const SplitList: React.FC<Props> = (props: Props) => {
 
+  const { list, getSplitList } = useContext(splitStore);
+
   useEffect(() => {})
 
   // 对应 onReady
   useReady(() => {})
 
   // 对应 onShow
-  useDidShow(() => {})
+  useDidShow(() => {
+    getSplitList({
+      page: 1,
+      size: 10000
+    })
+  })
 
   // 对应 onHide
   useDidHide(() => {})
@@ -53,7 +60,7 @@ const SplitList: React.FC<Props> = (props: Props) => {
         // onScrollToUpper
       >
         {
-          [0,1,2,3].map(() => 
+          list.map((item: any, index: number) => 
           <View
             className="activity-card"
             onClick={() => Taro.navigateTo({
@@ -61,8 +68,8 @@ const SplitList: React.FC<Props> = (props: Props) => {
             })}
             >
               <View className="activity-card-header">
-                <View className="activity-card-icon">抖音</View>
-                <View>名字</View>
+                <View className="activity-card-icon">{item.type === 1 ? '活动' : '优惠券'}</View>
+                <View>{item.name}</View>
                 <View className="activity-card-del" onClick={(e: any) => {
                   e.stopPropagation();
                   Taro.showToast({
@@ -78,7 +85,7 @@ const SplitList: React.FC<Props> = (props: Props) => {
                 <View className="img">
                   <Image
                     mode='widthFix'
-                    src='https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png'
+                    src={item.pic}
                   />
                 </View>
                 <View>

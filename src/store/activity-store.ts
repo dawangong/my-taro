@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-27 14:19:08
- * @LastEditTime: 2021-08-04 15:32:42
+ * @LastEditTime: 2021-08-04 16:24:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/activity-edit.ts
@@ -62,7 +62,7 @@ class ActivityStore {
       setTimeout(() => {
         this.getActivityList({
           page: 1,
-          size: 100
+          size: 10000
         });
       }, 1000);
     }

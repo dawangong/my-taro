@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-27 14:15:22
- * @LastEditTime: 2021-08-04 15:31:31
+ * @LastEditTime: 2021-08-04 16:24:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/coupon-list-select/coupon-list-select.tsx
@@ -40,7 +40,7 @@ const CouponList: React.FC<Props> = (props: Props) => {
   useDidShow(() => {
     getCouponList({
       page: 1,
-      size: 100
+      size: 10000
     });
   })
 

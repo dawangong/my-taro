@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:06:10
- * @LastEditTime: 2021-08-03 16:42:56
+ * @LastEditTime: 2021-08-04 16:24:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/activity-list/activity-list.tsx
@@ -38,7 +38,7 @@ const ActivityList: React.FC<Props> = (props: Props) => {
   useDidShow(() => {
     getActivityList({
       page: 1,
-      size: 100
+      size: 10000
     });
   })
 
