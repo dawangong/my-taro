@@ -1,8 +1,16 @@
+/*
+ * @Author: your name
+ * @Date: 2021-07-23 14:01:33
+ * @LastEditTime: 2021-08-04 13:41:37
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /my-taro/src/pages/cancel-coupon/cancel-coupon.tsx
+ */
 import './cancel-coupon.scss'
 
 import React, { useEffect, useContext, useState } from 'react'
 import { View, Text } from '@tarojs/components'
-import {
+import Taro, {
   useReady,
   useDidShow,
   useDidHide,
@@ -48,6 +56,9 @@ const CancelCoupon: React.FC<Props> = (props: Props) => {
           />
       </View>
       <AtButton type='primary' className='page-cancel-coupon__btn'>核销</AtButton>
+      <AtButton type='primary' className='page-cancel-coupon__btn--record' onClick={() => Taro.navigateTo({
+        url: '/pages/cancel-record/cancel-record'
+      })}>核销记录</AtButton>
     </View>
   )
 };

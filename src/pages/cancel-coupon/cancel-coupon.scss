@@ -15,9 +15,14 @@
   .page-cancel-coupon__btn {
     position: absolute;
     left: 50%;
-    bottom: 5%;
+    bottom: 150px;
     transform: translateX(-50%);
     width: 80%;
+  }
+
+  .page-cancel-coupon__btn--record {
+    @extend .page-cancel-coupon__btn;
+    bottom: 30px;
   }
 
   .at-input__title {

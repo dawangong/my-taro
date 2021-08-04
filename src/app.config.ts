@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-07-21 18:48:23
+ * @LastEditTime: 2021-08-04 13:36:38
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /my-taro/src/app.config.ts
+ */
 // center => login/register
 export default {
   pages: [
@@ -7,6 +15,7 @@ export default {
     'pages/business-info/business-info',
     'pages/person-info/person-info',
     'pages/cancel-coupon/cancel-coupon',
+    'pages/cancel-record/cancel-record',
     'pages/coupon-list/coupon-list',
     'pages/coupon-detail/coupon-detail',
     'pages/coupon-edit/coupon-edit',
