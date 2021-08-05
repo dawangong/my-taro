@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:06:10
- * @LastEditTime: 2021-08-04 16:24:16
+ * @LastEditTime: 2021-08-05 14:19:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/activity-list/activity-list.tsx
@@ -84,7 +84,7 @@ const ActivityList: React.FC<Props> = (props: Props) => {
               <View className="activity-card-content">
                 <View className="activity-card-field">
                   <View>奖品数量: </View>
-                  <View>111</View>
+                  <View>{item.prizes.num}</View>
                 </View>
                 <View className="activity-card-field">
                   <View>活动时间: </View>

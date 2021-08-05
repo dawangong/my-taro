@@ -36,4 +36,13 @@
   .at-list__item {
     padding: 12px;
   }
+
+  .at-list__item-extra {
+    max-width: 400px;
+    word-break: break-all;
+
+    .item-extra__info {
+      white-space: unset;
+    }
+  }
 }

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:05:14
- * @LastEditTime: 2021-08-05 14:15:27
+ * @LastEditTime: 2021-08-05 14:28:53
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/split-list/split-list.tsx
@@ -27,6 +27,8 @@ interface Props {}
 const SplitList: React.FC<Props> = (props: Props) => {
 
   const { list, getSplitList, removeSplit } = useContext(splitStore);
+
+  const status = ['未知状态', '通过审核', '未通过审核', '待审核'];
 
   useEffect(() => {})
 
@@ -64,7 +66,7 @@ const SplitList: React.FC<Props> = (props: Props) => {
           <View
             className="activity-card"
             onClick={() => Taro.navigateTo({
-              url: '/pages/split-detail/split-detail'
+              url: `/pages/split-detail/split-detail?id=${item.id}`
             })}
             >
               <View className="activity-card-header">
@@ -89,8 +91,8 @@ const SplitList: React.FC<Props> = (props: Props) => {
                 </View>
                 <View>
                   <View className="activity-card-field">
-                    <View>发布次数:</View>
-                    <View>111</View>
+                    <View>视频状态:</View>
+                    <View>{status[item.status]}</View>
                   </View>
                   <View className="activity-card-field">
                     <View>创建时间:</View>

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:05:54
- * @LastEditTime: 2021-07-28 10:57:51
+ * @LastEditTime: 2021-08-05 14:32:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/split-detail/split-detail.tsx
@@ -11,6 +11,7 @@ import './split-detail.scss'
 import React, { useEffect, useState, useContext } from 'react'
 import Taro, {
   useReady,
+  useRouter,
   useDidShow,
   useDidHide,
   usePullDownRefresh
@@ -18,7 +19,7 @@ import Taro, {
 import { observer } from 'mobx-react'
 import { View, Text, Image } from '@tarojs/components'
 import { AtInput, AtButton, AtCard, AtList, AtListItem } from 'taro-ui'
-// import counterStore from '../../store/counter'
+import splitStore from '../../store/split-store'
 
 
 
@@ -26,13 +27,23 @@ interface Props {}
 
 const SplitDetail: React.FC<Props> = (props: Props) => {
 
+  const router = useRouter();
+  const { id } = router.params;
+
+  const { mySplit, getSplitDetail } = useContext(splitStore);
+  const status = ['未知状态', '通过审核', '未通过审核', '待审核'];
+
   useEffect(() => {})
 
   // 对应 onReady
   useReady(() => {})
 
   // 对应 onShow
-  useDidShow(() => {})
+  useDidShow(() => {
+    getSplitDetail({
+      id,
+    });
+  })
 
   // 对应 onHide
   useDidHide(() => {})
@@ -49,17 +60,19 @@ const SplitDetail: React.FC<Props> = (props: Props) => {
           title='基本信息'
         >
           <AtList hasBorder={false}>
-            <AtListItem title='裂变ID' extraText='1666' />
-            <AtListItem title='裂变昵称' extraText='111' />
-            <AtListItem title='用户昵称' extraText='111' />
-            <AtListItem title='发布次数' extraText='111' />
-            <AtListItem title='创建时间' extraText='2021.09.01' />
+            <AtListItem title='标题' extraText={mySplit.name} />
+            <AtListItem title='活动类型' extraText={mySplit.type === 1 ? '活动' : '优惠券'} />
+            <AtListItem title='视频url' extraText={mySplit.url} />
+            <AtListItem title='视频截图url' extraText={mySplit.pic} />
+            <AtListItem title='对象ID' extraText={mySplit.object_id} />
+            <AtListItem title='宣传语' extraText={mySplit.slogan} />
+            <AtListItem title='视频状态' extraText={status[mySplit.status]} />
           </AtList>
         </AtCard>
         <AtButton type='primary' className='page-coupon-edit__btn' onClick={() => Taro.navigateTo({
               url: '/pages/split-edit/split-edit'
             })}>编辑</AtButton>
-        <AtCard
+        {/* <AtCard
           className='page-coupon-edit__card'
           title='扫码详情'
         >
@@ -70,7 +83,7 @@ const SplitDetail: React.FC<Props> = (props: Props) => {
             />
           </View>
         </AtCard>
-        <AtButton type='primary' className='page-coupon-edit__btn' onClick={() => {}}>下载二维码</AtButton>
+        <AtButton type='primary' className='page-coupon-edit__btn' onClick={() => {}}>下载二维码</AtButton> */}
       </View>
     </View>
   )

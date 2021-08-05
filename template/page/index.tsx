@@ -1,8 +1,17 @@
+/*
+ * @Author: wh
+ * @Date: 2021-07-22 10:36:09
+ * @LastEditTime: 2021-08-05 14:27:55
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /my-taro/template/page/index.tsx
+ */
 import './index.scss'
 
 import React, { useEffect, useState, useContext } from 'react'
 import Taro, {
   useReady,
+  useRouter,
   useDidShow,
   useDidHide,
   usePullDownRefresh
