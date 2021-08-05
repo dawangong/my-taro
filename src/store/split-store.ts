@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-04 15:27:18
- * @LastEditTime: 2021-08-05 14:29:28
+ * @LastEditTime: 2021-08-05 14:50:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/split-store.ts
@@ -15,7 +15,14 @@ import Taro from '@tarojs/taro'
 class SplitStore {
 
   @observable public list: any = [];
-  @observable public mySplit: any = {};
+  @observable public mySplit: any = {
+    name: '',
+    url: '',
+    pic: '',
+    object_id: '',
+    slogan: '',
+    type: 1,
+  };
 
   @action.bound
   async getSplitList (data) {

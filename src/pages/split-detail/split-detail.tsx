@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:05:54
- * @LastEditTime: 2021-08-05 14:32:45
+ * @LastEditTime: 2021-08-05 14:41:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/split-detail/split-detail.tsx
@@ -31,7 +31,7 @@ const SplitDetail: React.FC<Props> = (props: Props) => {
   const { id } = router.params;
 
   const { mySplit, getSplitDetail } = useContext(splitStore);
-  const status = ['未知状态', '通过审核', '未通过审核', '待审核'];
+  const status = ['未知', '通过审核', '未通过审核', '待审核'];
 
   useEffect(() => {})
 
@@ -70,7 +70,7 @@ const SplitDetail: React.FC<Props> = (props: Props) => {
           </AtList>
         </AtCard>
         <AtButton type='primary' className='page-coupon-edit__btn' onClick={() => Taro.navigateTo({
-              url: '/pages/split-edit/split-edit'
+              url: `/pages/split-edit/split-edit?id=${mySplit.id}`
             })}>编辑</AtButton>
         {/* <AtCard
           className='page-coupon-edit__card'

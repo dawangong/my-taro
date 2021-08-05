@@ -3,6 +3,7 @@ import './split-edit.scss'
 import React, { useEffect, useState, useContext } from 'react'
 import Taro, {
   useReady,
+  useRouter,
   useDidShow,
   useDidHide,
   usePullDownRefresh
@@ -18,16 +19,12 @@ interface Props {}
 
 const SplitEdit: React.FC<Props> = (props: Props) => {
 
-  const { addSplit } = useContext(splitStore);
+  const router = useRouter();
+  const { id } = router.params;
 
-  const [info, setInfo] = useState({
-    name: '',
-    url: '',
-    pic: '',
-    object_id: '',
-    slogan: '',
-    type: 1,
-  });
+  const { addSplit, mySplit, updateSplit } = useContext(splitStore);
+
+  const [info, setInfo] = useState(mySplit);
 
   const [obj, setObj] = useState({
     selector: ['活动', '优惠券'],
@@ -122,13 +119,15 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
           />
         </AtCard>
         
-        
-        <AtButton type='primary' className='page-coupon-edit__btn' onClick={() => addSplit({
-          ...info,
-          type: obj.selectorChecked === '活动' ? 1 : 2,
-          object_id: Number(info.object_id),
-          required: ['name', 'url', 'pic', 'object_id', 'slogan', 'type'],
-        })}>保存</AtButton>
+        <AtButton type='primary' className='page-coupon-edit__btn' onClick={() => {
+          const content = {
+            ...info,
+            type: obj.selectorChecked === '活动' ? 1 : 2,
+            object_id: Number(info.object_id),
+            required: ['name', 'url', 'pic', 'object_id', 'slogan', 'type'],
+          };
+          id ? updateSplit(content) : addSplit(content);
+        }}>保存</AtButton>
       </View>
     </View>
   )
