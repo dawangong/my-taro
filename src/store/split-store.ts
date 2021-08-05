@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-04 15:27:18
- * @LastEditTime: 2021-08-04 15:29:20
+ * @LastEditTime: 2021-08-05 14:14:35
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/split-store.ts
@@ -9,12 +9,15 @@
 
 import { observable, action } from 'mobx'
 import { createContext } from 'react';
-import { splitListApi, addSplitApi, } from '../api/split-api'
+import { splitListApi, addSplitApi, removeSplitApi, splitDetailApi, updateSplitApi } from '../api/split-api'
 import Taro from '@tarojs/taro'
 
 class SplitStore {
 
   @observable public list: any = [];
+  @observable public mySplit: any = {
+    
+  };
 
   @action.bound
   async getSplitList (data) {
@@ -41,49 +44,49 @@ class SplitStore {
     }
   }
 
-  // @action.bound
-  // async removeActivity (data) {
-  //   const res = await removeActivityApi(data);
+  @action.bound
+  async removeSplit (data) {
+    const res = await removeSplitApi(data);
 
-  //   if(res && res.data.code === 200) {
-  //     Taro.showToast({
-  //       icon: 'success',
-  //       title: '删除成功',
-  //       duration: 1000
-  //     });
-  //     setTimeout(() => {
-  //       this.getActivityList({
-  //         page: 1,
-  //         size: 100
-  //       });
-  //     }, 1000);
-  //   }
-  // }
+    if(res && res.data.code === 200) {
+      Taro.showToast({
+        icon: 'success',
+        title: '删除成功',
+        duration: 1000
+      });
+      setTimeout(() => {
+        this.getSplitList({
+          page: 1,
+          size: 10000
+        });
+      }, 1000);
+    }
+  }
 
-  // @action.bound
-  // async getActivity (data) {
-  //   const res = await activityDetailApi(data);
+  @action.bound
+  async getSplitDetail (data) {
+    const res = await splitDetailApi(data);
 
-  //   if(res && res.data.code === 200) {
-  //     this.myActivity = res.data.data;
-  //   }
-  // }
+    if(res && res.data.code === 200) {
+      this.mySplit = res.data.data;
+    }
+  }
 
-  // @action.bound
-  // async updateActivity (data) {
-  //   const res = await updateActivityApi(data);
+  @action.bound
+  async updateSplit (data) {
+    const res = await updateSplitApi(data);
 
-  //   if(res && res.data.code === 200) {
-  //     Taro.showToast({
-  //       icon: 'success',
-  //       title: '编辑成功',
-  //       duration: 1000
-  //     });
-  //     setTimeout(() => {
-  //       Taro.navigateBack();
-  //     }, 1000);
-  //   }
-  // }
+    if(res && res.data.code === 200) {
+      Taro.showToast({
+        icon: 'success',
+        title: '编辑成功',
+        duration: 1000
+      });
+      setTimeout(() => {
+        Taro.navigateBack();
+      }, 1000);
+    }
+  }
 
 }
 

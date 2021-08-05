@@ -1,26 +1,10 @@
 /*
- * @Author: your name
+ * @Author: wh
  * @Date: 2021-08-04 15:26:10
- * @LastEditTime: 2021-08-04 15:27:02
+ * @LastEditTime: 2021-08-05 14:11:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/api/split-api.ts
- */
-/*
- * @Author: your name
- * @Date: 2021-08-03 14:29:00
- * @LastEditTime: 2021-08-03 16:30:49
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /my-taro/src/api/activity-api.ts
- */
-/*
- * @Author: your name
- * @Date: 2021-08-03 14:29:00
- * @LastEditTime: 2021-08-03 14:29:32
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /my-taro/src/api/activity-api.ts
  */
 import http from '../services/index';
 
@@ -38,23 +22,23 @@ const addSplitApi = (data) => {
   });
 }
 
-const removeActivityApi = (data) => {
+const removeSplitApi = (data) => {
   return http.post({
-    url: '/app/v1/business/activity/activity/delete',
+    url: '/app/v1/business/activity/fission/delete',
     data,
   });
 }
 
-const activityDetailApi = (data) => {
+const splitDetailApi = (data) => {
   return http.post({
-    url: '/app/v1/business/activity/activity/details',
+    url: '/app/v1/business/activity/fission/details',
     data,
   });
 }
 
-const updateActivityApi = (data) => {
+const updateSplitApi = (data) => {
   return http.post({
-    url: '/app/v1/business/activity/activity/edit',
+    url: '/app/v1/business/activity/fission/edit',
     data,
   });
 }
@@ -62,7 +46,7 @@ const updateActivityApi = (data) => {
 export {
   splitListApi,
   addSplitApi,
-  removeActivityApi,
-  activityDetailApi,
-  updateActivityApi,
+  removeSplitApi,
+  splitDetailApi,
+  updateSplitApi,
 }

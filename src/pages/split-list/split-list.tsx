@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:05:14
- * @LastEditTime: 2021-08-05 11:34:54
+ * @LastEditTime: 2021-08-05 14:15:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/split-list/split-list.tsx
@@ -26,7 +26,7 @@ interface Props {}
 
 const SplitList: React.FC<Props> = (props: Props) => {
 
-  const { list, getSplitList } = useContext(splitStore);
+  const { list, getSplitList, removeSplit } = useContext(splitStore);
 
   useEffect(() => {})
 
@@ -72,11 +72,10 @@ const SplitList: React.FC<Props> = (props: Props) => {
                 <View>{item.name}</View>
                 <View className="activity-card-del" onClick={(e: any) => {
                   e.stopPropagation();
-                  Taro.showToast({
-                    title: '成功',
-                    icon: 'success',
-                    duration: 1000
-                  })
+                  removeSplit({
+                    id: item.id,
+                    required: ['id'],
+                  });
                 }}>
                   <AtIcon value='trash' size='22' color="#ccc" ></AtIcon>
                 </View>
