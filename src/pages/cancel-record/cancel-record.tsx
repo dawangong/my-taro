@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-27 14:15:22
- * @LastEditTime: 2021-08-04 16:24:23
+ * @LastEditTime: 2021-08-05 16:35:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/coupon-list-select/coupon-list-select.tsx
@@ -26,7 +26,7 @@ interface Props {}
 
 const CancelRecord: React.FC<Props> = (props: Props) => {
 
-  const { list, getCouponList } = useContext(couponStore);
+  const { offList, offCouponList } = useContext(couponStore);
 
   useEffect(() => {})
 
@@ -35,7 +35,7 @@ const CancelRecord: React.FC<Props> = (props: Props) => {
 
   // 对应 onShow
   useDidShow(() => {
-    getCouponList({
+    offCouponList({
       page: 1,
       size: 10000
     });
@@ -60,7 +60,7 @@ const CancelRecord: React.FC<Props> = (props: Props) => {
         // onScrollToUpper
       >
         {
-          list.map((item: any, index: number) => 
+          offList.map((item: any, index: number) => 
           <View className={`card ${item.type === 2 && 'gift'}`}>
             {
               item.type === 1 ? <View className="card-left">

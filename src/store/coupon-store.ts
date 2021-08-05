@@ -1,18 +1,19 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-08-05 15:29:11
+ * @LastEditTime: 2021-08-05 16:34:51
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
  */
 import { observable, action } from 'mobx'
 import { createContext } from 'react';
-import { addCouponApi, getCouponListApi, editCouponApi, removeCouponApi, offCouponApi } from '../api/coupon-api';
+import { addCouponApi, getCouponListApi, editCouponApi, removeCouponApi, offCouponApi, offCouponListApi } from '../api/coupon-api';
 import Taro from '@tarojs/taro'
 
 class CouponStore {
   @observable public list: any = [];
+  @observable public offList: any = [];
 
   @action.bound
   async addCoupon (data) {
@@ -85,6 +86,15 @@ class CouponStore {
         title: '核销成功',
         duration: 1000
       });
+    }
+  }
+
+  @action.bound
+  async offCouponList (data) {
+    const res = await offCouponListApi(data);
+
+    if(res && res.data.code === 200) {
+      this.list = res.data.data.list;
     }
   }
   
