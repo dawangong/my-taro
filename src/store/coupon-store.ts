@@ -1,14 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-08-03 18:22:47
+ * @LastEditTime: 2021-08-05 15:29:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
  */
 import { observable, action } from 'mobx'
 import { createContext } from 'react';
-import { addCouponApi, getCouponListApi, editCouponApi, removeCouponApi } from '../api/coupon-api';
+import { addCouponApi, getCouponListApi, editCouponApi, removeCouponApi, offCouponApi } from '../api/coupon-api';
 import Taro from '@tarojs/taro'
 
 class CouponStore {
@@ -72,6 +72,19 @@ class CouponStore {
       setTimeout(() => {
         Taro.navigateBack();
       }, 1000);
+    }
+  }
+
+  @action.bound
+  async offCoupon (data) {
+    const res = await offCouponApi(data);
+
+    if(res && res.data.code === 200) {
+      Taro.showToast({
+        icon: 'success',
+        title: '核销成功',
+        duration: 1000
+      });
     }
   }
   

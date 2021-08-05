@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-21 22:05:50
- * @LastEditTime: 2021-07-29 11:21:58
+ * @LastEditTime: 2021-08-05 15:28:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/api/common-api.ts
@@ -36,9 +36,17 @@ const editCouponApi = (data) => {
   });
 }
 
+const offCouponApi = (data) => {
+  return http.post({
+    url: '/app/v1/business/activity/user-coupon/write-off',
+    data,
+  });
+}
+
 export {
   addCouponApi,
   getCouponListApi,
   removeCouponApi,
   editCouponApi,
+  offCouponApi,
 }
