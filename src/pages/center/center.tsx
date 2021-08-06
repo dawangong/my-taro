@@ -17,7 +17,7 @@ import Taro, {
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
 import { View, Text, OpenData } from '@tarojs/components'
-import { AtDivider, AtAvatar, AtIcon, AtGrid } from 'taro-ui'
+import { AtDivider, AtIcon, AtGrid } from 'taro-ui'
 import commonStore from '../../store/common-store'
 import tools from 'highly-tools';
 

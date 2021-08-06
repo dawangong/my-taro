@@ -8,7 +8,7 @@
  */
 import './coupon-list-select.scss'
 
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import Taro, {
   useReady,
   useDidShow,
@@ -17,7 +17,6 @@ import Taro, {
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
 import { View, Text, ScrollView } from '@tarojs/components'
-import { AtInput, AtButton } from 'taro-ui'
 import couponStore from '../../store/coupon-store'
 import activityStore from '../../store/activity-store'
 import tools from 'highly-tools';

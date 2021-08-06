@@ -8,7 +8,7 @@
  */
 import './split-list.scss'
 
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import Taro, {
   useReady,
   useDidShow,
@@ -16,8 +16,8 @@ import Taro, {
   usePullDownRefresh
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
-import { View, Text, ScrollView, Image } from '@tarojs/components'
-import { AtInput, AtButton, AtIcon } from 'taro-ui'
+import { View, ScrollView, Image } from '@tarojs/components'
+import { AtButton, AtIcon } from 'taro-ui'
 import splitStore from '../../store/split-store'
 
 

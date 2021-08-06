@@ -7,7 +7,7 @@
  * @FilePath: /my-taro/src/services/index.ts
  */
 import Taro from '@tarojs/taro'
-import { HTTP_STATUS } from './http-status'
+// import { HTTP_STATUS } from './http-status'
 import { base } from './config'
 import { getCurrentPage } from '../utils/tools'
 import _ from 'underscore'

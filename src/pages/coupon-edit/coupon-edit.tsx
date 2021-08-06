@@ -1,7 +1,7 @@
 import './coupon-edit.scss'
 
 import React, { useEffect, useState, useContext } from 'react'
-import Taro, {
+import {
   useReady,
   useRouter,
   useDidShow,
@@ -9,7 +9,7 @@ import Taro, {
   usePullDownRefresh
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
-import { View, Text, Label, Picker } from '@tarojs/components'
+import { View, Picker } from '@tarojs/components'
 import { AtInput, AtButton, AtCard, AtList, AtListItem } from 'taro-ui'
 import couponStore from '../../store/coupon-store'
 import tools from 'highly-tools';

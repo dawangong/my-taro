@@ -1,6 +1,6 @@
 import './coupon-detail.scss'
 
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import Taro, {
   useReady,
   useRouter,
@@ -10,7 +10,7 @@ import Taro, {
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
 import { View, Text } from '@tarojs/components'
-import { AtInput, AtButton } from 'taro-ui'
+import { AtButton } from 'taro-ui'
 import tools from 'highly-tools';
 import couponStore from '../../store/coupon-store'
 

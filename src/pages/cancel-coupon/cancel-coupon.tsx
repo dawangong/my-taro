@@ -9,7 +9,7 @@
 import './cancel-coupon.scss'
 
 import React, { useEffect, useContext, useState } from 'react'
-import { View, Text } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import Taro, {
   useReady,
   useDidShow,

@@ -9,7 +9,7 @@
 import './cancel-record.scss'
 
 import React, { useEffect, useContext } from 'react'
-import Taro, {
+import {
   useReady,
   useDidShow,
   useDidHide,

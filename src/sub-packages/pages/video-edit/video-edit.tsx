@@ -1,14 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:07:56
- * @LastEditTime: 2021-08-06 15:40:14
+ * @LastEditTime: 2021-08-06 17:13:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/video-edit/video-edit.tsx
  */
 import './video-edit.scss'
 
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import Taro, {
   useReady,
   useDidShow,
@@ -16,15 +16,14 @@ import Taro, {
   usePullDownRefresh
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
-import { View, Text } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import { AtInput, AtButton, AtCard, AtProgress, AtList, AtListItem } from 'taro-ui'
-import { base } from '../../services/config'
+import { base } from '../../../services/config'
 import Uploader from 'miniprogram-file-uploader'
-// import counterStore from '../../store/counter'
 
-const MERGE_URL = `${base}/merge`
-const VERIFY_URL = `${base}/verify`
-const UPLOAD_URL = `${base}/upload`
+const VERIFY_URL = `${base}/common/upload/verify-url`
+const MERGE_URL = `${base}/common/upload/merge-url`
+const UPLOAD_URL = `${base}/common/upload/upload-file`
 
 interface Props {}
 
@@ -43,7 +42,7 @@ const VideoEdit: React.FC<Props> = (props: Props) => {
 
   const reset = () => {
     setVideo({
-      fileName: '',
+      fileName: video.fileName,
       progress: 0,
       uploadedSize: 0,
       averageSpeed: 0,
@@ -106,12 +105,20 @@ const VideoEdit: React.FC<Props> = (props: Props) => {
           title='上传视频'
         >
           <View className="upload" onClick={async () => {
-            reset()
+            if (!video.fileName) {
+              Taro.showToast({
+                title: '请先填写视频名称',
+                icon: 'none',
+                duration: 1000
+              })
+              return
+            };
+            reset();
             const { tempFilePath, size } = await Taro.chooseVideo({
               sourceType: ['album','camera'],
               camera: 'back',
               compressed: false
-            })
+            });
         
             if (!Uploader.isSupport()) {
               Taro.showToast({
@@ -120,15 +127,7 @@ const VideoEdit: React.FC<Props> = (props: Props) => {
                 duration: 1000
               })
               return
-            }
-            if (!video.fileName) {
-              Taro.showToast({
-                title: '请先填写视频名称',
-                icon: 'none',
-                duration: 1000
-              })
-              return
-            }
+            };
             uploader = new Uploader({
               tempFilePath,
               totalSize: size,
@@ -137,8 +136,9 @@ const VideoEdit: React.FC<Props> = (props: Props) => {
               uploadUrl: UPLOAD_URL,
               mergeUrl: MERGE_URL,
               testChunks: video.testChunks,
-              verbose: true
-            })
+              verbose: true,
+              chunkSize: 1024 * 1024,
+            });
             uploader.on('retry', (res) => {
               console.log('retry', res.url)
             })
@@ -163,9 +163,9 @@ const VideoEdit: React.FC<Props> = (props: Props) => {
                 averageSpeed: parseInt(res.averageSpeed / 1024),
                 timeRemaining: res.timeRemaining
               })
-            })
+            });
         
-            uploader.upload()
+            uploader.upload();
           }}>
             <View>点击上传视频</View>
           </View>
