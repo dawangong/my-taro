@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:05:14
- * @LastEditTime: 2021-08-05 14:44:01
+ * @LastEditTime: 2021-08-06 14:13:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/split-list/split-list.tsx
@@ -26,7 +26,7 @@ interface Props {}
 
 const SplitList: React.FC<Props> = (props: Props) => {
 
-  const { list, getSplitList, removeSplit } = useContext(splitStore);
+  const { list, getSplitList, removeSplit, clear } = useContext(splitStore);
 
   const status = ['未知', '通过审核', '未通过审核', '待审核'];
 
@@ -104,9 +104,12 @@ const SplitList: React.FC<Props> = (props: Props) => {
         }
       </ScrollView>
       <View className="add-area">
-         <AtButton type='primary' className='page-activity-list__btn' onClick={() => Taro.navigateTo({
+         <AtButton type='primary' className='page-activity-list__btn' onClick={() => {
+           clear();
+           Taro.navigateTo({
             url: '/pages/split-edit/split-edit'
-          })}>新增裂变</AtButton>
+          })
+         }}>新增裂变</AtButton>
       </View>
     </View>
   )

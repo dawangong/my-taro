@@ -22,7 +22,7 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
   const router = useRouter();
   const { id } = router.params;
 
-  const { addSplit, mySplit, updateSplit } = useContext(splitStore);
+  const { addSplit, mySplit, updateSplit, clearId } = useContext(splitStore);
 
   const [info, setInfo] = useState(mySplit);
 
@@ -65,10 +65,13 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
             onChange={value => setInfo({ ...info ,name: value })}
           />
           <View className={`type ${obj.selectorChecked === '活动' ? 'activity' : 'coupon'}`}>
-            <Picker mode='selector' range={obj.selector} onChange={e => setObj({
-              selector: ['活动', '优惠券'],
-              selectorChecked: obj.selector[e.detail.value],
-            })}>
+            <Picker mode='selector' range={obj.selector} onChange={e => {
+              setObj({
+                selector: ['活动', '优惠券'],
+                selectorChecked: obj.selector[e.detail.value],
+              });
+              clearId();
+            }}>
                 <AtList>
                   <AtListItem
                     title='活动类型'
@@ -102,9 +105,16 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
             title='对象id'
             type='number'
             required
-            placeholder='请填写视频截图url'
+            placeholder='请选择对象id'
             value={info.object_id}
             border={false}
+            editable={false}
+            onClick={() => {
+              const url = obj.selectorChecked === '活动' ? '/pages/activity-list-select/activity-list-select' : '/pages/coupon-list-select/coupon-list-select';
+              Taro.navigateTo({
+                url,
+              });
+            }}
             onChange={value => setInfo({ ...info ,object_id: value })}
           />
           <AtInput
@@ -112,7 +122,7 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
             title='宣传语'
             type='text'
             required
-            placeholder='请填写视频截图url'
+            placeholder='请填写宣传语'
             value={info.slogan}
             border={false}
             onChange={value => setInfo({ ...info ,slogan: value })}

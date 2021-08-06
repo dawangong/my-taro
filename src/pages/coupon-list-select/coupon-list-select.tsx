@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-27 14:15:22
- * @LastEditTime: 2021-08-04 16:24:30
+ * @LastEditTime: 2021-08-06 14:28:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/coupon-list-select/coupon-list-select.tsx
@@ -21,6 +21,7 @@ import { AtInput, AtButton } from 'taro-ui'
 import couponStore from '../../store/coupon-store'
 import activityStore from '../../store/activity-store'
 import tools from 'highly-tools';
+import splitStore from '../../store/split-store'
 
 
 
@@ -30,6 +31,7 @@ const CouponList: React.FC<Props> = (props: Props) => {
 
   const { list, getCouponList } = useContext(couponStore);
   const { prizeItem, update } = useContext(activityStore);
+  const { updateId } = useContext(splitStore);
 
   useEffect(() => {})
 
@@ -71,6 +73,7 @@ const CouponList: React.FC<Props> = (props: Props) => {
               num: item.num,
               activity_sort: index,
             }});
+            updateId(item.id)
             Taro.navigateBack();
           }}>
             {

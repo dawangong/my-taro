@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-04 15:27:18
- * @LastEditTime: 2021-08-05 14:50:44
+ * @LastEditTime: 2021-08-06 14:32:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/split-store.ts
@@ -91,6 +91,28 @@ class SplitStore {
         Taro.navigateBack();
       }, 1000);
     }
+  }
+
+  @action.bound
+  updateId (id) {
+    this.mySplit.object_id = id;
+  }
+
+  @action.bound
+  clearId () {
+    this.mySplit.object_id = '';
+  }
+
+  @action.bound
+  clear () {
+    this.mySplit = {
+      name: '',
+      url: '',
+      pic: '',
+      object_id: '',
+      slogan: '',
+      type: 1,
+    };
   }
 
 }
