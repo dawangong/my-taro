@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:07:21
- * @LastEditTime: 2021-07-28 14:28:37
+ * @LastEditTime: 2021-08-06 14:44:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/video-list/video-list.tsx
@@ -56,9 +56,9 @@ const VideoList: React.FC<Props> = (props: Props) => {
           [0,1,2,3].map(() => 
           <View
             className="activity-card"
-            onClick={() => Taro.navigateTo({
-              url: '/pages/video-edit/video-edit'
-            })}
+            // onClick={() => Taro.navigateTo({
+            //   url: '/pages/video-edit/video-edit'
+            // })}
             >
               <View className="activity-card-header">
                 <View className="activity-card-icon">视频</View>

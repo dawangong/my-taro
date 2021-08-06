@@ -40,6 +40,7 @@
     "@tarojs/runtime": "3.2.10",
     "@tarojs/taro": "3.2.10",
     "highly-tools": "^1.1.2",
+    "miniprogram-file-uploader": "^1.0.0",
     "mobx": "^4.8.0",
     "mobx-react": "^6.1.4",
     "react": "^17.0.0",
