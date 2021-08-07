@@ -87,7 +87,7 @@ const VideoList: React.FC<Props> = (props: Props) => {
       </ScrollView>
       <View className="add-area">
          <AtButton type='primary' className='page-activity-list__btn' onClick={() => Taro.navigateTo({
-            url: '/pages/video-edit/video-edit'
+            url: '/sub-packages/pages/video-edit/video-edit'
           })}>新增视频</AtButton>
       </View>
     </View>
