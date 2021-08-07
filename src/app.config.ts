@@ -24,8 +24,6 @@ export default {
     'pages/split-detail/split-detail',
     'pages/activity-list/activity-list',
     'pages/activity-edit/activity-edit',
-    'pages/coupon-list-select/coupon-list-select',
-    'pages/activity-list-select/activity-list-select',
   ],
   subPackages: [
     {
@@ -33,6 +31,8 @@ export default {
       pages: [
         'pages/video-list/video-list',
         'pages/video-edit/video-edit',
+        'pages/coupon-list-select/coupon-list-select',
+        'pages/activity-list-select/activity-list-select',
       ]
     }
   ],

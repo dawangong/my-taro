@@ -17,10 +17,10 @@ import Taro, {
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
 import { View, Text, ScrollView } from '@tarojs/components'
-import couponStore from '../../store/coupon-store'
-import activityStore from '../../store/activity-store'
+import couponStore from '../../../store/coupon-store'
+import activityStore from '../../../store/activity-store'
 import tools from 'highly-tools';
-import splitStore from '../../store/split-store'
+import splitStore from '../../../store/split-store'
 
 
 

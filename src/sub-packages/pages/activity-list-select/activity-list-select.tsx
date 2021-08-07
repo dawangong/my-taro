@@ -17,9 +17,9 @@ import Taro, {
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
 import { View, ScrollView } from '@tarojs/components'
-import activityStore from '../../store/activity-store'
+import activityStore from '../../../store/activity-store'
 import tools from 'highly-tools'
-import splitStore from '../../store/split-store'
+import splitStore from '../../../store/split-store'
 
 
 

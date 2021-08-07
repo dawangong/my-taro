@@ -110,7 +110,7 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
             border={false}
             editable={false}
             onClick={() => {
-              const url = obj.selectorChecked === '活动' ? '/pages/activity-list-select/activity-list-select' : '/pages/coupon-list-select/coupon-list-select';
+              const url = obj.selectorChecked === '活动' ? '/sub-packages/pages/activity-list-select/activity-list-select' : '/sub-packages/pages/coupon-list-select/coupon-list-select';
               Taro.navigateTo({
                 url,
               });

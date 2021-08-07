@@ -164,7 +164,7 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
             onChange={() => {}}
           /> */}
           <View className="price-item" onClick={() => Taro.navigateTo({
-              url: '/pages/coupon-list-select/coupon-list-select'
+              url: '/sub-packages/pages/coupon-list-select/coupon-list-select'
             })}>
             <Label>奖品</Label>
             <Text>{prizeItem.title}</Text>

@@ -97,7 +97,7 @@ const Center: React.FC<Props> = (props: Props) => {
             <Text className='page-center__service__desc'>智能裂变</Text>
           </View>
           <View className='page-center__service-item page-center__service-item--video' onClick={() => Taro.navigateTo({
-              url: '/pages/video-list/video-list'
+              url: '/sub-packages/pages/video-list/video-list'
             })}>
             <Text className='page-center__service__desc'>视频素材</Text>
           </View>
