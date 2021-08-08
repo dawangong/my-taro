@@ -8,7 +8,7 @@
  */
 import './video-list.scss'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Taro, {
   useReady,
   useDidShow,
@@ -18,16 +18,28 @@ import Taro, {
 import { observer } from 'mobx-react'
 import { View, ScrollView } from '@tarojs/components'
 import { AtButton, AtIcon } from 'taro-ui'
+import { getVideoListApi } from '../../../api/common-api';
 
 
 interface Props {}
 
 const VideoList: React.FC<Props> = (props: Props) => {
 
+ const [list, setList] = useState([])
+
   useEffect(() => {})
 
   // 对应 onReady
-  useReady(() => {})
+  useReady(async () => {
+    const res = await getVideoListApi({
+      page: 1,
+      size: 10000,
+    });
+
+    if(res && res.data.code === 200) {
+      setList(res.data.data.list);
+    }
+  })
 
   // 对应 onShow
   useDidShow(() => {})
@@ -51,7 +63,7 @@ const VideoList: React.FC<Props> = (props: Props) => {
         // onScrollToUpper
       >
         {
-          [0,1,2,3].map(() => 
+          list.map((item, index) => 
           <View
             className="activity-card"
             // onClick={() => Taro.navigateTo({

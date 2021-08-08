@@ -139,8 +139,8 @@ const VideoEdit: React.FC<Props> = (props: Props) => {
               mergeUrl: MERGE_URL,
               testChunks: video.testChunks,
               verbose: true,
-              chunkSize: 1024 * 1024,
-              timeout: 20000,
+              chunkSize: 5 * 1024 * 1024,
+              timeout: 30000,
               header: {
                 'X-Token': token,
               }
@@ -155,6 +155,15 @@ const VideoEdit: React.FC<Props> = (props: Props) => {
         
             uploader.on('success', (res) => {
               console.log('upload success', res)
+              Taro.showToast({
+                icon: 'success',
+                title: '上传成功',
+                duration: 1000
+              });
+              setTimeout(() => {
+                Taro.navigateBack();
+              }, 1000);
+              // res.url
             })
         
             uploader.on('fail', (res) => {

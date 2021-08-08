@@ -50,6 +50,13 @@ const updateBusinessInfoApi = (data) => {
   });
 }
 
+const getVideoListApi = data => {
+  return http.post({
+    url: '/app/v1/business/activity/video/list',
+    data,
+  });
+}
+
 export {
   registerApi,
   loginApi,
@@ -57,4 +64,5 @@ export {
   setPasswordApi,
   getBusinessInfoApi,
   updateBusinessInfoApi,
+  getVideoListApi,
 }
