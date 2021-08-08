@@ -20,6 +20,7 @@ import { View } from '@tarojs/components'
 import { AtInput, AtButton, AtCard, AtProgress, AtList, AtListItem } from 'taro-ui'
 import { base } from '../../../services/config'
 import Uploader from 'miniprogram-file-uploader'
+import http from '../../../services/index'
 
 const VERIFY_URL = `${base}/common/upload/verify-url`
 const MERGE_URL = `${base}/common/upload/merge-url`
@@ -113,6 +114,7 @@ const VideoEdit: React.FC<Props> = (props: Props) => {
               })
               return
             };
+            const token = http.check();
             reset();
             const { tempFilePath, size } = await Taro.chooseVideo({
               sourceType: ['album','camera'],
@@ -131,13 +133,17 @@ const VideoEdit: React.FC<Props> = (props: Props) => {
             uploader = new Uploader({
               tempFilePath,
               totalSize: size,
-              fileName: video.fileName,
+              fileName: `${video.fileName}.mp4`,
               verifyUrl: VERIFY_URL,
               uploadUrl: UPLOAD_URL,
               mergeUrl: MERGE_URL,
               testChunks: video.testChunks,
               verbose: true,
               chunkSize: 1024 * 1024,
+              timeout: 20000,
+              header: {
+                'X-Token': token,
+              }
             });
             uploader.on('retry', (res) => {
               console.log('retry', res.url)
