@@ -155,9 +155,10 @@ const VideoEdit: React.FC<Props> = (props: Props) => {
         
             uploader.on('success', (res) => {
               console.log('upload success', res)
+              const title = res.needUpload ? '上传成功' : '此视频已上传过'
               Taro.showToast({
                 icon: 'success',
-                title: '上传成功',
+                title,
                 duration: 1000
               });
               setTimeout(() => {
