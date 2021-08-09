@@ -57,6 +57,20 @@ const getVideoListApi = data => {
   });
 }
 
+const addVideoApi = data => {
+  return http.post({
+    url: '/app/v1/business/activity/video/add',
+    data,
+  });
+}
+
+const removeVideoApi = data => {
+  return http.post({
+    url: '/app/v1/business/activity/video/delete',
+    data,
+  });
+}
+
 export {
   registerApi,
   loginApi,
@@ -65,4 +79,6 @@ export {
   getBusinessInfoApi,
   updateBusinessInfoApi,
   getVideoListApi,
+  addVideoApi,
+  removeVideoApi,
 }

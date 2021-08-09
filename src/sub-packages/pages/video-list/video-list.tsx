@@ -16,21 +16,25 @@ import Taro, {
   usePullDownRefresh
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
-import { View, ScrollView } from '@tarojs/components'
+import { View, ScrollView, Video } from '@tarojs/components'
 import { AtButton, AtIcon } from 'taro-ui'
-import { getVideoListApi } from '../../../api/common-api';
+import { getVideoListApi, removeVideoApi } from '../../../api/common-api';
 
 
 interface Props {}
 
 const VideoList: React.FC<Props> = (props: Props) => {
-
- const [list, setList] = useState([])
+  // 1=通过 2=未通过 3=待审核
+  const state = ['未知', '通过', '未通过', '待审核'];
+  const [list, setList] = useState([])
 
   useEffect(() => {})
 
   // 对应 onReady
-  useReady(async () => {
+  useReady(() => {})
+
+  // 对应 onShow
+  useDidShow(async () => {
     const res = await getVideoListApi({
       page: 1,
       size: 10000,
@@ -41,8 +45,27 @@ const VideoList: React.FC<Props> = (props: Props) => {
     }
   })
 
-  // 对应 onShow
-  useDidShow(() => {})
+  const removeVideo = async(data) => {
+    const res = await removeVideoApi(data);
+
+    if(res && res.data.code === 200) {
+      Taro.showToast({
+        icon: 'success',
+        title: '删除成功',
+        duration: 1000
+      });
+      setTimeout(async () => {
+        const res = await getVideoListApi({
+          page: 1,
+          size: 10000,
+        });
+    
+        if(res && res.data.code === 200) {
+          setList(res.data.data.list);
+        }
+      }, 1000);
+    }
+  }
 
   // 对应 onHide
   useDidHide(() => {})
@@ -63,7 +86,7 @@ const VideoList: React.FC<Props> = (props: Props) => {
         // onScrollToUpper
       >
         {
-          list.map((item, index) => 
+          list.map((item: any, index) => 
           <View
             className="activity-card"
             // onClick={() => Taro.navigateTo({
@@ -72,13 +95,11 @@ const VideoList: React.FC<Props> = (props: Props) => {
             >
               <View className="activity-card-header">
                 <View className="activity-card-icon">视频</View>
-                <View>名字</View>
+                <View>{item.title}</View>
                 <View className="activity-card-del" onClick={(e: any) => {
                   e.stopPropagation();
-                  Taro.showToast({
-                    title: '成功',
-                    icon: 'success',
-                    duration: 1000
+                  removeVideo({
+                    id: item.id,
                   })
                 }}>
                   <AtIcon value='trash' size='22' color="#ccc" ></AtIcon>
@@ -86,12 +107,24 @@ const VideoList: React.FC<Props> = (props: Props) => {
               </View>
               <View className="activity-card-content">
                 <View className="activity-card-field">
-                  <View>视频数量:</View>
-                  <View>111</View>
+                  <View>视频状态:</View>
+                  <View>{state[item.status]}</View>
                 </View>
+                {
+                  item.err_msg && <View className="activity-card-field">
+                  <View>驳回原因:</View>
+                  <View>{item.err_msg}</View>
+                </View>
+                }
                 <View className="activity-card-field">
-                  <View>创建时间:</View>
-                  <View>111</View>
+                  <Video
+                    id='video'
+                    src={item.url}
+                    controls={true}
+                    autoplay={false}
+                    loop={false}
+                    muted={false}
+                  />
                 </View>
               </View>
             </View>)

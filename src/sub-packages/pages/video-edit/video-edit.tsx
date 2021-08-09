@@ -21,6 +21,7 @@ import { AtInput, AtButton, AtCard, AtProgress, AtList, AtListItem } from 'taro-
 import { base } from '../../../services/config'
 import Uploader from 'miniprogram-file-uploader'
 import http from '../../../services/index'
+import { addVideoApi } from '../../../api/common-api';
 
 const VERIFY_URL = `${base}/common/upload/verify-url`
 const MERGE_URL = `${base}/common/upload/merge-url`
@@ -161,10 +162,14 @@ const VideoEdit: React.FC<Props> = (props: Props) => {
                 title,
                 duration: 1000
               });
+              addVideoApi({
+                title: video.fileName,
+                url: res.url,
+                video_id: res.file_id,
+              })
               setTimeout(() => {
                 Taro.navigateBack();
               }, 1000);
-              // res.url
             })
         
             uploader.on('fail', (res) => {
