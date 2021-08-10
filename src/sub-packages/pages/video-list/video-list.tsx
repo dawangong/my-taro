@@ -1,14 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:07:21
- * @LastEditTime: 2021-08-06 14:44:44
+ * @LastEditTime: 2021-08-10 11:15:51
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/video-list/video-list.tsx
  */
 import './video-list.scss'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Taro, {
   useReady,
   useDidShow,
@@ -19,6 +19,7 @@ import { observer } from 'mobx-react'
 import { View, ScrollView, Video } from '@tarojs/components'
 import { AtButton, AtIcon } from 'taro-ui'
 import { getVideoListApi, removeVideoApi } from '../../../api/common-api';
+import splitStore from '../../../store/split-store'
 
 
 interface Props {}
@@ -27,6 +28,7 @@ const VideoList: React.FC<Props> = (props: Props) => {
   // 1=通过 2=未通过 3=待审核
   const state = ['未知', '通过', '未通过', '待审核'];
   const [list, setList] = useState([])
+  const { updateUrl } = useContext(splitStore);
 
   useEffect(() => {})
 
@@ -89,9 +91,10 @@ const VideoList: React.FC<Props> = (props: Props) => {
           list.map((item: any, index) => 
           <View
             className="activity-card"
-            // onClick={() => Taro.navigateTo({
-            //   url: '/pages/video-edit/video-edit'
-            // })}
+            onClick={() => {
+              updateUrl(item.url);
+              Taro.navigateBack();
+            }}
             >
               <View className="activity-card-header">
                 <View className="activity-card-icon">视频</View>

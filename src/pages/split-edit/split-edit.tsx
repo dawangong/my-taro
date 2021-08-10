@@ -31,7 +31,14 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
     selectorChecked: '活动',
   });
 
-  useEffect(() => {})
+  useEffect(() => {
+    console.log(111);
+    setInfo({
+      ...info,
+      object_id: mySplit.object_id,
+      url: mySplit.url,
+    })
+  }, [mySplit])
 
   // 对应 onReady
   useReady(() => {})
@@ -85,12 +92,18 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
             title='视频url'
             type='text'
             required
-            placeholder='请填写视频url'
+            placeholder='请选择视频url'
             value={info.url}
             border={false}
+            editable={false}
+            onClick={() => {
+              Taro.navigateTo({
+                url: '/sub-packages/pages/video-list/video-list',
+              });
+            }}
             onChange={value => setInfo({ ...info ,url: value })}
           />
-          <AtInput
+          {/* <AtInput
             name='pic'
             title='视频截图url'
             type='text'
@@ -99,7 +112,7 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
             value={info.pic}
             border={false}
             onChange={value => setInfo({ ...info ,pic: value })}
-          />
+          /> */}
           <AtInput
             name='object_id'
             title='对象id'
@@ -134,7 +147,7 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
             ...info,
             type: obj.selectorChecked === '活动' ? 1 : 2,
             object_id: Number(info.object_id),
-            required: ['name', 'url', 'pic', 'object_id', 'slogan', 'type'],
+            required: ['name', 'url', 'object_id', 'slogan', 'type'],
           };
           id ? updateSplit(content) : addSplit(content);
         }}>保存</AtButton>
