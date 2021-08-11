@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:05:54
- * @LastEditTime: 2021-08-05 14:41:43
+ * @LastEditTime: 2021-08-11 15:38:28
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/split-detail/split-detail.tsx
@@ -62,8 +62,9 @@ const SplitDetail: React.FC<Props> = (props: Props) => {
           <AtList hasBorder={false}>
             <AtListItem title='标题' extraText={mySplit.name} />
             <AtListItem title='活动类型' extraText={mySplit.type === 1 ? '活动' : '优惠券'} />
+            <AtListItem title='活动名称' extraText={mySplit.title} />
             <AtListItem title='视频url' extraText={mySplit.url} />
-            <AtListItem title='视频截图url' extraText={mySplit.pic} />
+            <AtListItem title='视频预览' extraText="请前往编辑页查看" />
             <AtListItem title='对象ID' extraText={mySplit.object_id} />
             <AtListItem title='宣传语' extraText={mySplit.slogan} />
             <AtListItem title='视频状态' extraText={status[mySplit.status]} />

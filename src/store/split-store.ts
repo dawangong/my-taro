@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-04 15:27:18
- * @LastEditTime: 2021-08-10 11:28:42
+ * @LastEditTime: 2021-08-11 16:11:09
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/split-store.ts
@@ -17,6 +17,7 @@ class SplitStore {
   @observable public list: any = [];
   @observable public mySplit: any = {
     name: '',
+    title: '',
     url: '',
     object_id: '',
     slogan: '',
@@ -93,9 +94,10 @@ class SplitStore {
   }
 
   @action.bound
-  updateId (id) {
+  updateId (id, title?) {
     const { mySplit } =this;
     mySplit.object_id = id;
+    mySplit.title = title || "";
     this.mySplit = {...mySplit};
   }
 
@@ -103,6 +105,7 @@ class SplitStore {
   clearId () {
     const { mySplit } =this;
     mySplit.object_id = '';
+    mySplit.title = '';
     this.mySplit = {...mySplit};
   }
 
@@ -117,6 +120,7 @@ class SplitStore {
   clear () {
     this.mySplit = {
       name: '',
+      title: '',
       url: '',
       object_id: '',
       slogan: '',

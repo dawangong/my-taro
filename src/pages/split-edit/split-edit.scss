@@ -3,7 +3,7 @@
 .page-split-edit {
   height: 100vh;
   background-color: $background;
-  overflow: hidden;
+  // overflow: hidden;
   position: relative;
   color: $black;
 
@@ -15,10 +15,11 @@
 
   .page-coupon-edit__content {
     position: absolute;
-    width: 99%;
+    width: 100%;
     left: 50%;
     top: 5%;
     transform: translateX(-50%);
+    padding-bottom: 30px;
   }
 
   .page-coupon-edit__card:not(:last-child) {
@@ -76,13 +77,13 @@
 
   .activity {
     .at-list__item-extra {
-      left: -320px;
+      left: -330px;
     }
   }
 
   .coupon {
     .at-list__item-extra {
-      left: -290px;
+      left: -295px;
     }
   }
 

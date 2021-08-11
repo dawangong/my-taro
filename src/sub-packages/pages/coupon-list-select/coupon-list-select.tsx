@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-27 14:15:22
- * @LastEditTime: 2021-08-06 14:28:45
+ * @LastEditTime: 2021-08-11 16:08:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/coupon-list-select/coupon-list-select.tsx
@@ -72,7 +72,7 @@ const CouponList: React.FC<Props> = (props: Props) => {
               num: item.num,
               activity_sort: index,
             }});
-            updateId(item.id)
+            updateId(item.id, item.name)
             Taro.navigateBack();
           }}>
             {

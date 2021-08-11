@@ -9,7 +9,7 @@ import Taro, {
   usePullDownRefresh
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
-import { View, Picker } from '@tarojs/components'
+import { View, Picker, Video, Text } from '@tarojs/components'
 import { AtInput, AtButton, AtCard, AtList, AtListItem } from 'taro-ui'
 import splitStore from '../../store/split-store'
 
@@ -32,10 +32,11 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
   });
 
   useEffect(() => {
-    console.log(111);
+    console.log(111, info, mySplit.title);
     setInfo({
       ...info,
       object_id: mySplit.object_id,
+      title: mySplit.title,
       url: mySplit.url,
     })
   }, [mySplit])
@@ -87,12 +88,12 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
                 </AtList>
               </Picker>
           </View>
-          <AtInput
+          {/* <AtInput
             name='url'
-            title='视频url'
+            title='视频预览'
             type='text'
             required
-            placeholder='请选择视频url'
+            placeholder='请点击此处选择视频'
             value={info.url}
             border={false}
             editable={false}
@@ -102,7 +103,28 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
               });
             }}
             onChange={value => setInfo({ ...info ,url: value })}
-          />
+          /> */}
+          <View className="at-input at-input--without-border">
+            <View style={{ display: 'flex', alignItems: 'center' }}>
+              <label className="at-input__title at-input__title--required">视频预览</label>
+              <Text style={{ fontSize: '16px' }} onClick={() => {
+              Taro.navigateTo({
+                url: `/sub-packages/pages/video-list/video-list?back=${true}`,
+              });
+            }}>请点击此处选择视频</Text>
+            </View>
+            {
+              info.url && <Video
+              style={{ marginTop: '20px' }}
+              id='video'
+              src={info.url}
+              controls={true}
+              autoplay={false}
+              loop={false}
+              muted={false}
+            />
+            }
+          </View>
           {/* <AtInput
             name='pic'
             title='视频截图url'
@@ -118,7 +140,7 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
             title='对象id'
             type='number'
             required
-            placeholder='请选择对象id'
+            placeholder='请点击此处选择对象id'
             value={info.object_id}
             border={false}
             editable={false}
@@ -129,6 +151,17 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
               });
             }}
             onChange={value => setInfo({ ...info ,object_id: value })}
+          />
+          <AtInput
+            name='title'
+            title='活动名称'
+            type='text'
+            required
+            placeholder='选择对象id后,自动生成'
+            value={info.title}
+            border={false}
+            editable={false}
+            onChange={value => setInfo({ ...info ,title: value })}
           />
           <AtInput
             name='slogan'
