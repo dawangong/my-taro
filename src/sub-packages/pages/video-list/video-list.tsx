@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:07:21
- * @LastEditTime: 2021-08-10 11:15:51
+ * @LastEditTime: 2021-08-11 13:28:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/video-list/video-list.tsx
@@ -11,6 +11,7 @@ import './video-list.scss'
 import React, { useEffect, useState, useContext } from 'react'
 import Taro, {
   useReady,
+  useRouter,
   useDidShow,
   useDidHide,
   usePullDownRefresh
@@ -29,6 +30,9 @@ const VideoList: React.FC<Props> = (props: Props) => {
   const state = ['未知', '通过', '未通过', '待审核'];
   const [list, setList] = useState([])
   const { updateUrl } = useContext(splitStore);
+
+  const router = useRouter();
+  const { back } = router.params;
 
   useEffect(() => {})
 
@@ -92,8 +96,10 @@ const VideoList: React.FC<Props> = (props: Props) => {
           <View
             className="activity-card"
             onClick={() => {
-              updateUrl(item.url);
-              Taro.navigateBack();
+              if(back) {
+                updateUrl(item.url);
+                Taro.navigateBack();
+              }
             }}
             >
               <View className="activity-card-header">

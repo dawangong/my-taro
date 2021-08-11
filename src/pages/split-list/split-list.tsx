@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:05:14
- * @LastEditTime: 2021-08-06 14:13:11
+ * @LastEditTime: 2021-08-11 13:29:59
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/split-list/split-list.tsx
@@ -86,7 +86,7 @@ const SplitList: React.FC<Props> = (props: Props) => {
                 <View className="img">
                   <Image
                     mode='widthFix'
-                    src={item.pic}
+                    src={item.qr_code}
                   />
                 </View>
                 <View>

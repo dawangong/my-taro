@@ -98,7 +98,7 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
             editable={false}
             onClick={() => {
               Taro.navigateTo({
-                url: '/sub-packages/pages/video-list/video-list',
+                url: `/sub-packages/pages/video-list/video-list?back=${true}`,
               });
             }}
             onChange={value => setInfo({ ...info ,url: value })}
