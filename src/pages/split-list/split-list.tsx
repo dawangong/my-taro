@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:05:14
- * @LastEditTime: 2021-08-11 16:33:31
+ * @LastEditTime: 2021-08-12 15:59:53
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/split-list/split-list.tsx
@@ -99,19 +99,34 @@ const SplitList: React.FC<Props> = (props: Props) => {
                     <View>视频状态:</View>
                     <View>{status[item.status]}</View>
                   </View>
-                  <View className="activity-card-field">
-                    <View>推广海报:</View>
-                    <AtButton type='secondary' size='small' onClick={e => {
-                      e.stopPropagation();
-                      console.log(item, 11);
-                      Taro.previewImage({
-                        current: item.poster, // 当前显示图片的http链接
-                        urls: [item.poster] // 需要预览的图片http链接列表
-                      })
-                    }}>预览海报</AtButton>
+                  {
+                    item.err_msg && <View className="activity-card-field">
+                    <View>驳回原因:</View>
+                    <View>{item.err_msg}</View>
                   </View>
+                  }
+                  
+                  {
+                    item.poster && <View className="activity-card-field">
+                    <View>预览海报:</View>
+                    <Image
+                      mode='widthFix'
+                      src={item.poster}
+                      onClick={e => {
+                        e.stopPropagation();
+                        Taro.previewImage({
+                          current: item.poster, // 当前显示图片的http链接
+                          urls: [item.poster] // 需要预览的图片http链接列表
+                        })
+                      }}
+                    />
+                  </View>
+                  }
+                  
                 </View>
+                
               </View>
+
             </View>)
         }
       </ScrollView>

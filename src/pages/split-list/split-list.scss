@@ -58,17 +58,22 @@
   .activity-card-content {
     font-size: 26px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .activity-card-field {
     margin-top: 20px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
     
     View:first-child {
       color: $field;
       margin-right: 10px;
+    }
+
+    image {
+      width: 418px;
     }
   }
 

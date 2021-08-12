@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-04 15:27:18
- * @LastEditTime: 2021-08-11 16:57:06
+ * @LastEditTime: 2021-08-12 15:45:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/split-store.ts
@@ -10,9 +10,9 @@
 import { observable, action } from 'mobx'
 import { createContext } from 'react';
 import { splitListApi, addSplitApi, removeSplitApi, splitDetailApi, updateSplitApi } from '../api/split-api'
-import { getPosterApi } from '../api/common-api'
+// import { getPosterApi } from '../api/common-api'
 import Taro from '@tarojs/taro'
-import transform from '../utils/base64ToImg'
+// import transform from '../utils/base64ToImg'
 
 class SplitStore {
 
@@ -31,16 +31,16 @@ class SplitStore {
     const res = await splitListApi(data);
 
     if(res && res.data.code === 200) {
-      res.data.data.list.forEach(async (item: any, index) => {
-        const res = await getPosterApi({
-          id: item.id
-        });
-        item.poster = res;
-        transform(res, path => {
-          console.log(path, 1);
-          item.poster = path;
-        });
-      })
+      // res.data.data.list.forEach(async (item: any, index) => {
+      //   const res = await getPosterApi({
+      //     id: item.id
+      //   });
+      //   item.poster = res;
+      //   transform(res, path => {
+      //     console.log(path, 1);
+      //     item.poster = path;
+      //   });
+      // })
       this.list = res.data.data.list;
     }
   }
