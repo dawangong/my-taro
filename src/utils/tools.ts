@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-28 14:32:52
- * @LastEditTime: 2021-07-28 18:12:24
+ * @LastEditTime: 2021-08-12 16:23:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/utils/tools.ts
@@ -9,8 +9,8 @@
 import Taro from '@tarojs/taro'
 
 export const isChinese = (str) => {
-  if (escape(str).indexOf("%u") < 0) return false
-  return true
+  const reg = /^[\u4e00-\u9fa5]+$/;
+  return reg.test(str);
 }
 
 export const handleName = (str) => {

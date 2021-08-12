@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-04 15:27:18
- * @LastEditTime: 2021-08-12 15:45:50
+ * @LastEditTime: 2021-08-12 16:27:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/split-store.ts
@@ -12,7 +12,7 @@ import { createContext } from 'react';
 import { splitListApi, addSplitApi, removeSplitApi, splitDetailApi, updateSplitApi } from '../api/split-api'
 // import { getPosterApi } from '../api/common-api'
 import Taro from '@tarojs/taro'
-// import transform from '../utils/base64ToImg'
+import { isChinese } from '../utils/tools'
 
 class SplitStore {
 
@@ -47,17 +47,41 @@ class SplitStore {
 
   @action.bound
   async addSplit (data) {
+    if(data.name.length < 4) {
+      Taro.showToast({
+        icon: 'none',
+        title: '裂变标题至少四个字',
+        duration: 1000
+      });
+      return false;
+    }
+    if(data.name.length > 10) {
+      Taro.showToast({
+        icon: 'none',
+        title: '裂变标题至多十个字',
+        duration: 1000
+      });
+      return false;
+    }
+    if(!isChinese(data.name)) {
+      Taro.showToast({
+        icon: 'none',
+        title: '裂变标题至少四个字',
+        duration: 1000
+      });
+      return false;
+    }
     const res = await addSplitApi(data);
 
     if(res && res.data.code === 200) {
       Taro.showToast({
         icon: 'success',
         title: '添加成功',
-        duration: 1000
+        duration: 2000
       });
       setTimeout(() => {
         Taro.navigateBack();
-      }, 1000);
+      }, 2000);
     }
   }
 
@@ -91,17 +115,41 @@ class SplitStore {
 
   @action.bound
   async updateSplit (data) {
+    if(data.name.length < 4) {
+      Taro.showToast({
+        icon: 'none',
+        title: '裂变标题至少四个字',
+        duration: 1000
+      });
+      return false;
+    }
+    if(data.name.length > 10) {
+      Taro.showToast({
+        icon: 'none',
+        title: '裂变标题至多十个字',
+        duration: 1000
+      });
+      return false;
+    }
+    if(!isChinese(data.name)) {
+      Taro.showToast({
+        icon: 'none',
+        title: '裂变标题至少四个字',
+        duration: 1000
+      });
+      return false;
+    }
     const res = await updateSplitApi(data);
 
     if(res && res.data.code === 200) {
       Taro.showToast({
         icon: 'success',
         title: '编辑成功',
-        duration: 1000
+        duration: 2000
       });
       setTimeout(() => {
         Taro.navigateBack();
-      }, 1000);
+      }, 2000);
     }
   }
 
