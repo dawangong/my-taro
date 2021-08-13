@@ -40,9 +40,30 @@
     position: relative;
   }
 
+  .activity-card-name {
+    max-width: 400px;
+  }
+
+  .activity-card-icon-sp {
+    background-color: $yellow;
+    color: white;
+    font-size: 24px;
+    margin-right: 10px;
+    padding: 0 8px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    position: absolute;
+    right: 50px;
+  }
+
   .activity-card-del {
     position: absolute;
     right: 0px;
+  }
+
+  .activity-card-up {
+    position: absolute;
+    right: 50px;
   }
 
   .activity-card-icon {

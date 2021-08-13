@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:07:21
- * @LastEditTime: 2021-08-11 13:28:52
+ * @LastEditTime: 2021-08-13 16:10:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/video-list/video-list.tsx
@@ -104,7 +104,7 @@ const VideoList: React.FC<Props> = (props: Props) => {
             >
               <View className="activity-card-header">
                 <View className="activity-card-icon">视频</View>
-                <View>{item.title}</View>
+                <View className="activity-card-name">{item.title}</View>
                 <View className="activity-card-del" onClick={(e: any) => {
                   e.stopPropagation();
                   removeVideo({

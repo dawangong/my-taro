@@ -1,7 +1,7 @@
 /*
  * @Author: wh
  * @Date: 2021-08-04 15:26:10
- * @LastEditTime: 2021-08-05 14:11:52
+ * @LastEditTime: 2021-08-13 16:13:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/api/split-api.ts
@@ -43,10 +43,19 @@ const updateSplitApi = (data) => {
   });
 }
 
+const upSplitApi = (data) => {
+  return http.post({
+    url: '/app/v1/business/activity/fission/top',
+    data,
+  });
+}
+
+
 export {
   splitListApi,
   addSplitApi,
   removeSplitApi,
   splitDetailApi,
   updateSplitApi,
+  upSplitApi,
 }

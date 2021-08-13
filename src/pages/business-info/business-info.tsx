@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-07-23 10:47:36
+ * @LastEditTime: 2021-08-13 16:22:48
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /my-taro/src/pages/business-info/business-info.tsx
+ */
 import './business-info.scss'
 
 import React, { useEffect, useContext, useState } from 'react'
@@ -19,7 +27,7 @@ const BusinessInfo: React.FC<Props> = (props: Props) => {
 
   const { businessInfo, updateBusinessInfo, setBusinessInfo } = useContext(commonStore);
 
-  // const [slogan, setSlogan] = useState('')
+  const [slogan, setSlogan] = useState(businessInfo.slogan)
   const [address, setAddress] = useState(businessInfo.address)
 
   useEffect(() => {})
@@ -28,7 +36,9 @@ const BusinessInfo: React.FC<Props> = (props: Props) => {
   useReady(() => {})
 
   // 对应 onShow
-  useDidShow(() => {})
+  useDidShow(() => {
+    setBusinessInfo();
+  })
 
   // 对应 onHide
   useDidHide(() => {})
@@ -50,7 +60,7 @@ const BusinessInfo: React.FC<Props> = (props: Props) => {
           border={false}
           onChange={value => setAddress(value)}
         />
-        {/* <AtInput
+        <AtInput
           name='slogan'
           title='宣传语'
           type='text'
@@ -59,12 +69,13 @@ const BusinessInfo: React.FC<Props> = (props: Props) => {
           value={slogan}
           border={false}
           onChange={value => setSlogan(value)}
-        /> */}
+        />
       </View>
       <AtButton type='primary' className='page-business-info__btn' onClick={() => {
         updateBusinessInfo({
+          slogan,
           address,
-          required: ['address']
+          required: ['address', 'slogan']
         });
         setBusinessInfo();
       }}>更新</AtButton>

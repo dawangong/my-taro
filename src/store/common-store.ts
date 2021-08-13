@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-07-29 13:42:03
+ * @LastEditTime: 2021-08-13 16:20:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
@@ -10,6 +10,7 @@ import { observable, action } from 'mobx'
 import { createContext } from 'react';
 import { registerApi, loginApi, logoutApi, setPasswordApi, getBusinessInfoApi, updateBusinessInfoApi } from '../api/common-api';
 import Taro from '@tarojs/taro'
+import { isChinese } from '../utils/tools'
 
 class CommonStore {
   @observable public businessInfo: any = {};
@@ -89,6 +90,30 @@ class CommonStore {
 
   @action.bound
   async updateBusinessInfo (data) {
+    if(data.slogan.length < 4) {
+      Taro.showToast({
+        icon: 'none',
+        title: '裂变标题至少四个字',
+        duration: 1000
+      });
+      return false;
+    }
+    if(data.slogan.length > 10) {
+      Taro.showToast({
+        icon: 'none',
+        title: '裂变标题至多十个字',
+        duration: 1000
+      });
+      return false;
+    }
+    if(!isChinese(data.slogan)) {
+      Taro.showToast({
+        icon: 'none',
+        title: '只支持中文',
+        duration: 1000
+      });
+      return false;
+    }
     const res = await updateBusinessInfoApi(data);
 
     if(res && res.data.code === 200) {

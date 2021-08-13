@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:05:14
- * @LastEditTime: 2021-08-12 15:59:53
+ * @LastEditTime: 2021-08-13 16:14:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/split-list/split-list.tsx
@@ -24,7 +24,7 @@ interface Props {}
 
 const SplitList: React.FC<Props> = (props: Props) => {
 
-  const { list, getSplitList, removeSplit, clear } = useContext(splitStore);
+  const { list, getSplitList, removeSplit, clear, upSplit } = useContext(splitStore);
 
   const status = ['未知', '通过审核', '未通过审核', '待审核'];
 
@@ -69,7 +69,7 @@ const SplitList: React.FC<Props> = (props: Props) => {
             >
               <View className="activity-card-header">
                 <View className="activity-card-icon">{item.type === 1 ? '活动' : '优惠券'}</View>
-                <View>{item.name}</View>
+                <View className="activity-card-name">{item.name}</View>
                 <View className="activity-card-del" onClick={(e: any) => {
                   e.stopPropagation();
                   removeSplit({
@@ -79,6 +79,17 @@ const SplitList: React.FC<Props> = (props: Props) => {
                 }}>
                   <AtIcon value='trash' size='22' color="#ccc" ></AtIcon>
                 </View>
+                {
+                  item.top === 0 ? <View className="activity-card-up" onClick={(e: any) => {
+                    e.stopPropagation();
+                    upSplit({
+                      id: item.id,
+                      required: ['id'],
+                    });
+                  }}>
+                    <AtIcon value='chevron-up' size='22' color="#ccc" ></AtIcon>
+                  </View> : <View className="activity-card-icon-sp">置顶中</View>
+                }
               </View>
               <View className="activity-card-content">
                 <View className="img">
@@ -106,7 +117,7 @@ const SplitList: React.FC<Props> = (props: Props) => {
                   </View>
                   }
                   
-                  {
+                  {/* {
                     item.poster && <View className="activity-card-field">
                     <View>预览海报:</View>
                     <Image
@@ -121,7 +132,7 @@ const SplitList: React.FC<Props> = (props: Props) => {
                       }}
                     />
                   </View>
-                  }
+                  } */}
                   
                 </View>
                 

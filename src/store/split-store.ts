@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-04 15:27:18
- * @LastEditTime: 2021-08-12 16:27:32
+ * @LastEditTime: 2021-08-13 16:20:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/split-store.ts
@@ -9,10 +9,9 @@
 
 import { observable, action } from 'mobx'
 import { createContext } from 'react';
-import { splitListApi, addSplitApi, removeSplitApi, splitDetailApi, updateSplitApi } from '../api/split-api'
+import { splitListApi, addSplitApi, removeSplitApi, splitDetailApi, updateSplitApi, upSplitApi } from '../api/split-api'
 // import { getPosterApi } from '../api/common-api'
 import Taro from '@tarojs/taro'
-import { isChinese } from '../utils/tools'
 
 class SplitStore {
 
@@ -47,30 +46,6 @@ class SplitStore {
 
   @action.bound
   async addSplit (data) {
-    if(data.name.length < 4) {
-      Taro.showToast({
-        icon: 'none',
-        title: '裂变标题至少四个字',
-        duration: 1000
-      });
-      return false;
-    }
-    if(data.name.length > 10) {
-      Taro.showToast({
-        icon: 'none',
-        title: '裂变标题至多十个字',
-        duration: 1000
-      });
-      return false;
-    }
-    if(!isChinese(data.name)) {
-      Taro.showToast({
-        icon: 'none',
-        title: '裂变标题至少四个字',
-        duration: 1000
-      });
-      return false;
-    }
     const res = await addSplitApi(data);
 
     if(res && res.data.code === 200) {
@@ -105,6 +80,25 @@ class SplitStore {
   }
 
   @action.bound
+  async upSplit (data) {
+    const res = await upSplitApi(data);
+
+    if(res && res.data.code === 200) {
+      Taro.showToast({
+        icon: 'success',
+        title: '置顶成功',
+        duration: 1000
+      });
+      setTimeout(() => {
+        this.getSplitList({
+          page: 1,
+          size: 10000
+        });
+      }, 1000);
+    }
+  }
+
+  @action.bound
   async getSplitDetail (data) {
     const res = await splitDetailApi(data);
 
@@ -115,30 +109,6 @@ class SplitStore {
 
   @action.bound
   async updateSplit (data) {
-    if(data.name.length < 4) {
-      Taro.showToast({
-        icon: 'none',
-        title: '裂变标题至少四个字',
-        duration: 1000
-      });
-      return false;
-    }
-    if(data.name.length > 10) {
-      Taro.showToast({
-        icon: 'none',
-        title: '裂变标题至多十个字',
-        duration: 1000
-      });
-      return false;
-    }
-    if(!isChinese(data.name)) {
-      Taro.showToast({
-        icon: 'none',
-        title: '裂变标题至少四个字',
-        duration: 1000
-      });
-      return false;
-    }
     const res = await updateSplitApi(data);
 
     if(res && res.data.code === 200) {
