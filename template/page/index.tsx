@@ -1,7 +1,7 @@
 /*
  * @Author: wh
  * @Date: 2021-07-22 10:36:09
- * @LastEditTime: 2021-08-05 14:27:55
+ * @LastEditTime: 2021-08-13 16:33:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/template/page/index.tsx
@@ -20,8 +20,6 @@ import { observer } from 'mobx-react'
 import { View, Text } from '@tarojs/components'
 import { AtInput, AtButton } from 'taro-ui'
 // import commonStore from '../../store/common-store'
-
-
 
 interface Props {}
 

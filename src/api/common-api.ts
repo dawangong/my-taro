@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-21 22:05:50
- * @LastEditTime: 2021-08-11 16:16:23
+ * @LastEditTime: 2021-08-13 16:26:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/api/common-api.ts
@@ -71,9 +71,9 @@ const removeVideoApi = data => {
   });
 }
 
-const getPosterApi = data => {
+const getPosterApi = (data?) => {
   return http.post({
-    url: '/app/v1/business/activity/fission/poster',
+    url: '/app/v1/business/merchant/poster',
     data,
   });
 }

@@ -1,7 +1,15 @@
 /*
  * @Author: your name
  * @Date: 2021-07-21 18:48:23
- * @LastEditTime: 2021-08-06 14:43:24
+ * @LastEditTime: 2021-08-13 16:32:44
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /my-taro/src/pages/center/center.tsx
+ */
+/*
+ * @Author: your name
+ * @Date: 2021-07-21 18:48:23
+ * @LastEditTime: 2021-08-13 16:31:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/center/center.tsx
@@ -100,6 +108,11 @@ const Center: React.FC<Props> = (props: Props) => {
               url: '/sub-packages/pages/video-list/video-list'
             })}>
             <Text className='page-center__service__desc'>视频素材</Text>
+          </View>
+          <View className='page-center__service-item page-center__service-item--poster' onClick={() => Taro.navigateTo({
+              url: '/sub-packages/pages/poster/poster'
+            })}>
+            <Text className='page-center__service__desc'>推广海报</Text>
           </View>
         </View>
       </View>

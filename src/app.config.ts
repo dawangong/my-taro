@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-21 18:48:23
- * @LastEditTime: 2021-08-06 13:51:48
+ * @LastEditTime: 2021-08-13 16:31:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/app.config.ts
@@ -33,6 +33,7 @@ export default {
         'pages/video-edit/video-edit',
         'pages/coupon-list-select/coupon-list-select',
         'pages/activity-list-select/activity-list-select',
+        'pages/poster/poster',
       ]
     }
   ],

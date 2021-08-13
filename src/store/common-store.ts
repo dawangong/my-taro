@@ -1,22 +1,48 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-08-13 16:20:36
+ * @LastEditTime: 2021-08-13 16:44:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
  */
 import { observable, action } from 'mobx'
 import { createContext } from 'react';
-import { registerApi, loginApi, logoutApi, setPasswordApi, getBusinessInfoApi, updateBusinessInfoApi } from '../api/common-api';
+import { registerApi, loginApi, logoutApi, setPasswordApi, getBusinessInfoApi, updateBusinessInfoApi, getPosterApi } from '../api/common-api';
 import Taro from '@tarojs/taro'
 import { isChinese } from '../utils/tools'
 
+
 class CommonStore {
   @observable public businessInfo: any = {};
+  @observable public poster: string = '';
 
   @action.bound
   async register (data) {
+    if(data.slogan.length < 4) {
+      Taro.showToast({
+        icon: 'none',
+        title: '宣传语至少四个字',
+        duration: 1000
+      });
+      return false;
+    }
+    if(data.slogan.length > 10) {
+      Taro.showToast({
+        icon: 'none',
+        title: '宣传语至多十个字',
+        duration: 1000
+      });
+      return false;
+    }
+    if(!isChinese(data.slogan)) {
+      Taro.showToast({
+        icon: 'none',
+        title: '宣传语只支持中文',
+        duration: 1000
+      });
+      return false;
+    }
     const res = await registerApi(data);
 
     if(res && res.data.code === 200) {
@@ -93,7 +119,7 @@ class CommonStore {
     if(data.slogan.length < 4) {
       Taro.showToast({
         icon: 'none',
-        title: '裂变标题至少四个字',
+        title: '宣传语至少四个字',
         duration: 1000
       });
       return false;
@@ -101,7 +127,7 @@ class CommonStore {
     if(data.slogan.length > 10) {
       Taro.showToast({
         icon: 'none',
-        title: '裂变标题至多十个字',
+        title: '宣传语至多十个字',
         duration: 1000
       });
       return false;
@@ -109,7 +135,7 @@ class CommonStore {
     if(!isChinese(data.slogan)) {
       Taro.showToast({
         icon: 'none',
-        title: '只支持中文',
+        title: '宣传语只支持中文',
         duration: 1000
       });
       return false;
@@ -123,6 +149,21 @@ class CommonStore {
         duration: 1000
       });
     }
+  }
+
+  @action.bound
+  async getPoster () {
+    Taro.showLoading({
+      title: '渲染海报中...',
+    })
+    const res = await getPosterApi();
+
+    setTimeout(() => {
+      if(res && res.data.code === 200) {
+        this.poster = res.data.data.poster;
+        Taro.hideLoading();
+      }
+    }, 2000)
   }
   
 }

@@ -28,7 +28,7 @@ const Login: React.FC<Props> = (props: Props) => {
   const [password, setPassword] = useState('')
  
   const [pid, setPid] = useState('')
-  // const [slogan, setSlogan] = useState('')
+  const [slogan, setSlogan] = useState('')
   const [businessName, setBusinessName] = useState('')
   const [businessMobile, setBusinessMobile] = useState('')
   const [businessPassword, setBusinessPassword] = useState('')
@@ -112,15 +112,16 @@ const Login: React.FC<Props> = (props: Props) => {
                 border={false}
                 onChange={value => setPid(value)}
             />
-            {/* <AtInput
+            <AtInput
               name='slogan'
               title='宣传语'
               // placeholder='宣传语'
               type='text'
+              required
               value={slogan}
               border={false}
               onChange={value => setSlogan(value)}
-            /> */}
+            />
             
             <AtInput
               name='name'
@@ -164,11 +165,12 @@ const Login: React.FC<Props> = (props: Props) => {
             />
             <AtButton type='primary' circle className='page-login__btn--login' onClick={() => register({
                 pid,
+                slogan,
                 name: businessName,
                 mobile: businessMobile,
                 password: businessPassword,
                 address: businessAddress,
-                required: ['name', 'mobile', 'password', 'address']
+                required: ['name', 'mobile', 'password', 'address', 'slogan']
               })}>注册</AtButton>
           </AtTabsPane>
         </AtTabs>
