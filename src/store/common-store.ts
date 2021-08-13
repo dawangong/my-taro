@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-08-13 16:44:43
+ * @LastEditTime: 2021-08-13 18:40:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
@@ -154,9 +154,9 @@ class CommonStore {
   @action.bound
   async getPoster () {
     Taro.showLoading({
-      title: '渲染海报中...',
+      title: '海报生成中...',
     })
-    const res = await getPosterApi();
+    const res = await getBusinessInfoApi();
 
     setTimeout(() => {
       if(res && res.data.code === 200) {

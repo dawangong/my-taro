@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-23 10:47:36
- * @LastEditTime: 2021-08-13 16:22:48
+ * @LastEditTime: 2021-08-13 18:36:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/business-info/business-info.tsx
@@ -27,6 +27,7 @@ const BusinessInfo: React.FC<Props> = (props: Props) => {
 
   const { businessInfo, updateBusinessInfo, setBusinessInfo } = useContext(commonStore);
 
+  console.log(businessInfo.address, businessInfo.slogan, 1)
   const [slogan, setSlogan] = useState(businessInfo.slogan)
   const [address, setAddress] = useState(businessInfo.address)
 

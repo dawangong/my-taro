@@ -1,7 +1,7 @@
 /*
  * @Author: wh
  * @Date: 2021-07-22 10:36:09
- * @LastEditTime: 2021-08-13 16:41:47
+ * @LastEditTime: 2021-08-13 18:39:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/template/page/index.tsx
@@ -29,12 +29,12 @@ const Poster: React.FC<Props> = (props: Props) => {
   useEffect(() => {})
 
   // 对应 onReady
-  useReady(() => {})
-
-  // 对应 onShow
-  useDidShow(() => {
+  useReady(() => {
     getPoster();
   })
+
+  // 对应 onShow
+  useDidShow(() => {})
 
   // 对应 onHide
   useDidHide(() => {})
