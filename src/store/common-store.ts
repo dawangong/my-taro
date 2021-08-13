@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-08-13 18:40:08
+ * @LastEditTime: 2021-08-13 18:57:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
@@ -153,6 +153,7 @@ class CommonStore {
 
   @action.bound
   async getPoster () {
+    this.poster = "";
     Taro.showLoading({
       title: '海报生成中...',
     })
