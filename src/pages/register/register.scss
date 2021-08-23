@@ -1,0 +1,63 @@
+@import "../../styles/constant.scss";
+
+.page-register {
+  background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+  height: 100vh;
+  overflow: hidden;
+
+  .page-login-content {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 40px;
+    padding-bottom: 50px;
+    border-radius: 20px;
+    // box-shadow: 4px 4px 10px;
+  }
+  
+  .page-login__btn--login {
+    margin-top: 40px;
+  }
+
+  .at-input {
+    background-color: transparent;
+    border-bottom: 1px solid $blue;
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .at-input__title {
+    margin-left: 10px;
+  }
+
+  .page-login-wel {
+    font-size: 80px;
+    color: $blue;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .at-tabs__underline {
+    background-color: transparent;
+  }
+
+  .at-tabs__header {
+    background-color: transparent;
+    margin-bottom: 15px;
+  }
+
+  .picker::before {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 8rpx;
+    color: #FF4949;
+    font-size: 28rpx;
+    font-family: SimSun, sans-serif;
+    line-height: 1;
+    content: "*";
+  }
+
+  .address {
+    margin-left: 50px;
+  }
+}

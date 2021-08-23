@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-21 18:48:23
- * @LastEditTime: 2021-08-23 12:13:31
+ * @LastEditTime: 2021-08-23 16:42:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/app.config.ts
@@ -11,6 +11,7 @@ export default {
   pages: [
     'pages/center/center',
     'pages/login/login',
+    'pages/register/register',
     'pages/profile/profile',
     'pages/business-info/business-info',
     'pages/person-info/person-info',

@@ -1,19 +1,19 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-08-23 17:44:01
+ * @LastEditTime: 2021-08-23 17:44:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
  */
 import { observable, action } from 'mobx'
 import { createContext } from 'react';
-import { registerApi, loginApi, logoutApi, setPasswordApi, getBusinessInfoApi, updateBusinessInfoApi, goDepositApi, getDepositListApi } from '../api/common-api';
+import { registerApi, loginApi, logoutApi, setPasswordApi, getBusinessInfoApi, updateBusinessInfoApi, goDepositApi, getDepositListApi } from '../api/proxy-api';
 import Taro from '@tarojs/taro'
 import { isChinese } from '../utils/tools'
 
 
-class CommonStore {
+class ProxyStore {
   @observable public businessInfo: any = {};
   @observable public poster: string = '';
   @observable public depositList: any = [];
@@ -200,4 +200,4 @@ class CommonStore {
   
 }
 
-export default createContext(new CommonStore)
+export default createContext(new ProxyStore)
