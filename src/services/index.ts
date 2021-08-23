@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-28 14:32:52
- * @LastEditTime: 2021-08-03 15:28:50
+ * @LastEditTime: 2021-08-23 11:47:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/services/index.ts
@@ -87,9 +87,18 @@ const http = {
         }
         if(res.data.code === 5000000) {
           Taro.removeStorageSync('token');
-          Taro.redirectTo({
-            url: '/pages/login/login'
-          })
+          setTimeout(() => {
+            Taro.redirectTo({
+              url: '/pages/login/login'
+            })
+          }, 1000)
+        }
+        if(res.data.code === 5000002) {
+          setTimeout(() => {
+            Taro.reLaunch({
+              url: '/pages/center/center'
+            })
+          }, 1000)
         }
         return res.data;
       },
