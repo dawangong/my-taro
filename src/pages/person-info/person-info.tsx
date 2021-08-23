@@ -1,7 +1,7 @@
 import './person-info.scss'
 
 import React, { useEffect, useContext, useState } from 'react'
-import {
+import Taro, {
   useReady,
   useDidShow,
   useDidHide,
