@@ -11,14 +11,14 @@ import { observer } from 'mobx-react'
 import { View } from '@tarojs/components'
 import { AtTabs, AtTabsPane, AtInput, AtButton } from 'taro-ui'
 import commonStore from '../../store/common-store'
+import proxyStore from '../../store/proxy-store'
 
 
 interface Props {}
 
 const Login: React.FC<Props> = (props: Props) => {
 
-  const { register, login } = useContext(commonStore);
-  const tabList = [{ title: '登陆' }, { title: '注册' }]
+  const tabList = [{ title: '商户登陆' }, { title: '代理注册' }]
 
   const [statusBarHeight, setStatusBarHeight] = useState(0)
   const [navigationBarHeight, setNavigationBarHeight] = useState(0)
@@ -26,14 +26,10 @@ const Login: React.FC<Props> = (props: Props) => {
   const [current, setCurrent] = useState(0)
   const [mobile, setMobile] = useState('')
   const [password, setPassword] = useState('')
- 
-  const [pid, setPid] = useState('')
-  const [slogan, setSlogan] = useState('')
-  const [businessName, setBusinessName] = useState('')
-  const [businessMobile, setBusinessMobile] = useState('')
-  const [businessPassword, setBusinessPassword] = useState('')
-  const [businessAddress, setBusinessAddress] = useState('')
-  
+
+  const store = current === 0 ? commonStore : proxyStore;
+  const { login } = useContext(store);
+
 
   useEffect(() => {})
 
@@ -78,7 +74,6 @@ const Login: React.FC<Props> = (props: Props) => {
               title='手机号码'
               type='phone'
               required
-              // placeholder='请填写手机号码'
               value={mobile}
               border={false}
               onChange={value => setMobile(value)}
@@ -88,7 +83,6 @@ const Login: React.FC<Props> = (props: Props) => {
               title='密码'
               type='password'
               required
-              // placeholder='请填写密码'
               value={password}
               border={false}
               onChange={value => setPassword(value)}
@@ -103,75 +97,32 @@ const Login: React.FC<Props> = (props: Props) => {
             </AtButton>
           </AtTabsPane>
           <AtTabsPane current={current} index={1}>
-            <AtInput
-                name='pid'
-                title='代理ID'
-                // placeholder='代理ID'
-                type='text'
-                value={pid}
-                border={false}
-                onChange={value => setPid(value)}
-            />
-            <AtInput
-              name='slogan'
-              title='宣传语'
-              // placeholder='宣传语'
-              type='text'
-              required
-              value={slogan}
-              border={false}
-              onChange={value => setSlogan(value)}
-            />
-            
-            <AtInput
-              name='name'
-              title='商户名称'
-              type='text'
-              required
-              // placeholder='请填写商户名称'
-              value={businessName}
-              border={false}
-              onChange={value => setBusinessName(value)}
-            />
-            <AtInput
-              name='businessMobile'
+          <AtInput
+              name='mobile'
               title='手机号码'
               type='phone'
               required
-              // placeholder='请填写手机号码'
-              value={businessMobile}
+              value={mobile}
               border={false}
-              onChange={value => setBusinessMobile(value)}
+              onChange={value => setMobile(value)}
             />
             <AtInput
-              name='businessPassword'
+              name='password'
               title='密码'
               type='password'
               required
-              // placeholder='请填写密码'
-              value={businessPassword}
+              value={password}
               border={false}
-              onChange={value => setBusinessPassword(value)}
+              onChange={value => setPassword(value)}
             />
-            <AtInput
-              name='businessAddress'
-              title='商户地址'
-              type='text'
-              required
-              // placeholder='请填写商户地址'
-              value={businessAddress}
-              border={false}
-              onChange={value => setBusinessAddress(value)}
-            />
-            <AtButton type='primary' circle className='page-login__btn--login' onClick={() => register({
-                pid,
-                slogan,
-                name: businessName,
-                mobile: businessMobile,
-                password: businessPassword,
-                address: businessAddress,
-                required: ['name', 'mobile', 'password', 'address', 'slogan']
-              })}>注册</AtButton>
+            <AtButton type='primary' circle className='page-login__btn--login' onClick={() => {
+              login({
+                mobile,
+                password,
+                required: ['mobile', 'password']
+              })
+            }}>登陆
+            </AtButton>
           </AtTabsPane>
         </AtTabs>
       </View>
