@@ -1,14 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-08-23 17:44:07
+ * @LastEditTime: 2021-08-23 17:51:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
  */
 import { observable, action } from 'mobx'
 import { createContext } from 'react';
-import { registerApi, loginApi, logoutApi, setPasswordApi, getBusinessInfoApi, updateBusinessInfoApi, goDepositApi, getDepositListApi } from '../api/proxy-api';
+import { registerApi, loginApi, logoutApi, setPasswordApi, getBusinessInfoApi, updateBusinessInfoApi, goDepositApi, getDepositListApi, getCommissionListApi } from '../api/proxy-api';
 import Taro from '@tarojs/taro'
 import { isChinese } from '../utils/tools'
 

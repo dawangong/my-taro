@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-21 22:05:50
- * @LastEditTime: 2021-08-23 17:43:21
+ * @LastEditTime: 2021-08-23 17:51:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/api/common-api.ts
@@ -17,28 +17,28 @@ const registerApi = (data) => {
 
 const loginApi = (data) => {
   return http.post({
-    url: '/app/v1/business/merchant/login',
+    url: '/app/v1/agent/super-agent/login',
     data,
   });
 }
 
 const logoutApi = (data?) => {
   return http.post({
-    url: '/app/v1/business/merchant/logout',
+    url: '/app/v1/agent/super-agent/logout',
     data,
   });
 }
 
 const setPasswordApi = (data) => {
   return http.post({
-    url: '/app/v1/business/merchant/set-pass-word',
+    url: '/app/v1/agent/super-agent/set-pass-word',
     data,
   });
 }
 
 const getBusinessInfoApi = (data?) => {
   return http.post({
-    url: '/app/v1/business/merchant/details',
+    url: '/app/v1/agent/super-agent/details',
     data,
   });
 }
@@ -80,14 +80,21 @@ const getPosterApi = (data?) => {
 
 const goDepositApi = (data?) => {
   return http.post({
-    url: '/app/v1/business/order/pay',
+    url: '/app/v1/agent/order/pay',
     data,
   });
 }
 
 const getDepositListApi = (data?) => {
   return http.post({
-    url: '/app/v1/business/order/list',
+    url: '/app/v1/agent/order/list',
+    data,
+  });
+}
+
+const getCommissionListApi = (data?) => {
+  return http.post({
+    url: '/app/v1/agent/order/commission-list',
     data,
   });
 }
@@ -105,4 +112,5 @@ export {
   getPosterApi,
   goDepositApi,
   getDepositListApi,
+  getCommissionListApi,
 }
