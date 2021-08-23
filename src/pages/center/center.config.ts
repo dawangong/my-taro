@@ -1,3 +1,3 @@
 export default {
-  navigationBarTitleText: '商户中心'
+  navigationBarTitleText: '功能中心'
 }
