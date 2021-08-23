@@ -1,7 +1,7 @@
 /*
  * @Author: wh
  * @Date: 2021-07-22 10:36:09
- * @LastEditTime: 2021-08-23 14:09:39
+ * @LastEditTime: 2021-08-23 15:51:51
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/template/page/index.tsx
@@ -57,7 +57,13 @@ const DepositGuide: React.FC<Props> = (props: Props) => {
           />
       </View>
       <AtNoticebar icon='volume-plus'>
-        卡密需要在官方指定的淘宝店购买.请复制“www.baidu.com”后,打开淘宝App,或通过链接“www.baidu.com”打开淘宝网购买.
+        卡密需要在官方指定的淘宝店购买.请长按链接复制后,打开淘宝App或浏览器访问购买.
+      </AtNoticebar>
+      <AtNoticebar icon='volume-plus'>
+        淘宝App引导链接: <Text selectable >www.baidu.com</Text>
+      </AtNoticebar>
+      <AtNoticebar icon='volume-plus'>
+        浏览器访问链接: <Text selectable >www.baidu.com</Text>
       </AtNoticebar>
       <AtButton type='primary' className='page-cancel-coupon__btn' onClick={() => goDeposit({
         card_no,
