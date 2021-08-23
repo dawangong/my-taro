@@ -7,11 +7,11 @@
   .page-profile__line {
     display: flex;
     align-items: center;
-    padding-left: 24px;
+    position: relative;
 
     .at-list__item {
       flex: 1;
-      padding-left: 0;
+      padding-left: 150px;
 
       &::after {
         left: -20px;
@@ -19,10 +19,12 @@
     }
   
     .page-center__info-avatar {
-      width: 100px;
-      height: 100px;
+      width: 90px;
+      height: 90px;
       overflow: hidden;
-      margin-right: 20px;
+      position: absolute;
+      left: 35px;
+      background-color: $background;
     }
 
     .avatar {
