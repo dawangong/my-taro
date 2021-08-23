@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-04 15:27:18
- * @LastEditTime: 2021-08-13 16:26:20
+ * @LastEditTime: 2021-08-23 11:29:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/split-store.ts
@@ -22,6 +22,7 @@ class SplitStore {
     object_id: '',
     slogan: '',
     type: 1,
+    video_id: '',
   };
 
   @action.bound
@@ -129,9 +130,12 @@ class SplitStore {
   }
 
   @action.bound
-  updateUrl (url) {
+  updateUrl (item) {
+    console.log('video', item);
+    const { url, id } = item;
     const { mySplit } =this;
     mySplit.url = url;
+    mySplit.video_id = id;
     this.mySplit = {...mySplit};
   }
 
@@ -144,6 +148,7 @@ class SplitStore {
       object_id: '',
       slogan: '',
       type: 1,
+      video_id: '',
     };
   }
 

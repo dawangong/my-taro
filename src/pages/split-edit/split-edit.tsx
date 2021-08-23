@@ -38,6 +38,7 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
       object_id: mySplit.object_id,
       title: mySplit.title,
       url: mySplit.url,
+      video_id: mySplit.video_id,
     })
   }, [mySplit])
 
@@ -180,7 +181,7 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
             ...info,
             type: obj.selectorChecked === '活动' ? 1 : 2,
             object_id: Number(info.object_id),
-            required: ['name', 'url', 'object_id', 'slogan', 'type'],
+            required: ['name', 'url', 'object_id', 'slogan', 'type', 'video_id'],
           };
           id ? updateSplit(content) : addSplit(content);
         }}>保存</AtButton>

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:07:21
- * @LastEditTime: 2021-08-13 16:10:16
+ * @LastEditTime: 2021-08-23 11:28:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/video-list/video-list.tsx
@@ -97,7 +97,7 @@ const VideoList: React.FC<Props> = (props: Props) => {
             className="activity-card"
             onClick={() => {
               if(back) {
-                updateUrl(item.url);
+                updateUrl(item);
                 Taro.navigateBack();
               }
             }}
