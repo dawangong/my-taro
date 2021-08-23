@@ -30,7 +30,6 @@ const Login: React.FC<Props> = (props: Props) => {
   const store = current === 0 ? commonStore : proxyStore;
   const { login } = useContext(store);
 
-
   useEffect(() => {})
 
   // 对应 onReady
