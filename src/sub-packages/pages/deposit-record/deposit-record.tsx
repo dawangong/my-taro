@@ -1,29 +1,32 @@
 /*
  * @Author: wh
  * @Date: 2021-07-22 10:36:09
- * @LastEditTime: 2021-08-23 12:16:41
+ * @LastEditTime: 2021-08-23 16:14:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/template/page/index.tsx
  */
 import './deposit-record.scss'
 
-import React, { useEffect, useState, useContext } from 'react'
-import Taro, {
+import React, { useEffect, useContext } from 'react'
+import {
   useReady,
-  useRouter,
   useDidShow,
   useDidHide,
   usePullDownRefresh
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
-import { View, Text } from '@tarojs/components'
-import { AtInput, AtButton } from 'taro-ui'
-// import commonStore from '../../store/common-store'
+import { View, Text, ScrollView } from '@tarojs/components'
+import commonStore from '../../../store/common-store'
+import tools from 'highly-tools';
+
+
 
 interface Props {}
 
 const DepositRecord: React.FC<Props> = (props: Props) => {
+
+  const { depositList, getDepositList } = useContext(commonStore);
 
   useEffect(() => {})
 
@@ -31,7 +34,12 @@ const DepositRecord: React.FC<Props> = (props: Props) => {
   useReady(() => {})
 
   // 对应 onShow
-  useDidShow(() => {})
+  useDidShow(() => {
+    getDepositList({
+      page: 1,
+      size: 10000
+    });
+  })
 
   // 对应 onHide
   useDidHide(() => {})
@@ -41,7 +49,39 @@ const DepositRecord: React.FC<Props> = (props: Props) => {
 
   return (
     <View className='page-deposit-record'>
-      content
+      <ScrollView
+        className='scroll-view'
+        scrollY
+        scrollWithAnimation
+        scrollTop={0}
+        style={{ height: "100%" }}
+        lowerThreshold={20}
+        upperThreshold={20}
+      >
+        {
+          depositList.map((item: any) => 
+          <View className="activity-card">
+              <View className="activity-card-header">
+                <View className="activity-card-icon">充值订单</View>
+                <View className="activity-card-name">{item.order_no}</View>
+              </View>
+              <View className="activity-card-content">
+                <View className="activity-card-field">
+                  <View>充值金额: </View>
+                  <View>{item.sell_price / 100}元</View>
+                </View>
+                <View className="activity-card-field">
+                  <View>充值时长: </View>
+                  <View>{item.month}个月</View>
+                </View>
+                <View className="activity-card-field">
+                  <View>充值时效: </View>
+                  <View>{tools.toDate(item.start_time, 'yyyy.MM.dd').nowTime} - {tools.toDate(item.end_time, 'yyyy.MM.dd').nowTime}</View>
+                </View>
+              </View>
+            </View>)
+        }
+      </ScrollView>
     </View>
   )
 };

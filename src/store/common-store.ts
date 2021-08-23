@@ -1,14 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-08-23 14:10:42
+ * @LastEditTime: 2021-08-23 15:27:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
  */
 import { observable, action } from 'mobx'
 import { createContext } from 'react';
-import { registerApi, loginApi, logoutApi, setPasswordApi, getBusinessInfoApi, updateBusinessInfoApi, goDepositApi } from '../api/common-api';
+import { registerApi, loginApi, logoutApi, setPasswordApi, getBusinessInfoApi, updateBusinessInfoApi, goDepositApi, getDepositListApi } from '../api/common-api';
 import Taro from '@tarojs/taro'
 import { isChinese } from '../utils/tools'
 
@@ -16,6 +16,7 @@ import { isChinese } from '../utils/tools'
 class CommonStore {
   @observable public businessInfo: any = {};
   @observable public poster: string = '';
+  @observable public depositList: any = [];
 
   @action.bound
   async register (data) {
@@ -180,6 +181,15 @@ class CommonStore {
       setTimeout(() => {
         Taro.navigateBack();
       }, 1000);
+    }
+  }
+
+  @action.bound
+  async getDepositList (data) {
+    const res = await getDepositListApi(data);
+
+    if(res && res.data.code === 200) {
+      this.depositList = res.data.data.list;
     }
   }
   
