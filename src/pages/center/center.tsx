@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-21 18:48:23
- * @LastEditTime: 2021-08-23 15:42:21
+ * @LastEditTime: 2021-08-23 18:29:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/center/center.tsx
@@ -27,6 +27,7 @@ import { observer } from 'mobx-react'
 import { View, Text, OpenData } from '@tarojs/components'
 import { AtDivider, AtIcon, AtGrid } from 'taro-ui'
 import commonStore from '../../store/common-store'
+import proxyStore from '../../store/proxy-store'
 import tools from 'highly-tools';
 
 import coupon from '../../images/youhuiquan.png';
@@ -39,7 +40,9 @@ interface Props {}
 
 const Center: React.FC<Props> = (props: Props) => {
 
-  const { businessInfo, setBusinessInfo } = useContext(commonStore);
+  const type = Taro.getStorageSync('type');
+  const store = type === 1 ? proxyStore : commonStore
+  const { businessInfo, setBusinessInfo } = useContext(store);
 
   useEffect(() => {})
 

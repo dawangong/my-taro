@@ -18,7 +18,7 @@ interface Props {}
 
 const Login: React.FC<Props> = (props: Props) => {
 
-  const tabList = [{ title: '商户登陆' }, { title: '代理注册' }]
+  const tabList = [{ title: '商户登陆' }, { title: '代理登陆' }]
 
   const [statusBarHeight, setStatusBarHeight] = useState(0)
   const [navigationBarHeight, setNavigationBarHeight] = useState(0)

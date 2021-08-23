@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-08-23 18:04:44
+ * @LastEditTime: 2021-08-23 18:27:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
@@ -64,7 +64,7 @@ class CommonStore {
   async login (data) {
     const res = await loginApi(data);
     if(res && res.data.code === 200) {
-      Taro.setStorageSync('token', res.data.data.token);
+      Taro.setStorageSync('token', res.data.data.token || res.data.data.data.token);
       Taro.setStorageSync('type', 2);
       Taro.showToast({
         icon: 'success',
