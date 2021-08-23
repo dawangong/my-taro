@@ -72,7 +72,7 @@ class CommonStore {
         duration: 1000
       });
       setTimeout(() => {
-        Taro.redirectTo({
+        Taro.reLaunch({
           url: '/pages/center/center'
         })
       }, 1000)

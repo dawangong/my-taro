@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-08-23 18:26:14
+ * @LastEditTime: 2021-08-23 18:33:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
@@ -72,7 +72,7 @@ class ProxyStore {
         duration: 1000
       });
       setTimeout(() => {
-        Taro.redirectTo({
+        Taro.reLaunch({
           url: '/pages/center/center'
         })
       }, 1000)
