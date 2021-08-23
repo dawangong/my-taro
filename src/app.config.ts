@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-21 18:48:23
- * @LastEditTime: 2021-08-23 16:42:17
+ * @LastEditTime: 2021-08-23 19:33:15
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/app.config.ts
@@ -37,6 +37,8 @@ export default {
         'pages/poster/poster',
         'pages/deposit-guide/deposit-guide',
         'pages/deposit-record/deposit-record',
+        'pages/business-code/business-code',
+        'pages/proxy-code/proxy-code',
       ]
     }
   ],
