@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-21 18:48:23
- * @LastEditTime: 2021-08-13 16:32:44
+ * @LastEditTime: 2021-08-23 13:09:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/center/center.tsx
@@ -28,6 +28,11 @@ import { View, Text, OpenData } from '@tarojs/components'
 import { AtDivider, AtIcon, AtGrid } from 'taro-ui'
 import commonStore from '../../store/common-store'
 import tools from 'highly-tools';
+
+import coupon from '../../images/优惠券.png';
+import useCoupon from '../../images/核销优惠券.png';
+import entry from '../../images/充值.png';
+import record from '../../images/充值记录.png';
 
 
 interface Props {}
@@ -70,7 +75,7 @@ const Center: React.FC<Props> = (props: Props) => {
       <View className='page-center__base'>
         <AtGrid 
           onClick={(item: object, index: number) => {
-            const config = ["/pages/coupon-list/coupon-list", "/pages/cancel-coupon/cancel-coupon"]
+            const config = ["/pages/coupon-list/coupon-list", "/pages/cancel-coupon/cancel-coupon", "/sub-packages/pages/deposit-guide/deposit-guide", "/sub-packages/pages/deposit-record/deposit-record"]
             Taro.navigateTo({
               url: config[index]
             })
@@ -80,12 +85,20 @@ const Center: React.FC<Props> = (props: Props) => {
           data={
           [
               {
-                image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+                image: coupon,
                 value: '卡券列表'
               },
               {
-                image: 'https://img20.360buyimg.com/jdphoto/s72x72_jfs/t15151/308/1012305375/2300/536ee6ef/5a411466N040a074b.png',
+                image: useCoupon,
                 value: '核销卡券'
+              },
+              {
+                image: entry,
+                value: '充值入口'
+              },
+              {
+                image: record,
+                value: '充值记录'
               }
             ]
           } 
