@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-08-23 18:33:32
+ * @LastEditTime: 2021-08-23 19:41:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
@@ -17,6 +17,7 @@ class ProxyStore {
   @observable public businessInfo: any = {};
   @observable public poster: string = '';
   @observable public depositList: any = [];
+  @observable public moneyList: any = [];
 
   @action.bound
   async register (data) {
@@ -196,6 +197,15 @@ class ProxyStore {
 
     if(res && res.data.code === 200) {
       this.depositList = res.data.data.list;
+    }
+  }
+
+  @action.bound
+  async getMoneyList (data) {
+    const res = await getCommissionListApi(data);
+
+    if(res && res.data.code === 200) {
+      this.moneyList = res.data.data.list;
     }
   }
   

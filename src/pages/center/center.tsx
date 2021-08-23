@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-21 18:48:23
- * @LastEditTime: 2021-08-23 19:35:58
+ * @LastEditTime: 2021-08-23 19:40:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/center/center.tsx
@@ -125,7 +125,7 @@ const Center: React.FC<Props> = (props: Props) => {
             <Text className='page-center__service__desc'>商家二维码</Text>
           </View>
           <View className='page-center__service-item page-center__service-item--video' onClick={() => Taro.navigateTo({
-              url: '/sub-packages/pages/proxy-code/proxy-code'
+              url: '/sub-packages/pages/money-list/money-list'
             })}>
             <Text className='page-center__service__desc'>佣金列表</Text>
           </View>
