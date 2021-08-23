@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-21 18:48:23
- * @LastEditTime: 2021-08-23 13:09:46
+ * @LastEditTime: 2021-08-23 15:42:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/center/center.tsx
@@ -29,10 +29,10 @@ import { AtDivider, AtIcon, AtGrid } from 'taro-ui'
 import commonStore from '../../store/common-store'
 import tools from 'highly-tools';
 
-import coupon from '../../images/优惠券.png';
-import useCoupon from '../../images/核销优惠券.png';
-import entry from '../../images/充值.png';
-import record from '../../images/充值记录.png';
+import coupon from '../../images/youhuiquan.png';
+import useCoupon from '../../images/hexiaoyouhuiquan.png';
+import entry from '../../images/chongzhi.png';
+import record from '../../images/chongzhijilu.png';
 
 
 interface Props {}
