@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-21 22:05:50
- * @LastEditTime: 2021-08-13 16:26:52
+ * @LastEditTime: 2021-08-23 14:00:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/api/common-api.ts
@@ -78,6 +78,13 @@ const getPosterApi = (data?) => {
   });
 }
 
+const goDepositApi = (data?) => {
+  return http.post({
+    url: '/app/v1/business/order/pay',
+    data,
+  });
+}
+
 export {
   registerApi,
   loginApi,
@@ -89,4 +96,5 @@ export {
   addVideoApi,
   removeVideoApi,
   getPosterApi,
+  goDepositApi,
 }

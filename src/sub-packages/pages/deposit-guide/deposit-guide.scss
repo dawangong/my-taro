@@ -4,4 +4,28 @@
   height: 100vh;
   background-color: $background;
   overflow: hidden;
+  position: relative;
+
+  .page-cancel-coupon__content {
+    margin-top: 20px;
+    overflow: hidden;
+    background-color: white;
+  }
+
+  .page-cancel-coupon__btn {
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    transform: translateX(-50%);
+    width: 80%;
+  }
+
+  .page-cancel-coupon__btn--record {
+    @extend .page-cancel-coupon__btn;
+    bottom: 30px;
+  }
+
+  .at-input__title {
+    width: 90px;
+  }
 }
