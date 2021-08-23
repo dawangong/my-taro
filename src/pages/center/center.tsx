@@ -1,15 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-21 18:48:23
- * @LastEditTime: 2021-08-23 18:29:03
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /my-taro/src/pages/center/center.tsx
- */
-/*
- * @Author: your name
- * @Date: 2021-07-21 18:48:23
- * @LastEditTime: 2021-08-13 16:31:18
+ * @LastEditTime: 2021-08-23 19:24:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/center/center.tsx
@@ -43,6 +35,35 @@ const Center: React.FC<Props> = (props: Props) => {
   const type = Taro.getStorageSync('type');
   const store = type === 1 ? proxyStore : commonStore
   const { businessInfo, setBusinessInfo } = useContext(store);
+  const gridData = type === 1 ? [
+    {
+      image: entry,
+      value: '充值入口'
+    },
+    {
+      image: record,
+      value: '充值记录'
+    }
+  ] : [
+    {
+      image: coupon,
+      value: '卡券列表'
+    },
+    {
+      image: useCoupon,
+      value: '核销卡券'
+    },
+    {
+      image: entry,
+      value: '充值入口'
+    },
+    {
+      image: record,
+      value: '充值记录'
+    }
+  ]
+
+  const config = type === 1 ? ["/sub-packages/pages/deposit-guide/deposit-guide", "/sub-packages/pages/deposit-record/deposit-record"] : ["/pages/coupon-list/coupon-list", "/pages/cancel-coupon/cancel-coupon", "/sub-packages/pages/deposit-guide/deposit-guide", "/sub-packages/pages/deposit-record/deposit-record"]
 
   useEffect(() => {})
 
@@ -70,6 +91,8 @@ const Center: React.FC<Props> = (props: Props) => {
         </View>
         <View>
           <View>{businessInfo.name}</View>
+          {type === 1 && <View className="money">总佣金: {businessInfo.total_commission/100}元</View>}
+          {type === 1 && <View className="money">剩余佣金: {businessInfo.commission/100}元</View>}
           <View style={{ fontSize: '10px', color: '#9a9a9a' }}>有效期: {businessInfo.end_time && tools.toDate(businessInfo.end_time, 'yyyy.MM.dd hh:mm:ss').nowTime}</View>
         </View>
         <AtIcon value='chevron-right' size='30' color='#ccc' ></AtIcon>
@@ -78,38 +101,35 @@ const Center: React.FC<Props> = (props: Props) => {
       <View className='page-center__base'>
         <AtGrid 
           onClick={(item: object, index: number) => {
-            const config = ["/pages/coupon-list/coupon-list", "/pages/cancel-coupon/cancel-coupon", "/sub-packages/pages/deposit-guide/deposit-guide", "/sub-packages/pages/deposit-record/deposit-record"]
             Taro.navigateTo({
               url: config[index]
             })
           }}    
           hasBorder={false} 
           columnNum={4} 
-          data={
-          [
-              {
-                image: coupon,
-                value: '卡券列表'
-              },
-              {
-                image: useCoupon,
-                value: '核销卡券'
-              },
-              {
-                image: entry,
-                value: '充值入口'
-              },
-              {
-                image: record,
-                value: '充值记录'
-              }
-            ]
-          } 
+          data={gridData} 
         />
       </View>
       <View className='page-center__service'>
         <View className='page-center__service__title'>常用服务</View>
-        <View className='page-center__service-content'>
+        {
+          type === 1 ? <View className='page-center__service-content'>
+          <View className='page-center__service-item page-center__service-item--active' onClick={() => Taro.navigateTo({
+              url: '/pages/activity-list/activity-list'
+            })}>
+            <Text className='page-center__service__desc'>代理二维码</Text>
+          </View>
+          <View className='page-center__service-item page-center__service-item--split' onClick={() => Taro.navigateTo({
+              url: '/pages/split-list/split-list'
+            })}>
+            <Text className='page-center__service__desc'>商家二维码</Text>
+          </View>
+          <View className='page-center__service-item page-center__service-item--video' onClick={() => Taro.navigateTo({
+              url: '/sub-packages/pages/video-list/video-list'
+            })}>
+            <Text className='page-center__service__desc'>佣金列表</Text>
+          </View>
+        </View> : <View className='page-center__service-content'>
           <View className='page-center__service-item page-center__service-item--active' onClick={() => Taro.navigateTo({
               url: '/pages/activity-list/activity-list'
             })}>
@@ -131,6 +151,7 @@ const Center: React.FC<Props> = (props: Props) => {
             <Text className='page-center__service__desc'>推广海报</Text>
           </View>
         </View>
+        }
       </View>
     </View>
   )

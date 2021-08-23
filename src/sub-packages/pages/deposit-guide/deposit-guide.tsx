@@ -1,7 +1,7 @@
 /*
  * @Author: wh
  * @Date: 2021-07-22 10:36:09
- * @LastEditTime: 2021-08-23 15:51:51
+ * @LastEditTime: 2021-08-23 19:18:47
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/template/page/index.tsx
@@ -20,12 +20,15 @@ import { observer } from 'mobx-react'
 import { View, Text } from '@tarojs/components'
 import { AtInput, AtButton, AtNoticebar } from 'taro-ui'
 import commonStore from '../../../store/common-store'
+import proxyStore from '../../../store/proxy-store'
 
 interface Props {}
 
 const DepositGuide: React.FC<Props> = (props: Props) => {
 
-  const { goDeposit } = useContext(commonStore); 
+  const type = Taro.getStorageSync('type');
+  const store = type === 1 ? proxyStore : commonStore
+  const { goDeposit } = useContext(store); 
   const [card_no, setCard_no] = useState('')
 
   useEffect(() => {})

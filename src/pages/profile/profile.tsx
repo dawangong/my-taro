@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 14:42:40
- * @LastEditTime: 2021-07-29 13:42:54
+ * @LastEditTime: 2021-08-23 19:17:37
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/profile/profile.tsx
@@ -19,6 +19,7 @@ import { observer } from 'mobx-react'
 import { View, OpenData } from '@tarojs/components'
 import { AtList, AtListItem, AtModal } from 'taro-ui'
 import commonStore from '../../store/common-store'
+import proxyStore from '../../store/proxy-store'
 
 
 interface Props {}
@@ -26,7 +27,9 @@ interface Props {}
 const Profile: React.FC<Props> = (props: Props) => {
 
   const [isOpened, setIsOpened] = useState(false);
-  const { logout, businessInfo } = useContext(commonStore);
+  const type = Taro.getStorageSync('type');
+  const store = type === 1 ? proxyStore : commonStore
+  const { logout, businessInfo } = useContext(store);
 
   useEffect(() => {})
 
@@ -70,13 +73,15 @@ const Profile: React.FC<Props> = (props: Props) => {
             })}
           />
         </View>
-        <AtListItem
+        {
+          Taro.getStorageSync('type') === 2 && <AtListItem
           title='商户信息'
           arrow='right'
           onClick={() => Taro.navigateTo({
             url: '/pages/business-info/business-info'
           })}
         />
+        }
         <AtListItem
           title='退出登录'
           extraText='更换账号'

@@ -1,7 +1,7 @@
 /*
  * @Author: wh
  * @Date: 2021-07-22 10:36:09
- * @LastEditTime: 2021-08-23 16:14:34
+ * @LastEditTime: 2021-08-23 19:25:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/template/page/index.tsx
@@ -9,7 +9,7 @@
 import './deposit-record.scss'
 
 import React, { useEffect, useContext } from 'react'
-import {
+import Taro, {
   useReady,
   useDidShow,
   useDidHide,
@@ -18,6 +18,7 @@ import {
 import { observer } from 'mobx-react'
 import { View, Text, ScrollView } from '@tarojs/components'
 import commonStore from '../../../store/common-store'
+import proxyStore from '../../../store/proxy-store'
 import tools from 'highly-tools';
 
 
@@ -26,7 +27,9 @@ interface Props {}
 
 const DepositRecord: React.FC<Props> = (props: Props) => {
 
-  const { depositList, getDepositList } = useContext(commonStore);
+  const type = Taro.getStorageSync('type');
+  const store = type === 1 ? proxyStore : commonStore
+  const { depositList, getDepositList } = useContext(store);
 
   useEffect(() => {})
 

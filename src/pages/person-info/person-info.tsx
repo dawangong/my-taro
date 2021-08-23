@@ -11,13 +11,16 @@ import { observer } from 'mobx-react'
 import { View } from '@tarojs/components'
 import { AtInput, AtButton } from 'taro-ui'
 import commonStore from '../../store/common-store'
+import proxyStore from '../../store/proxy-store'
 
 
 interface Props {}
 
 const UserInfo: React.FC<Props> = (props: Props) => {
 
-  const { setPassword } = useContext(commonStore);
+  const type = Taro.getStorageSync('type');
+  const store = type === 1 ? proxyStore : commonStore
+  const { setPassword } = useContext(store);
 
   const [password, setPassworded] = useState('')
 
