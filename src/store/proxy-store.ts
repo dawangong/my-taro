@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-08-23 17:51:19
+ * @LastEditTime: 2021-08-23 17:55:38
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
@@ -20,36 +20,36 @@ class ProxyStore {
 
   @action.bound
   async register (data) {
-    if(data.slogan.length < 4) {
-      Taro.showToast({
-        icon: 'none',
-        title: '宣传语至少四个字',
-        duration: 1000
-      });
-      return false;
-    }
-    if(data.slogan.length > 10) {
-      Taro.showToast({
-        icon: 'none',
-        title: '宣传语至多十个字',
-        duration: 1000
-      });
-      return false;
-    }
-    if(!isChinese(data.slogan)) {
-      Taro.showToast({
-        icon: 'none',
-        title: '宣传语只支持中文',
-        duration: 1000
-      });
-      return false;
-    }
+    // if(data.slogan.length < 4) {
+    //   Taro.showToast({
+    //     icon: 'none',
+    //     title: '宣传语至少四个字',
+    //     duration: 1000
+    //   });
+    //   return false;
+    // }
+    // if(data.slogan.length > 10) {
+    //   Taro.showToast({
+    //     icon: 'none',
+    //     title: '宣传语至多十个字',
+    //     duration: 1000
+    //   });
+    //   return false;
+    // }
+    // if(!isChinese(data.slogan)) {
+    //   Taro.showToast({
+    //     icon: 'none',
+    //     title: '宣传语只支持中文',
+    //     duration: 1000
+    //   });
+    //   return false;
+    // }
     const res = await registerApi(data);
 
     if(res && res.data.code === 200) {
       Taro.showToast({
         icon: 'success',
-        title: '注册成功,即将前往登陆页',
+        title: '注册成功',
         duration: 1000
       });
       setTimeout(() => {

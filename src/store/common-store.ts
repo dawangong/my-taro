@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-08-23 17:44:01
+ * @LastEditTime: 2021-08-23 17:55:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
@@ -49,7 +49,7 @@ class CommonStore {
     if(res && res.data.code === 200) {
       Taro.showToast({
         icon: 'success',
-        title: '注册成功,即将前往登陆页',
+        title: '注册成功',
         duration: 1000
       });
       setTimeout(() => {
