@@ -20,7 +20,7 @@ interface Props {}
 const Register: React.FC<Props> = (props: Props) => {
 
   const router = useRouter();
-  const { type } = router.params;
+  const { type, pid = '' } = router.params;
 
   const tabList = Number(type) === 1 ? [{ title: '代理注册' }] : [{ title: '商户注册' }]
   const store =  Number(type) === 1 ? proxyStore : commonStore
@@ -33,7 +33,7 @@ const Register: React.FC<Props> = (props: Props) => {
   const [current, setCurrent] = useState(0)
 
   const [info, setInfo] = useState({
-    pid: '',
+    pid,
     name: '',
     mobile: '',
     password: '',

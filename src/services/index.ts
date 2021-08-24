@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-28 14:32:52
- * @LastEditTime: 2021-08-23 11:47:19
+ * @LastEditTime: 2021-08-24 12:35:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/services/index.ts
@@ -19,7 +19,7 @@ const http = {
     const token = Taro.getStorageSync('token');
     const page = getCurrentPage();
     if(!token) {
-      if(page !== 'pages/login/login'){
+      if(page !== 'pages/login/login' && page !== 'pages/register/register'){
         Taro.showToast({
           icon: 'none',
           title: '请您先登录',
