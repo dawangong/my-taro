@@ -20,7 +20,11 @@ interface Props {}
 const Register: React.FC<Props> = (props: Props) => {
 
   const router = useRouter();
-  const { type, pid = '' } = router.params;
+  console.log(router.params.scene, 1);
+
+  const { type, pid = '' } = decodeURIComponent(router.params.scene).split('&').reduce((item, next) => (Object.assign(item, { [next.split('=')[0]]: next.split('=')[1] })), {});
+
+  console.log(type, pid, 1);
 
   const tabList = Number(type) === 1 ? [{ title: '代理注册' }] : [{ title: '商户注册' }]
   const store =  Number(type) === 1 ? proxyStore : commonStore

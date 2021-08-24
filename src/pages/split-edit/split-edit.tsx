@@ -10,7 +10,7 @@ import Taro, {
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
 import { View, Picker, Video, Text } from '@tarojs/components'
-import { AtInput, AtButton, AtCard, AtList, AtListItem } from 'taro-ui'
+import { AtInput, AtButton, AtCard, AtList, AtListItem, AtTextarea } from 'taro-ui'
 import splitStore from '../../store/split-store'
 
 
@@ -164,7 +164,7 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
             editable={false}
             onChange={value => setInfo({ ...info ,title: value })}
           />
-          <AtInput
+          <AtTextarea
             name='slogan'
             title='宣传语'
             type='text'
