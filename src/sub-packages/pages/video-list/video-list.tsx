@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:07:21
- * @LastEditTime: 2021-08-23 11:28:55
+ * @LastEditTime: 2021-08-25 13:40:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/video-list/video-list.tsx
@@ -139,11 +139,13 @@ const VideoList: React.FC<Props> = (props: Props) => {
             </View>)
         }
       </ScrollView>
-      <View className="add-area">
-         <AtButton type='primary' className='page-activity-list__btn' onClick={() => Taro.navigateTo({
-            url: '/sub-packages/pages/video-edit/video-edit'
-          })}>新增视频</AtButton>
-      </View>
+      {
+        !back && <View className="add-area">
+        <AtButton type='primary' className='page-activity-list__btn' onClick={() => Taro.navigateTo({
+           url: '/sub-packages/pages/video-edit/video-edit'
+         })}>新增视频</AtButton>
+     </View>
+      }
     </View>
   )
 };

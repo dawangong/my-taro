@@ -164,16 +164,19 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
             editable={false}
             onChange={value => setInfo({ ...info ,title: value })}
           />
-          <AtTextarea
-            name='slogan'
-            title='宣传语'
-            type='text'
-            required
-            placeholder='请填写宣传语'
-            value={info.slogan}
-            border={false}
-            onChange={value => setInfo({ ...info ,slogan: value })}
-          />
+          <View className="at-input at-input--without-border">
+            <label className="at-input__title at-input__title--required">宣传语</label>
+            <AtTextarea
+              name='slogan'
+              title='宣传语'
+              type='text'
+              required
+              placeholder='请填写宣传语'
+              value={info.slogan}
+              border={false}
+              onChange={value => setInfo({ ...info ,slogan: value })}
+            />
+          </View>
         </AtCard>
         
         <AtButton type='primary' className='page-coupon-edit__btn' onClick={() => {

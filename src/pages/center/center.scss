@@ -3,6 +3,7 @@
 .page-center {
   height: 100vh;
   background-color: $background;
+  position: relative;
 
   .page-center__info {
     display: flex;
@@ -106,5 +107,14 @@
   .money {
     font-size: 20px;
     color: #9a9a9a;
+  }
+
+  .page-center__version {
+    font-size: 20px;
+    color: #9a9a9a;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
   }
 }

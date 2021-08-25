@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-21 18:48:23
- * @LastEditTime: 2021-08-23 19:40:10
+ * @LastEditTime: 2021-08-25 13:35:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/center/center.tsx
@@ -64,6 +64,8 @@ const Center: React.FC<Props> = (props: Props) => {
   ]
 
   const config = type === 1 ? ["/sub-packages/pages/deposit-guide/deposit-guide", "/sub-packages/pages/deposit-record/deposit-record"] : ["/pages/coupon-list/coupon-list", "/pages/cancel-coupon/cancel-coupon", "/sub-packages/pages/deposit-guide/deposit-guide", "/sub-packages/pages/deposit-record/deposit-record"]
+
+  const { version } = Taro.getAccountInfoSync().miniProgram;
 
   useEffect(() => {})
 
@@ -153,6 +155,13 @@ const Center: React.FC<Props> = (props: Props) => {
         </View>
         }
       </View>
+
+      {
+        version && <View className='page-center__version'>
+        当前版本: {version}
+      </View>
+      }
+        
     </View>
   )
 };

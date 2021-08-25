@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-28 14:32:52
- * @LastEditTime: 2021-08-24 12:35:22
+ * @LastEditTime: 2021-08-24 18:18:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/services/index.ts
@@ -64,7 +64,7 @@ const http = {
     const { url, data = '', contentType } = params;
 
     const token = this.check();
-    if(!token && page !== 'pages/login/login') {
+    if(!token && page !== 'pages/login/login'&& page !== 'pages/register/register') {
       return false;
     }
     if(!this.interceptor(data)) return false;
