@@ -27,7 +27,8 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
   const [info, setInfo] = useState(mySplit);
 
   const [obj, setObj] = useState({
-    selector: ['活动', '优惠券'],
+    selector: ['活动'],
+    // selector: ['活动', '优惠券'],
     selectorChecked: '活动',
   });
 
@@ -76,7 +77,8 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
           <View className={`type ${obj.selectorChecked === '活动' ? 'activity' : 'coupon'}`}>
             <Picker mode='selector' range={obj.selector} onChange={e => {
               setObj({
-                selector: ['活动', '优惠券'],
+                selector: ['活动'],
+                // selector: ['活动', '优惠券'],
                 selectorChecked: obj.selector[e.detail.value],
               });
               clearId();
