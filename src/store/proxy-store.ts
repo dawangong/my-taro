@@ -214,7 +214,11 @@ class ProxyStore {
     const res = await drawingApi(data);
 
     if(res && res.data.code === 200) {
-      this.depositList = res.data.data.list;
+      Taro.showToast({
+        icon: 'success',
+        title: '申请成功',
+        duration: 1000
+      });
     }
   }
   
