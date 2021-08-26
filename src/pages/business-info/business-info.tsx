@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-23 10:47:36
- * @LastEditTime: 2021-08-13 18:36:18
+ * @LastEditTime: 2021-08-26 15:52:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/business-info/business-info.tsx
@@ -70,6 +70,14 @@ const BusinessInfo: React.FC<Props> = (props: Props) => {
           value={slogan}
           border={false}
           onChange={value => setSlogan(value)}
+        />
+        <AtInput
+          name='desc'
+          type='text'
+          onChange={() => {}}
+          value='注: 宣传语将用于合成推广海报'
+          border={false}
+          disabled
         />
       </View>
       <AtButton type='primary' className='page-business-info__btn' onClick={() => {
