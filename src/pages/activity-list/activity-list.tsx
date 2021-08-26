@@ -1,14 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:06:10
- * @LastEditTime: 2021-08-13 16:10:02
+ * @LastEditTime: 2021-08-26 12:24:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/activity-list/activity-list.tsx
  */
 import './activity-list.scss'
 
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import Taro, {
   useReady,
   useDidShow,
@@ -17,7 +17,7 @@ import Taro, {
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
 import { View, ScrollView } from '@tarojs/components'
-import { AtButton, AtIcon } from 'taro-ui'
+import { AtButton, AtIcon, AtModal } from 'taro-ui'
 import activityStore from '../../store/activity-store'
 import tools from 'highly-tools';
 
@@ -28,6 +28,7 @@ interface Props {}
 const ActivityList: React.FC<Props> = (props: Props) => {
 
   const { list, getActivityList, removeActivity } = useContext(activityStore);
+  const [isOpened, setIsOpened] = useState(false);
 
   useEffect(() => {})
 
@@ -50,6 +51,31 @@ const ActivityList: React.FC<Props> = (props: Props) => {
 
   return (
     <View className='page-activity-list'>
+      <AtModal
+        isOpened={isOpened}
+        title='提示'
+        cancelText='忽略'
+        confirmText='新增优惠券'
+        onClose={() => {
+          setIsOpened(false);
+          Taro.navigateTo({
+            url: '/pages/activity-edit/activity-edit'
+          });
+        }}
+        onCancel={() => {
+          setIsOpened(false);
+          Taro.navigateTo({
+            url: '/pages/activity-edit/activity-edit'
+          });
+        }}
+        onConfirm={() => {
+          setIsOpened(false);
+          Taro.navigateTo({
+            url: '/pages/coupon-edit/coupon-edit'
+          });
+        }}
+        content='新增活动前,请先确认新增过优惠券.奖品建议至少设置6个,剩余概率均为谢谢惠顾'
+      />
       <ScrollView
         className='scroll-view'
         scrollY
@@ -95,9 +121,7 @@ const ActivityList: React.FC<Props> = (props: Props) => {
         }
       </ScrollView>
       <View className="add-area">
-         <AtButton type='primary' className='page-activity-list__btn' onClick={() => Taro.navigateTo({
-            url: '/pages/activity-edit/activity-edit'
-          })}>新增活动</AtButton>
+         <AtButton type='primary' className='page-activity-list__btn' onClick={() => setIsOpened(true)}>新增活动</AtButton>
       </View>
     </View>
   )

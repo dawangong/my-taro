@@ -1,14 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:05:14
- * @LastEditTime: 2021-08-26 11:59:48
+ * @LastEditTime: 2021-08-26 12:30:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/split-list/split-list.tsx
  */
 import './split-list.scss'
 
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import Taro, {
   useReady,
   useDidShow,
@@ -17,7 +17,7 @@ import Taro, {
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
 import { View, ScrollView, Image } from '@tarojs/components'
-import { AtButton, AtIcon } from 'taro-ui'
+import { AtButton, AtIcon, AtModal } from 'taro-ui'
 import splitStore from '../../store/split-store'
 
 interface Props {}
@@ -25,7 +25,7 @@ interface Props {}
 const SplitList: React.FC<Props> = (props: Props) => {
 
   const { list, getSplitList, removeSplit, clear, upSplit } = useContext(splitStore);
-
+  const [isOpened, setIsOpened] = useState(false);
   const status = ['未知', '通过审核', '未通过审核', '待审核'];
 
   useEffect(() => {})
@@ -49,6 +49,31 @@ const SplitList: React.FC<Props> = (props: Props) => {
 
   return (
     <View className='page-split-list'>
+      <AtModal
+        isOpened={isOpened}
+        title='提示'
+        cancelText='忽略'
+        confirmText='添加视频素材'
+        onClose={() => {
+          setIsOpened(false);
+          Taro.navigateTo({
+            url: '/pages/split-edit/split-edit'
+          });
+        }}
+        onCancel={() => {
+          setIsOpened(false);
+          Taro.navigateTo({
+            url: '/pages/split-edit/split-edit'
+          });
+        }}
+        onConfirm={() => {
+          setIsOpened(false);
+          Taro.navigateTo({
+            url: '/sub-packages/pages/video-edit/video-edit'
+          });
+        }}
+        content='新增裂变前,请先确认添加过视频素材，审核通过后即可选择使用此视频'
+      />
       <ScrollView
         className='scroll-view'
         scrollY
@@ -133,9 +158,7 @@ const SplitList: React.FC<Props> = (props: Props) => {
       <View className="add-area">
          <AtButton type='primary' className='page-activity-list__btn' onClick={() => {
            clear();
-           Taro.navigateTo({
-            url: '/pages/split-edit/split-edit'
-          })
+           setIsOpened(true);
          }}>新增裂变</AtButton>
       </View>
     </View>
