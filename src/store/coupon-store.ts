@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-08-05 16:34:51
+ * @LastEditTime: 2021-08-26 12:34:53
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
@@ -26,9 +26,7 @@ class CouponStore {
         duration: 1000
       });
       setTimeout(() => {
-        Taro.reLaunch({
-          url: '/pages/coupon-list/coupon-list'
-        });
+        Taro.navigateBack();
       }, 1000);
     }
   }
@@ -44,8 +42,8 @@ class CouponStore {
         duration: 1000
       });
       setTimeout(() => {
-        Taro.reLaunch({
-          url: '/pages/coupon-list/coupon-list'
+        Taro.navigateBack({
+          delta: 2
         });
       }, 1000);
     }
