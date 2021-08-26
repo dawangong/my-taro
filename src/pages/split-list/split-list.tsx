@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:05:14
- * @LastEditTime: 2021-08-13 16:14:49
+ * @LastEditTime: 2021-08-26 11:59:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/split-list/split-list.tsx
@@ -80,15 +80,7 @@ const SplitList: React.FC<Props> = (props: Props) => {
                   <AtIcon value='trash' size='22' color="#ccc" ></AtIcon>
                 </View>
                 {
-                  item.top === 0 ? <View className="activity-card-up" onClick={(e: any) => {
-                    e.stopPropagation();
-                    upSplit({
-                      id: item.id,
-                      required: ['id'],
-                    });
-                  }}>
-                    <AtIcon value='chevron-up' size='22' color="#ccc" ></AtIcon>
-                  </View> : <View className="activity-card-icon-sp">置顶中</View>
+                  item.top != 0 && <View className="activity-card-icon-sp">活动生效中</View>
                 }
               </View>
               <View className="activity-card-content">
@@ -116,23 +108,20 @@ const SplitList: React.FC<Props> = (props: Props) => {
                     <View>{item.err_msg}</View>
                   </View>
                   }
-                  
-                  {/* {
-                    item.poster && <View className="activity-card-field">
-                    <View>预览海报:</View>
-                    <Image
-                      mode='widthFix'
-                      src={item.poster}
-                      onClick={e => {
-                        e.stopPropagation();
-                        Taro.previewImage({
-                          current: item.poster, // 当前显示图片的http链接
-                          urls: [item.poster] // 需要预览的图片http链接列表
-                        })
-                      }}
-                    />
+
+
+                  {
+                    item.top === 0 && <View className="activity-card-field">
+                    <View className="my-button--small" onClick={(e: any) => {
+                      e.stopPropagation();
+                      upSplit({
+                        id: item.id,
+                        required: ['id'],
+                      });
+                    }}>使用此活动</View>  
                   </View>
-                  } */}
+                  }
+                  
                   
                 </View>
                 
