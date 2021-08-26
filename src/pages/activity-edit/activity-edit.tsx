@@ -197,9 +197,17 @@ const ActivityEdit: React.FC<Props> = (props: Props) => {
         <AtModalAction> 
           <Button onClick={() => setIsOpened(false)}>取消</Button>
           <Button onClick={() => {
-            finalUpdate(prizeItem);
-            setActivity(activity);
-            setIsOpened(false);
+            if(prizeItem.num === '' || prizeItem.percentage === '') {
+              Taro.showToast({
+                icon: 'none',
+                title: '请填写完整后,再尝试点击确认!',
+                duration: 1000
+              });
+            } else {
+              finalUpdate(prizeItem);
+              setActivity(activity);
+              setIsOpened(false);
+            }
             }}>确定</Button>
         </AtModalAction>
       </AtModal>
