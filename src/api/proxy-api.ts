@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-21 22:05:50
- * @LastEditTime: 2021-08-23 17:51:01
+ * @LastEditTime: 2021-08-26 15:26:15
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/api/common-api.ts
@@ -99,6 +99,13 @@ const getCommissionListApi = (data?) => {
   });
 }
 
+const drawingApi = (data?) => {
+  return http.post({
+    url: '/app/v1/agent/order/drawing',
+    data,
+  });
+}
+
 export {
   registerApi,
   loginApi,
@@ -113,4 +120,5 @@ export {
   goDepositApi,
   getDepositListApi,
   getCommissionListApi,
+  drawingApi,
 }

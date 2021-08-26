@@ -1,14 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-08-23 19:41:02
+ * @LastEditTime: 2021-08-26 15:26:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
  */
 import { observable, action } from 'mobx'
 import { createContext } from 'react';
-import { registerApi, loginApi, logoutApi, setPasswordApi, getBusinessInfoApi, updateBusinessInfoApi, goDepositApi, getDepositListApi, getCommissionListApi } from '../api/proxy-api';
+import { registerApi, loginApi, logoutApi, setPasswordApi, getBusinessInfoApi, updateBusinessInfoApi, goDepositApi, getDepositListApi, getCommissionListApi, drawingApi } from '../api/proxy-api';
 import Taro from '@tarojs/taro'
 import { isChinese } from '../utils/tools'
 
@@ -206,6 +206,15 @@ class ProxyStore {
 
     if(res && res.data.code === 200) {
       this.moneyList = res.data.data.list;
+    }
+  }
+
+  @action.bound
+  async drawing (data) {
+    const res = await drawingApi(data);
+
+    if(res && res.data.code === 200) {
+      this.depositList = res.data.data.list;
     }
   }
   

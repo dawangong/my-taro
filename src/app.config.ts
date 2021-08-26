@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-21 18:48:23
- * @LastEditTime: 2021-08-23 19:39:09
+ * @LastEditTime: 2021-08-26 14:49:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/app.config.ts
@@ -40,6 +40,7 @@ export default {
         'pages/business-code/business-code',
         'pages/proxy-code/proxy-code',
         'pages/money-list/money-list',
+        'pages/get-money/get-money',
       ]
     }
   ],

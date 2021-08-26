@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-21 18:48:23
- * @LastEditTime: 2021-08-25 13:35:43
+ * @LastEditTime: 2021-08-26 14:49:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/center/center.tsx
@@ -26,6 +26,7 @@ import coupon from '../../images/youhuiquan.png';
 import useCoupon from '../../images/hexiaoyouhuiquan.png';
 import entry from '../../images/chongzhi.png';
 import record from '../../images/chongzhijilu.png';
+import getMoney from '../../images/tixian.png';
 
 
 interface Props {}
@@ -43,6 +44,10 @@ const Center: React.FC<Props> = (props: Props) => {
     {
       image: record,
       value: '充值记录'
+    },
+    {
+      image: getMoney,
+      value: '提现入口'
     }
   ] : [
     {
@@ -63,7 +68,14 @@ const Center: React.FC<Props> = (props: Props) => {
     }
   ]
 
-  const config = type === 1 ? ["/sub-packages/pages/deposit-guide/deposit-guide", "/sub-packages/pages/deposit-record/deposit-record"] : ["/pages/coupon-list/coupon-list", "/pages/cancel-coupon/cancel-coupon", "/sub-packages/pages/deposit-guide/deposit-guide", "/sub-packages/pages/deposit-record/deposit-record"]
+  const config = type === 1 ? ["/sub-packages/pages/deposit-guide/deposit-guide", 
+  "/sub-packages/pages/deposit-record/deposit-record", 
+  "/sub-packages/pages/get-money/get-money"] 
+  : 
+  ["/pages/coupon-list/coupon-list", 
+  "/pages/cancel-coupon/cancel-coupon", 
+  "/sub-packages/pages/deposit-guide/deposit-guide", 
+  "/sub-packages/pages/deposit-record/deposit-record"]
 
   const { version } = Taro.getAccountInfoSync().miniProgram;
 
@@ -116,43 +128,45 @@ const Center: React.FC<Props> = (props: Props) => {
         <View className='page-center__service__title'>常用服务</View>
         {
           type === 1 ? <View className='page-center__service-content'>
-          <View className='page-center__service-item page-center__service-item--active' onClick={() => Taro.navigateTo({
-              url: '/sub-packages/pages/proxy-code/proxy-code'
-            })}>
-            <Text className='page-center__service__desc'>代理二维码</Text>
+            <View className='page-center__service-item page-center__service-item--active' onClick={() => Taro.navigateTo({
+                url: '/sub-packages/pages/proxy-code/proxy-code'
+              })}>
+              <Text className='page-center__service__desc'>代理二维码</Text>
+            </View>
+            <View className='page-center__service-item page-center__service-item--split' onClick={() => Taro.navigateTo({
+                url: '/sub-packages/pages/business-code/business-code'
+              })}>
+              <Text className='page-center__service__desc'>商家二维码</Text>
+            </View>
+            <View className='page-center__service-item page-center__service-item--video' onClick={() => Taro.navigateTo({
+                url: '/sub-packages/pages/money-list/money-list'
+              })}>
+              <Text className='page-center__service__desc'>佣金列表</Text>
+            </View>
           </View>
-          <View className='page-center__service-item page-center__service-item--split' onClick={() => Taro.navigateTo({
-              url: '/sub-packages/pages/business-code/business-code'
-            })}>
-            <Text className='page-center__service__desc'>商家二维码</Text>
+          : 
+          <View className='page-center__service-content'>
+            <View className='page-center__service-item page-center__service-item--active' onClick={() => Taro.navigateTo({
+                url: '/pages/activity-list/activity-list'
+              })}>
+              <Text className='page-center__service__desc'>营销活动</Text>
+            </View>
+            <View className='page-center__service-item page-center__service-item--split' onClick={() => Taro.navigateTo({
+                url: '/pages/split-list/split-list'
+              })}>
+              <Text className='page-center__service__desc'>智能裂变</Text>
+            </View>
+            <View className='page-center__service-item page-center__service-item--video' onClick={() => Taro.navigateTo({
+                url: '/sub-packages/pages/video-list/video-list'
+              })}>
+              <Text className='page-center__service__desc'>视频素材</Text>
+            </View>
+            <View className='page-center__service-item page-center__service-item--poster' onClick={() => Taro.navigateTo({
+                url: '/sub-packages/pages/poster/poster'
+              })}>
+              <Text className='page-center__service__desc'>推广海报</Text>
+            </View>
           </View>
-          <View className='page-center__service-item page-center__service-item--video' onClick={() => Taro.navigateTo({
-              url: '/sub-packages/pages/money-list/money-list'
-            })}>
-            <Text className='page-center__service__desc'>佣金列表</Text>
-          </View>
-        </View> : <View className='page-center__service-content'>
-          <View className='page-center__service-item page-center__service-item--active' onClick={() => Taro.navigateTo({
-              url: '/pages/activity-list/activity-list'
-            })}>
-            <Text className='page-center__service__desc'>营销活动</Text>
-          </View>
-          <View className='page-center__service-item page-center__service-item--split' onClick={() => Taro.navigateTo({
-              url: '/pages/split-list/split-list'
-            })}>
-            <Text className='page-center__service__desc'>智能裂变</Text>
-          </View>
-          <View className='page-center__service-item page-center__service-item--video' onClick={() => Taro.navigateTo({
-              url: '/sub-packages/pages/video-list/video-list'
-            })}>
-            <Text className='page-center__service__desc'>视频素材</Text>
-          </View>
-          <View className='page-center__service-item page-center__service-item--poster' onClick={() => Taro.navigateTo({
-              url: '/sub-packages/pages/poster/poster'
-            })}>
-            <Text className='page-center__service__desc'>推广海报</Text>
-          </View>
-        </View>
         }
       </View>
 
