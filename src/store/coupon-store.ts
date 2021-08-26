@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-22 11:05:32
- * @LastEditTime: 2021-08-26 12:34:53
+ * @LastEditTime: 2021-08-26 17:18:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/store/login.ts
@@ -92,7 +92,7 @@ class CouponStore {
     const res = await offCouponListApi(data);
 
     if(res && res.data.code === 200) {
-      this.list = res.data.data.list;
+      this.offList = res.data.data.list;
     }
   }
   

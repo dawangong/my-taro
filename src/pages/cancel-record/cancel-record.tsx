@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-27 14:15:22
- * @LastEditTime: 2021-08-05 16:35:13
+ * @LastEditTime: 2021-08-26 17:15:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/coupon-list-select/coupon-list-select.tsx
@@ -37,7 +37,7 @@ const CancelRecord: React.FC<Props> = (props: Props) => {
   useDidShow(() => {
     offCouponList({
       page: 1,
-      size: 10000
+      size: 10000,
     });
   })
 
