@@ -91,26 +91,11 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
                 </AtList>
               </Picker>
           </View>
-          {/* <AtInput
-            name='url'
-            title='视频预览'
-            type='text'
-            required
-            placeholder='请点击此处选择视频'
-            value={info.url}
-            border={false}
-            editable={false}
-            onClick={() => {
-              Taro.navigateTo({
-                url: `/sub-packages/pages/video-list/video-list?back=${true}`,
-              });
-            }}
-            onChange={value => setInfo({ ...info ,url: value })}
-          /> */}
+          
           <View className="at-input at-input--without-border">
             <View style={{ display: 'flex', alignItems: 'center' }}>
               <label className="at-input__title at-input__title--required">视频预览</label>
-              <Text style={{ fontSize: '16px' }} onClick={() => {
+              <Text className="label-placeholder" onClick={() => {
               Taro.navigateTo({
                 url: `/sub-packages/pages/video-list/video-list?back=${true}`,
               });
@@ -128,16 +113,7 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
             />
             }
           </View>
-          {/* <AtInput
-            name='pic'
-            title='视频截图url'
-            type='text'
-            required
-            placeholder='请填写视频截图url'
-            value={info.pic}
-            border={false}
-            onChange={value => setInfo({ ...info ,pic: value })}
-          /> */}
+          
           <AtInput
             name='object_id'
             title='对象id'
@@ -167,7 +143,10 @@ const SplitEdit: React.FC<Props> = (props: Props) => {
             onChange={value => setInfo({ ...info ,title: value })}
           />
           <View className="at-input at-input--without-border">
-            <label className="at-input__title at-input__title--required">宣传语</label>
+            <View style={{ display: 'flex', alignItems: 'center' }}>
+              <label className="at-input__title at-input__title--required">宣传语</label>
+              <Text style={{ fontSize: '16px' }}></Text>
+            </View>  
             <AtTextarea
               name='slogan'
               title='宣传语'
