@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:05:14
- * @LastEditTime: 2021-08-26 12:30:29
+ * @LastEditTime: 2021-08-26 16:16:31
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/split-list/split-list.tsx
@@ -26,6 +26,8 @@ const SplitList: React.FC<Props> = (props: Props) => {
 
   const { list, getSplitList, removeSplit, clear, upSplit } = useContext(splitStore);
   const [isOpened, setIsOpened] = useState(false);
+  const [isOpenedDel, setIsOpenedDel] = useState(false);
+  const [fn, setFn] = useState(() => () => {});
   const status = ['未知', '通过审核', '未通过审核', '待审核'];
 
   useEffect(() => {})
@@ -74,6 +76,21 @@ const SplitList: React.FC<Props> = (props: Props) => {
         }}
         content='新增裂变前,请先确认添加过视频素材，审核通过后即可选择使用此视频'
       />
+
+      <AtModal
+        isOpened={isOpenedDel}
+        title='提示'
+        cancelText='取消'
+        confirmText='确认'
+        onClose={() => {
+          setIsOpenedDel(false);
+        }}
+        onCancel={() => {
+          setIsOpenedDel(false);
+        }}
+        onConfirm={fn}
+        content='确认删除?'
+      />
       <ScrollView
         className='scroll-view'
         scrollY
@@ -97,10 +114,14 @@ const SplitList: React.FC<Props> = (props: Props) => {
                 <View className="activity-card-name">{item.name}</View>
                 <View className="activity-card-del" onClick={(e: any) => {
                   e.stopPropagation();
-                  removeSplit({
-                    id: item.id,
-                    required: ['id'],
-                  });
+                  setFn(() => () => {
+                    removeSplit({
+                      id: item.id,
+                      required: ['id'],
+                    });
+                    setIsOpenedDel(false);
+                  })
+                  setIsOpenedDel(true);
                 }}>
                   <AtIcon value='trash' size='22' color="#ccc" ></AtIcon>
                 </View>

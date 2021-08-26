@@ -1,6 +1,6 @@
 import './coupon-detail.scss'
 
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import Taro, {
   useReady,
   useRouter,
@@ -10,7 +10,7 @@ import Taro, {
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
 import { View, Text } from '@tarojs/components'
-import { AtButton } from 'taro-ui'
+import { AtButton, AtModal } from 'taro-ui'
 import tools from 'highly-tools';
 import couponStore from '../../store/coupon-store'
 
@@ -24,6 +24,9 @@ const CouponDetail: React.FC<Props> = (props: Props) => {
   //@ts-ignore
   const data = JSON.parse(router.params.coupon);
   const { removeCoupon } = useContext(couponStore); 
+
+  const [isOpenedDel, setIsOpenedDel] = useState(false);
+  const [fn, setFn] = useState(() => () => {});
 
   useEffect(() => {})
 
@@ -41,6 +44,22 @@ const CouponDetail: React.FC<Props> = (props: Props) => {
 
   return (
     <View className='page-coupon-detail'>
+
+      <AtModal
+        isOpened={isOpenedDel}
+        title='提示'
+        cancelText='取消'
+        confirmText='确认'
+        onClose={() => {
+          setIsOpenedDel(false);
+        }}
+        onCancel={() => {
+          setIsOpenedDel(false);
+        }}
+        onConfirm={fn}
+        content='确认删除?'
+      />
+
       <View className="card">
         <View className="info">
           {data.type === 1 ? <View className="money">{data.coupon_value}元</View> : <View></View>}
@@ -80,9 +99,15 @@ const CouponDetail: React.FC<Props> = (props: Props) => {
         </View>
 
         <View className='page-coupon-detail__handle'>
-          <AtButton type='primary' className='page-coupon-detail__btn' onClick={() => removeCoupon({
-            id: data.id
-          })}>删除</AtButton>
+          <AtButton type='primary' className='page-coupon-detail__btn' onClick={() => {
+            setFn(() => () => {
+              removeCoupon({
+                id: data.id,
+              })
+              setIsOpenedDel(false);
+            })
+            setIsOpenedDel(true);
+          }}>删除</AtButton>
           <AtButton type='primary' className='page-coupon-detail__btn' onClick={() => Taro.navigateTo({
             url: `/pages/coupon-edit/coupon-edit?coupon=${JSON.stringify(data)}`
           })}>修改</AtButton>

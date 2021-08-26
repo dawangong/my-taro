@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:06:10
- * @LastEditTime: 2021-08-26 12:24:21
+ * @LastEditTime: 2021-08-26 16:11:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/activity-list/activity-list.tsx
@@ -29,6 +29,8 @@ const ActivityList: React.FC<Props> = (props: Props) => {
 
   const { list, getActivityList, removeActivity } = useContext(activityStore);
   const [isOpened, setIsOpened] = useState(false);
+  const [isOpenedDel, setIsOpenedDel] = useState(false);
+  const [fn, setFn] = useState(() => () => {});
 
   useEffect(() => {})
 
@@ -76,6 +78,22 @@ const ActivityList: React.FC<Props> = (props: Props) => {
         }}
         content='新增活动前,请先确认新增过优惠券.奖品建议至少设置6个,剩余概率均为谢谢惠顾'
       />
+
+      <AtModal
+        isOpened={isOpenedDel}
+        title='提示'
+        cancelText='取消'
+        confirmText='确认'
+        onClose={() => {
+          setIsOpenedDel(false);
+        }}
+        onCancel={() => {
+          setIsOpenedDel(false);
+        }}
+        onConfirm={fn}
+        content='确认删除?'
+      />
+      
       <ScrollView
         className='scroll-view'
         scrollY
@@ -99,13 +117,18 @@ const ActivityList: React.FC<Props> = (props: Props) => {
                 <View className="activity-card-name">{item.title}</View>
                 <View className="activity-card-del" onClick={(e: any) => {
                   e.stopPropagation();
-                  removeActivity({
-                    id: item.id,
-                    required: ['id']
+                  setFn(() => () => {
+                    removeActivity({
+                      id: item.id,
+                      required: ['id']
+                    })
+                    setIsOpenedDel(false);
                   })
+                  setIsOpenedDel(true);
                 }}>
                   <AtIcon value='trash' size='22' color="#ccc" ></AtIcon>
                 </View>
+                
               </View>
               <View className="activity-card-content">
                 <View className="activity-card-field">

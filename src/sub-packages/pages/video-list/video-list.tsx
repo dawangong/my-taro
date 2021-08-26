@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-26 17:07:21
- * @LastEditTime: 2021-08-25 13:40:39
+ * @LastEditTime: 2021-08-26 16:16:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /my-taro/src/pages/video-list/video-list.tsx
@@ -18,7 +18,7 @@ import Taro, {
 } from '@tarojs/taro'
 import { observer } from 'mobx-react'
 import { View, ScrollView, Video } from '@tarojs/components'
-import { AtButton, AtIcon } from 'taro-ui'
+import { AtButton, AtIcon, AtModal } from 'taro-ui'
 import { getVideoListApi, removeVideoApi } from '../../../api/common-api';
 import splitStore from '../../../store/split-store'
 
@@ -29,7 +29,10 @@ const VideoList: React.FC<Props> = (props: Props) => {
   // 1=通过 2=未通过 3=待审核
   const state = ['未知', '通过', '未通过', '待审核'];
   const [list, setList] = useState([])
+  const [isOpenedDel, setIsOpenedDel] = useState(false);
+  const [fn, setFn] = useState(() => () => {});
   const { updateUrl } = useContext(splitStore);
+
 
   const router = useRouter();
   const { back } = router.params;
@@ -81,6 +84,23 @@ const VideoList: React.FC<Props> = (props: Props) => {
 
   return (
     <View className='page-video-list'>
+
+
+      <AtModal
+        isOpened={isOpenedDel}
+        title='提示'
+        cancelText='取消'
+        confirmText='确认'
+        onClose={() => {
+          setIsOpenedDel(false);
+        }}
+        onCancel={() => {
+          setIsOpenedDel(false);
+        }}
+        onConfirm={fn}
+        content='确认删除?'
+      />
+
       <ScrollView
         className='scroll-view'
         scrollY
@@ -105,14 +125,21 @@ const VideoList: React.FC<Props> = (props: Props) => {
               <View className="activity-card-header">
                 <View className="activity-card-icon">视频</View>
                 <View className="activity-card-name">{item.title}</View>
-                <View className="activity-card-del" onClick={(e: any) => {
-                  e.stopPropagation();
-                  removeVideo({
-                    id: item.id,
-                  })
-                }}>
-                  <AtIcon value='trash' size='22' color="#ccc" ></AtIcon>
-                </View>
+                {
+                  !back && <View className="activity-card-del" onClick={(e: any) => {
+                    e.stopPropagation();
+                    setFn(() => () => {
+                      removeVideo({
+                        id: item.id,
+                      })
+                      setIsOpenedDel(false);
+                    })
+                    setIsOpenedDel(true);
+                  }}>
+                    <AtIcon value='trash' size='22' color="#ccc" ></AtIcon>
+                  </View>
+                }
+                
               </View>
               <View className="activity-card-content">
                 <View className="activity-card-field">
